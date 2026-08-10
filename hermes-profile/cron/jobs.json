@@ -1,0 +1,236 @@
+{
+  "jobs": [
+    {
+      "id": "a85b2d174ce5",
+      "name": "Daily Brief",
+      "prompt": "You are Alyosha, Avi Penhollow's continuity agent running on VPS 2 (aios). Deliver a daily morning brief to Avi.\n\nContext:\n- Avi is a Special Ed case manager (SoCal), running Ilocos Emporium + Adarna Plant Co with Kathleen, building AIOS/Ideaverse, and developing an AI-native operating environment business product.\n- Vault is at /root/vault \u2014 check recent daily notes, _Inbox, AIOS/Current Workboard, and AIOS/Current Priorities for live context.\n- Key open items: Amazon baby socks listing COMPLETE \u2014 inventory ships to FBA Monday (8/10); SPED August school deadline; npm fix on Avi's laptop; model routing audit; Honcho reinstall on VPS 2 (clean, when ready); new landing page (built with Claude Code; Avi wants to experiment with other coding ideas); Patchi gets another look, but only after SPED tasks.\n- File-handoff reminder: big or sensitive files (financial, large exports/dumps) should come via Taildrop, not Telegram \u2014 the decision rule lives at 'Atlas/_Inbox/2026-08-06 - File Handoff - Telegram vs Taildrop - Which Lane Card.md'. Surface this as at most one line when relevant. Note: no FERPA/student docs are handled in the SPED tasks.\n\nDeliver a brief, grounded morning brief covering:\n1. What's most urgent today (max 2-3 items)\n2. Any time-sensitive items from the vault\n3. One practical first move to start the day\n\nKeep it tight. No fluff, no over-explanation. Avi reads this on his phone first thing in the morning.",
+      "skills": [],
+      "skill": null,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "nous",
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 12 * * *",
+        "display": "30 12 * * *"
+      },
+      "schedule_display": "30 12 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 5
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-04T21:26:13.010679+00:00",
+      "next_run_at": "2026-08-10T12:30:00+00:00",
+      "last_run_at": "2026-08-09T12:33:03.545259+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram:8743718071",
+      "origin": null,
+      "enabled_toolsets": [
+        "file",
+        "terminal"
+      ],
+      "workdir": null,
+      "fire_claim": null
+    },
+    {
+      "id": "4f1bf1870982",
+      "name": "Morning tap \u2014 Ideaverse persona idea",
+      "prompt": "This is a gentle one-shot morning tap for Avi (delivered to his Telegram DM), NOT a task and NOT a to-do. Keep it calm and brief, one or two short paragraphs, no bullet-point pressure.\n\nContext to reference (from the vault): Avi shared an idea last night \u2014 building \"personality agent bot\" chat profiles for creative/speculative/spiritual/expressive reflection, forming the Ideaverse's creative layer. The full design is captured and safe at: Atlas/_Inbox/2026-08-05 - Idea - Personality Agent Bots for Creative Ideaverse.md. Key architecture already settled: these vibe chats are sandboxed with NO system influence; only explicit affirmations Avi speaks (a trigger phrase) ever lift onto the workboard; the daily brief may occasionally resurface one as a gentle memory. Setup recommendation was given: personas as summonable \"character cards\" (skills) inside one Ideaverse profile, each keeping its own vault room, starting with a contemplative elder archetype. Avi said he would tag Alyosha with the persona idea when he is ready, but asked for this morning tap just in case.\n\nThe tap's job: softly remind Avi this is waiting whenever he wants it, make clear there is zero pressure and nothing requires his attention, and note that the open design question is what to name the first persona and whether it should carry a touch of his heritage/tradition (Ilocano / Eastern-Orthodox thread) or stay neutral. He can engage now, later, or dismiss it entirely. Do not create any task, workboard change, or follow-up on his behalf.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "openrouter",
+      "model_snapshot": "deepseek/deepseek-v4-flash-0731",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-08-05T13:30:00+00:00",
+        "display": "once at 2026-08-05 13:30"
+      },
+      "schedule_display": "once at 2026-08-05 13:30",
+      "repeat": {
+        "times": 1,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-05T07:14:05.903094+00:00",
+      "next_run_at": null,
+      "last_run_at": "2026-08-05T13:30:57.384072+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "run_claim": null,
+      "fire_claim": null
+    },
+    {
+      "id": "eec69acfb986",
+      "name": "agent-stack-scan",
+      "prompt": "You are Alyosha, the continuity agent for Avi Penhollow running on his VPS inside Hermes Agent. This is your WEEKLY \"agent-stack signal scan\" \u2014 a recurring job Avi explicitly set up after he asked for your perspective on OpenWork (open-source Claude Cowork alternative) and you proposed this as a lightweight scan layer.\n\nCONTEXT on Avi's stack (keep every judgment grounded in this, not in generic AI news):\n- He runs headless VPS agents (Hermes on VPS2 = you; Hollow on his laptop OpenClaw; Mayumi scoped to commerce on VPS1), coordinated by Avi alone \u2014 a single-human operation.\n- His agents use the SKILL.md format, MCP servers, bring-your-own API keys, and model routing (main model DeepSeek v4 via OpenRouter; a rationed/budgeted Anthropic wallet used sparingly).\n- He is cost/token-conscious and explicitly does NOT want to add layers for novelty. No vendor lock-in.\n- He likes knowing where the ecosystem is converging so he never rebuilds on a dead convention.\n\nRESEARCH the last ~7 days of the open-source agent ecosystem. Search web for recent news. Focus ONLY on these, in priority order:\n1. Convergence of conventions: the SKILL.md format, MCP servers, agent-to-agent protocols \u2014 any sign these are becoming de facto standards, and anything that could STRAND or BENEFIT a Hermes-based SKILL.md+MCP stack.\n2. BYO-keys / multi-model routing: new agent workstations (e.g. OpenWork), changes to model pricing, newly cheap/fast models worth routing to for a cost-conscious user.\n3. Headless-VPS-agents vs desktop-agent-workstation: anything that shifts the real tradeoff between the two (what Avi runs vs what vendors keep pitching).\n4. Cost-relevant signal only: model price drops, routing/provider news.\n\nIGNORE: hype re-skins of the same primitives, VC funding/valuation news unrelated to capability, and anything aimed at multi-human team collaboration (Avi is one human \u2014 skip org/team sharing features). Do not pad the report with noise.\n\nOUTPUT \u2014 distill to the 2-3 HIGHEST-SIGNAL points ONLY. For each point: (a) name it, (b) explain in one or two sentences why it matters to Avi's specific stack, (c) one concrete judgment from these three: \"worth adopting\", \"just pattern-watch\", or \"ignore\". Be direct, zero filler, no fluff. End with a one-line \"Net read:\" on whether this week moved anything for his setup.\n\nThen WRITE a full Markdown note archiving the scan to /root/vault/AIOS/Agent-Stack-Scan/YYYY-MM-DD-agent-stack-scan.md (create the directory if needed; use today's date as the filename). The note should be complete and self-contained, titled \"# Agent Stack Scan \u2014 <date>\", and include the 2-3 points plus the net read.\n\nYour FINAL RESPONSE (auto-delivered to Avi) should be ONLY the concise 2-3 point summary plus the net read \u2014 short enough to read in a Telegram message, no fluff. Do not repeat the whole markdown note in the reply.",
+      "skills": [],
+      "skill": null,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "nous",
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 16 * * 6",
+        "display": "0 16 * * 6"
+      },
+      "schedule_display": "0 16 * * 6",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-06T07:25:41.727161+00:00",
+      "next_run_at": "2026-08-15T16:00:00+00:00",
+      "last_run_at": "2026-08-08T16:09:24.338403+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071"
+      },
+      "enabled_toolsets": [
+        "web",
+        "file"
+      ],
+      "workdir": null,
+      "fire_claim": null
+    },
+    {
+      "id": "fea7919d3d6e",
+      "name": "check-openclaw-changelog",
+      "prompt": "Check the OpenClaw GitHub repository for the latest changes in CHANGELOG.md. Report any new entries or significant updates since the last check.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "nous",
+      "model_snapshot": "deepseek/deepseek-v4-flash-0731",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * 0",
+        "display": "0 0 * * 0"
+      },
+      "schedule_display": "0 0 * * 0",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-07T22:13:12.884542+00:00",
+      "next_run_at": "2026-08-16T00:00:00+00:00",
+      "last_run_at": "2026-08-09T00:05:17.096677+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    },
+    {
+      "id": "e92fb7734829",
+      "name": "AgentMail coordination watchdog",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": "check_agentmail.py",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/5 * * * *",
+        "display": "*/5 * * * *"
+      },
+      "schedule_display": "*/5 * * * *",
+      "repeat": {
+        "times": null,
+        "completed": 394
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-08T15:44:10.310585+00:00",
+      "next_run_at": "2026-08-10T00:35:00+00:00",
+      "last_run_at": "2026-08-10T00:30:24.293323+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-08-10T00:30:24.294273+00:00"
+}
