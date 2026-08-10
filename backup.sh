@@ -11,7 +11,10 @@ LOG=/root/backup-aios/.backup.log
 exec 2>"$LOG"
 
 # 1. Sync live profile, excluding secrets and junk (mirror of initial rsync)
-rsync -a \
+#    rsync may exit 24 when a live file vanishes mid-copy (e.g. the 5-min
+#    watchdog rotating its output). That is a warning, not a failure — tolerate
+#    it; stay loud for every other error.
+if ! rsync -a \
   --delete \
   --exclude '.env' \
   --exclude 'auth.json' \
@@ -44,7 +47,14 @@ rsync -a \
   --exclude '*.lock' \
   --exclude '*.pid' \
   --exclude 'lsp' \
-  "$SRC/" "$DEST/"
+  --exclude 'cron/output/e92fb7734829' \
+  "$SRC/" "$DEST/"; then
+  rc=$?
+  if [ "$rc" -ne 24 ]; then
+    echo "rsync failed with exit $rc" >&2
+    exit "$rc"
+  fi
+fi
 
 # Drop SQLite sidecars that rsync may carry
 rm -f "$DEST"/kanban.db-shm "$DEST"/kanban.db-wal "$DEST"/state.db-shm "$DEST"/state.db-wal

@@ -179,6 +179,33 @@ roles are necessary," hold this posture:
   (e.g. "what 3 things...") if it diverts from tasks already stated; go with
   what's on the board unless he opts in.
 
+## Batch changes — don't dribble updates mid-session (Avi preference)
+
+When Avi says "hold off on updates until we are done with the session" or "I'd
+prefer to do it all at once," he wants **no incremental config/file changes
+during the session** — he is documenting everything on his side and will issue
+one consolidated go signal. Honor that by:
+
+- **Staging, not executing.** Prepare the work (verify state, draft the plan,
+  install read-only tooling, queue the commands) but do NOT flip configs, push
+  repos, or edit tracked files until he says go.
+- **Keeping a running list** of what is staged so the "go" moment is just
+  execution, not re-discovery.
+- **Explicitly confirming you're holding** ("holding — no changes until you say
+  go") so he knows the leash is on.
+
+This is distinct from the standing "discuss side-effect/change actions before
+running" rule — batching is about *timing*, not just permission.
+
+**Refinement (8/10): "capture as we go" applies to the VAULT, not to config.**
+Avi: "I just want to capture as we go for now. It will probably be faster and
+more accurate lol" — direction notes, status updates, and decisions should be
+written to the vault **immediately** as they arise (a 10-line dated direction
+note in `Atlas/_Inbox/` costs nothing and beats reconstructing at session end).
+The batch-and-hold rule above is for **system/config/repo changes** (flipping
+model routing, pushing backup repos, editing tracked files). Two different
+clocks: vault capture is continuous, system change is gated.
+
 ## Command center — one source of truth that survives memory limits
 
 When an effort's decisions must persist no matter the agent-memory state (memory
@@ -261,15 +288,18 @@ are watching — that's why Hollow "goes quiet" mid-setup; (2) internal status p
 like "Redirected current run (iteration 1/500)" come from OUR OWN gateway, not
 evidence another agent is alive — the only valid Hollow heartbeat is Hollow replying.
 
-## Fire-drill backup — Hermes profile to private GitHub (8/09)
+## Fire-drill backup — Hermes profile to private GitHub (8/09, COMPLETE)
 
-Avi wants a private GitHub repo so the Hermes profile (config, skills, memory,
+Avi wanted a private GitHub repo so the Hermes profile (config, skills, memory,
 cron) survives a total loss. Set up with SSH-key auth (no PAT), repo
 `~/backup-aios` → `penhollowstudiolabs/aios-backup` (private). **SSH cannot
 create repos** — Avi must click github.com/new first; then push. Secrets
 (.env, auth.json, google_*, state.db, logs, caches, bin) are excluded; scan
-staged files before committing. Exact rsync excludes + verify commands in
-`references/aios-github-backup.md`.
+staged files before committing. **Daily cron `aios-daily-backup` is live**
+(0 14 * * * UTC, no_agent, silent on no-change) via a wrapper script in the
+profile `scripts/` dir — cron requires a RELATIVE script path, absolute paths
+are rejected. Exact rsync excludes, wrapper pattern, verify commands, and the
+free-private-repos fact in `references/aios-github-backup.md`.
 
 ## Hollow gone because the laptop powered off (battery recovery)
 
@@ -293,6 +323,32 @@ crash: the node itself drops off the tailnet.
 - Mayumi (ilocos, VPS1) is scoped to commerce; keep her in her lane.
 - Prepare agent meetings (e.g. agenda files under `Efforts/Captain-Avi-System/`)
   and confirm delivery/sync before assuming shared context.
+
+### Checking Mayumi's liveness on VPS1 (before assuming she needs reviving)
+Mayumi's gateway has been up continuously since Aug 5 — she is usually **live but
+parked**, not dead. When Avi says "get Mayumi going", first verify state over the
+tailnet, then figure out her next job:
+
+```bash
+ssh root@ilocos   # tailnet-only, BatchMode
+ps aux | grep -iE "hermes|mayumi|openclaw" | grep -v grep   # gateway run present?
+ls /root/.hermes/profiles/                             # profile dir (ilocos)
+grep -E "model:|provider:|default:" /root/.hermes/profiles/ilocos/config.yaml
+grep -oE "^[A-Z_]+=" /root/.hermes/profiles/ilocos/.env   # key NAMES only, never values
+tail -5 /root/.hermes/profiles/ilocos/logs/gateway.log    # last Telegram activity
+docker ps --format "{{.Names}} {{.Status}}"               # vault containers
+```
+
+If the gateway is up and the log shows recent Telegram traffic, she is not broken —
+the real question is which queued job to assign (check the vault: FBA shipment prep,
+Ilocos domain audit, or just a wake-up hello). Her routing **changed 8/10 (Avi,
+off Gemini — quality unacceptable):** primary `deepseek/deepseek-v4-flash-0731`
+via OpenRouter, fallback `deepseek/deepseek-v4-pro` via OpenRouter. No Gemini in
+her chain. Swap via SSH + `hermes --profile ilocos config set model.default …`;
+the "not a recognized config key" warning on `fallback_model.*` is a false
+positive — `hermes --profile ilocos fallback list` confirms the live chain. The
+gateway evicts idle sessions, so the next message picks up the new config without
+a restart.
 
 ## References
 - `references/model-routing-fallback.md` — diagnose silent quality-cliff fallbacks (Nous 503s → lite-tier model), the same-model-via-OpenRouter fix, exact `hermes config set` commands + the false-positive config-key warning, and the ask-first / never-lite-tier rules.
@@ -319,4 +375,19 @@ crash: the node itself drops off the tailnet.
 - `references/aios-github-backup.md` — fire-drill backup of the Hermes profile
   to a private GitHub repo: SSH-key auth (no PAT), rsync exclude list,
   pre-commit secret scan, the "SSH can't create repos — Avi clicks github.com/new
-  first" pitfall, and current pickup state (commit made, push pending).
+  first" pitfall, the no_agent cron wrapper requirement (relative script path),
+  and live state: push done + daily cron running.
+- `references/anthropic-console-billing-controls.md` — the two independent
+  money controls in the Anthropic console (monthly spend limit = usage ceiling,
+  default $200K, no card charge; auto-reload = payment top-up, $15 minimum) and
+  the 8/10 confusion that got them mixed up. Read this before discussing
+  Anthropic wallet settings or the Aug 31 / Sep 1 recalibration.
+- `references/vault-domain-audit.md` — per-area vault audits (SPED → Ilocos
+  pattern): read-only verdict ledgers, parallel `delegate_task` fan-out recipe,
+  the post-audit verification checklist (A/B/C/D rows), supersede-by-direction
+  handling, and Obsidian deep-link format for sending Avi vault links.
+- `references/residential-egress-services.md` — services that block VPS
+  datacenter IPs (Amazon, YouTube transcript API) and the residential-egress
+  rule: Hollow on the laptop fetches, Alyosha processes. Includes the
+  youtube-transcript-api install + venv-interpreter pitfall and the
+  execute_code subprocess workaround for the terminal guard's null-byte error.

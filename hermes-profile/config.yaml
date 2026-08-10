@@ -177,3 +177,6 @@ session_reset:
   mode: none
 voice:
   auto_tts: true
+tts:
+  edge:
+    voice: en-US-ChristopherNeural

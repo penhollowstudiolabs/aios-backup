@@ -11,3 +11,7 @@ AgentMail lane live (coordination@agentmail.to, Hollow→Alyosha); 5-min watchdo
 Avi authorizes scoped autonomous actions; no gateway/workflow disruption.
 §
 Direction (8/8): assistant+vault brain = VPS-homed Hermes, reachable laptop/phone/school; keep local operator (hybrid, not consolidation); Hollow not replaced.
+§
+TTS: Edge provider, voice en-US-ChristopherNeural (set 8/10); samples voices at tts.travisvn.com.
+§
+Left doctoral program after brother's death in 2021; brother was mentally ill/substance abuser — deeply sensitive topic.

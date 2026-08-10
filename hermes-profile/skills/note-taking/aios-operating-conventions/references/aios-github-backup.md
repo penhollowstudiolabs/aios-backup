@@ -14,21 +14,37 @@ memory, cron) survives "everything I own burns in a fire." Set up 2026-08-09/10.
 - Token alternative exists but is worse: `ghp_` PAT with `repo` scope, expires,
   must be rotated. SSH key has no expiry. Prefer SSH.
 
-## State as of 2026-08-10 (pickup point)
+## State as of 2026-08-10 (COMPLETE — push done, daily cron live)
 
-- Local repo: `/root/backup-aios` (git init -b main), commit `8988d3a`
-  "Aios backup: Hermes profile snapshot 2026-08-10".
-- **Remote push PENDING** — GitHub does NOT auto-create repos on push, and SSH
-  cannot create repos. Avi must click **https://github.com/new** →
-  owner `penhollowstudiolabs`, name `aios-backup`, **Private**, leave empty
-  (no README/.gitignore/license) → Create. Then:
-  ```bash
-  cd /root/backup-aios
-  git remote add origin git@github.com:penhollowstudiolabs/aios-backup.git
-  git push -u origin main
-  ```
-- After first push, consider a periodic re-sync (cron: git add -A && commit &&
-  push) so the backup stays current — not yet scheduled; Avi was batching.
+- Local repo: `/root/backup-aios` (git init -b main), first commit `8988d3a`
+  "Aios backup: Hermes profile snapshot 2026-08-10", plus a housekeeping
+  commit excluding `lsp/` and `.backup.log` (see Pitfalls).
+- **Remote: LIVE and verified.** `penhollowstudiolabs/aios-backup` (private).
+  Verify push landed (don't assume): `git ls-remote origin main` + `git rev-parse
+  origin/main` must match the local HEAD.
+- **Daily cron: LIVE.** Job `aios-daily-backup`, `0 14 * * *` UTC (7am PDT),
+  `no_agent=true` running `/root/.hermes/profiles/alyosha/scripts/aios-daily-backup.sh`
+  (a thin wrapper that `exec`s `/root/backup-aios/backup.sh`). Silent on
+  no-change (empty stdout = no spam), prints `backup pushed: <ts>` on a push,
+  alerts only on failure. Script's rsync excludes mirror the list below.
+
+### Cron gotcha (absolute paths rejected)
+`cronjob` with `no_agent=true` requires `script` as a **relative** path under
+`~/.hermes/scripts/` (or the active profile's `scripts/` dir) — an absolute
+path like `/root/backup-aios/backup.sh` is rejected. Fix: put a 1-line wrapper
+in the scripts dir that `exec`s the real script. Test the job with
+`cronjob action=run` and confirm `execution_success: true` + `last_status: ok`.
+
+### First-push recipe (still relevant for other repos / new boxes)
+GitHub does NOT auto-create repos on push, and SSH cannot create repos. Avi
+must click **https://github.com/new** → owner `penhollowstudiolabs`, name
+`aios-backup`, **Private**, leave empty (no README/.gitignore/license) →
+Create. Then:
+```bash
+cd /root/backup-aios
+git remote add origin git@github.com:penhollowstudiolabs/aios-backup.git
+git push -u origin main
+```
 
 ## What gets backed up
 
@@ -80,9 +96,20 @@ every message, which bloats the repo.
   empty private repo must be created in the browser first. Don't try
   `git push` to a nonexistent repo and call it "almost done" — the repo does
   not appear.
+- **rsync can drag in tooling dirs.** `hermes-profile/lsp/` (node_modules
+  symlinks) slipped in on the first sync and needed a housekeeping commit
+  (`git rm -r --cached hermes-profile/lsp` + add `lsp/` to excludes).
+- **Log files land inside the repo dir.** `backup.sh` wrote `.backup.log` into
+  `/root/backup-aios/` (the repo root), and it got committed. Add `.backup.log`
+  to `.gitignore`; better, write the log outside the repo or `exec 2>` it to
+  /tmp.
 - **Don't put the PAT in chat or in a doc.** If Avi ever goes the token route,
   the token is pasted into config/credential store only, never into a vault
   note or Telegram (creds never in chat — Avi rule).
+- **Private repos are free on GitHub's free plan** (verified 8/09/2026):
+  unlimited private repos, $0 forever. GitHub charges for Actions minutes,
+  LFS large files, and Team/Enterprise features — none of which a small
+  config/data backup uses. No bill coming; don't let Avi worry about cost.
 - The vault (`/root/vault`) is deliberately NOT in this repo: it already
   survives via ob-sync to Obsidian remote. The repo covers what has no other
   off-box copy (Hermes profile state).

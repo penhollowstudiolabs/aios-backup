@@ -38,6 +38,43 @@ or any STT package locally.
   the file may have been generated but never delivered — include the
   `MEDIA:/abs/path.ogg` line in the reply so it actually sends.
 
+## Selecting / A-B testing a voice (Edge TTS free)
+
+The Edge TTS voice is chosen by the `tts.edge.voice` config key
+(`hermes config set tts.edge.voice <name>` — never hand-edit config.yaml).
+When unset it silently uses a stock default, which may not be the voice Avi
+expects. Captured 8/10: Avi wanted to sample voices before committing.
+
+Workflow to A/B voices without churning config each time — use the `edge-tts`
+CLI directly to synthesize samples, then set the picked voice once:
+
+```bash
+EDGE=/usr/local/lib/hermes-agent/venv/bin/edge-tts
+$EDGE --list-voices | grep "en-US"              # see available names + style tags
+for V in en-US-GuyNeural en-US-ChristopherNeural en-US-AriaNeural; do
+  $EDGE --voice "$V" --text "$SAMPLE" --write-media "$V.mp3"
+  ffmpeg -y -loglevel error -i "$V.mp3" -c:a libopus -b:a 48k "$V.ogg"  # voice bubble
+done
+```
+
+Then deliver each `MEDIA:...ogg` as a labeled voice bubble (same text for every
+clip so the timbre comparison is fair), let Avi listen, and set his pick:
+`hermes config set tts.edge.voice en-US-GuyNeural`. A voice config change has
+the same gateway-startup sync caveat as `voice.auto_tts` above.
+
+Style tags (from `--list-voices`, 8/10): Guy/Christopher/Eric = male with
+authority or rational character; Aria/Jenny/Emma = female, confident/friendly.
+Sample stock line that worked: "Alright Avi, this is a voice sample. Pick the
+one you'd want reading your morning brief back to you."
+
+## Telegram never autoplays voice (client limitation)
+
+There is NO way to force Telegram to auto-play a voice/audio message — mobile
+and desktop both require a tap on the bubble; no Bot API parameter or
+workaround enables autoplay. When Avi asks "can it play automatically," the
+honest answer is no, and text (or the existing text brief) remains the only
+truly hands-free channel. Don't chase this as a fixable problem.
+
 ## Verify audio file is real (don't assume)
 
 ```bash
