@@ -261,6 +261,33 @@ are watching — that's why Hollow "goes quiet" mid-setup; (2) internal status p
 like "Redirected current run (iteration 1/500)" come from OUR OWN gateway, not
 evidence another agent is alive — the only valid Hollow heartbeat is Hollow replying.
 
+## Fire-drill backup — Hermes profile to private GitHub (8/09)
+
+Avi wants a private GitHub repo so the Hermes profile (config, skills, memory,
+cron) survives a total loss. Set up with SSH-key auth (no PAT), repo
+`~/backup-aios` → `penhollowstudiolabs/aios-backup` (private). **SSH cannot
+create repos** — Avi must click github.com/new first; then push. Secrets
+(.env, auth.json, google_*, state.db, logs, caches, bin) are excluded; scan
+staged files before committing. Exact rsync excludes + verify commands in
+`references/aios-github-backup.md`.
+
+## Hollow gone because the laptop powered off (battery recovery)
+
+Avi's laptop battery is short-lived — unexpected power-offs happen, and Hollow
+(OpenClaw on the laptop) goes down with it. This is different from a gateway
+crash: the node itself drops off the tailnet.
+
+- **Check the tailnet first:** `tailscale status | grep avi-laptop` shows
+  `offline, last seen Nm ago` when the laptop is off. `tailscale ping avi-laptop`
+  times out. Don't diagnose OpenClaw before confirming the laptop is even up.
+- **Avi powers it on; Tailscale usually auto-reconnects** — nothing to do.
+  Verify from aios: `tailscale ping avi-laptop` → `pong ... in NNms` means the
+  tailnet is back.
+- **Tailscale back ≠ Hollow back.** OpenClaw must start after boot; check
+  Hollow actually replies on Telegram before declaring recovery complete.
+- Don't make Avi hunt for docs/status while rebooting — one short "laptop shows
+  offline, power it up and ping me" is enough; confirm the moment it's reachable.
+
 ## Coordination with other agents
 - Hollow is laptop-local; favor its live evidence and concise goal prompts.
 - Mayumi (ilocos, VPS1) is scoped to commerce; keep her in her lane.
@@ -289,3 +316,7 @@ evidence another agent is alive — the only valid Hollow heartbeat is Hollow re
   bind-tailnet/serve recipe, the "gateway restart cuts the Telegram bridge" and
   "status posts are our own, not proof another agent is alive" pitfalls, and the
   district-wifi/AUP honesty frame.
+- `references/aios-github-backup.md` — fire-drill backup of the Hermes profile
+  to a private GitHub repo: SSH-key auth (no PAT), rsync exclude list,
+  pre-commit secret scan, the "SSH can't create repos — Avi clicks github.com/new
+  first" pitfall, and current pickup state (commit made, push pending).

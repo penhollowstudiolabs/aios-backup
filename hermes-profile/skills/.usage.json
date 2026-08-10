@@ -29,14 +29,14 @@
     "archived_at": null,
     "created_at": "2026-08-05T05:04:13.328752+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-08-09T23:09:13.044287+00:00",
-    "last_used_at": "2026-08-09T23:08:36.897636+00:00",
-    "last_viewed_at": "2026-08-09T23:08:36.893784+00:00",
-    "patch_count": 42,
+    "last_patched_at": "2026-08-10T00:35:33.014760+00:00",
+    "last_used_at": "2026-08-10T00:35:22.827910+00:00",
+    "last_viewed_at": "2026-08-10T00:35:22.823484+00:00",
+    "patch_count": 45,
     "pinned": false,
     "state": "active",
-    "use_count": 45,
-    "view_count": 45
+    "use_count": 47,
+    "view_count": 47
   },
   "github-auth": {
     "archived_at": null,
@@ -95,13 +95,13 @@
     "created_at": "2026-08-05T00:49:06.141299+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-08-09T15:32:13.771883+00:00",
-    "last_used_at": "2026-08-09T23:01:44.598635+00:00",
-    "last_viewed_at": "2026-08-09T23:01:44.595277+00:00",
+    "last_used_at": "2026-08-10T00:34:16.340110+00:00",
+    "last_viewed_at": "2026-08-10T00:34:16.337138+00:00",
     "patch_count": 12,
     "pinned": false,
     "state": "active",
-    "use_count": 13,
-    "view_count": 13
+    "use_count": 14,
+    "view_count": 14
   },
   "multi-agent-collaboration": {
     "archived_at": null,
