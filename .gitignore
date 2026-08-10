@@ -19,3 +19,5 @@ audio_cache/
 image_cache/
 images/
 bin/
+lsp/
+.backup.log

@@ -43,6 +43,7 @@ rsync -a \
   --exclude 'processes.json' \
   --exclude '*.lock' \
   --exclude '*.pid' \
+  --exclude 'lsp' \
   "$SRC/" "$DEST/"
 
 # Drop SQLite sidecars that rsync may carry
