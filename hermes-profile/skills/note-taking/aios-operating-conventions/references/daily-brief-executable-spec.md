@@ -1,0 +1,92 @@
+# Daily Brief — the cron prompt is the executable spec
+
+**SPINE LIVE 8/10 evening (first run 8/11 5:30 AM PDT):** the cron prompt was
+rewritten to be calendar-grounded per Avi's four answers: (1) calendars =
+work mirror + primary + family; (2) caseload due-date pressure allowed but
+brief only flags it briefly — the work dashboard bears the brunt; (3) the
+5-element minimum design folded in; (4) gentle tap included occasionally.
+Schedule data is read from `Efforts/SPED-Workflow/UHS-Schedule/`
+(`fall_2026_operational_schedule.csv` + `bell_schedule_templates.json`).
+Meeting-window projection remains OUT (negative availability only). The
+prompt itself is the source of truth — edit via cronjob tool, not just this doc.
+
+Live state (8/10): daily brief is cron job `a85b2d174ce5` ("Daily Brief"),
+schedule `30 12 * * *` = **5:30 AM PDT**, delivers to Telegram chat
+8743718071, models `deepseek/deepseek-v4-flash-0731` via nous. Outputs are
+written to `~/.hermes/profiles/alyosha/cron/output/a85b2d174ce5/<ts>.md` and
+the delivered brief is also archived in the vault at
+`Calendar/Daily Briefs/`. Job details live in
+`~/.hermes/profiles/alyosha/cron/jobs.json`.
+
+## The core lesson (8/10)
+
+**The thing that actually runs the brief is the cron job's `prompt` field — not
+any spec document.** Avi repeatedly asked across sessions ("add this to the
+brief," "I want to add that"), and those asks were being written into spec docs
+(`Avi Operating Model - v1`, `AIOS/Current Workboard.md`,
+`AIOS/Current Priorities`) — but the cron prompt was **never updated**. So the
+vault said one thing and the delivered brief did another. Root failure mode:
+treating the spec as the source of truth when the *prompt* is.
+
+Rule: **when Avi asks to add/change the brief, edit the cron job's prompt (via
+`hermes cron update` / the cronjob tool) in the same pass — not just the spec.**
+Spec docs are design intent; the prompt is the running behavior.
+
+## Minimum briefing design (from Avi Operating Model v1)
+
+The intended daily orientation should contain ONLY:
+1. top active commitments;
+2. deadlines, appointments, and waiting-on items;
+3. **changes or decisions needing Avi's attention**;
+4. one recommended next action; and
+5. a system-health exception **only when it materially matters**.
+
+**"If nothing needs attention, say so plainly. Do not manufacture activity."** —
+this is Avi's own line. A brief that always manufactures urgency is off-spec.
+
+## Compilation-surface role (workboard wording)
+
+"Treat the future daily brief as the intended compilation surface: stable
+orientation, only material scheduled-task outputs, one source-linked
+patterns-and-connections." It should **cross-link patterns from scheduled-task
+outputs**, not just push a vault digest.
+
+## The gentle tap on the shoulder (from the Ideaverse note, 8/05)
+
+The brief may from time to time resurface **one past vibe-chat moment** as a
+calm *memory* — reminding Avi of a thread born in the Ideaverse without pushing
+it onto the workboard. Not an auto-export (the affirmation firewall still
+governs exports). The first brief delivered this tap (8/05); later runs dropped
+it.
+
+## Calendar / meeting-protection layer (STATUS 8/10 EVENING: foundation BUILT, spine pending)
+
+An operating-model distinction: a briefing gives orientation but does NOT
+prevent missed meetings. Meeting protection needs (a) a confirmed authoritative
+calendar source, (b) dependable alerts on the device Avi uses, and (c) visible
+follow-through for captured-but-incomplete tasks.
+
+**The dependency cleared 8/08:** Gmail + Google Calendar OAuth for the alyosha
+profile is live and read-only verified
+(`~/.hermes/profiles/alyosha/google_token.json`).
+
+**The foundation was BUILT 8/10 (Hollow, with Avi; verified by Alyosha live):**
+- UHS command-center layer exists (laptop project `UHS Case Management Command Center`); curation note: `Efforts/SPED-Workflow/2026-08-10 - UHS Case Management Command Center - Handoff Curation.md`.
+- Unified Google read surface verified: Outlook→Google import mirror alive; primary calendar cleaned (old recurring UHS series removed, 17 exact PLC/DM/SM meetings added, 25 transparent non-blocking exceptions).
+- **Runtime schedule data is now vault-side** at `Efforts/SPED-Workflow/UHS-Schedule/` (`fall_2026_operational_schedule.csv` + `bell_schedule_templates.json`, approved 8/10) — the 5:30am brief can read day-type/bell pattern with the laptop off. Source roles: school Google Drive = authoritative; laptop project = active implementation; vault copies = always-on runtime/read layer; Google context entries = display layer, not the sole database. Do NOT rebuild calendar logic.
+
+**Spine build (calendar-grounded brief) pending Avi's answers to four questions (Alyosha's leans included):**
+1. Which calendars feed the brief? (lean: work import mirror + primary + Family; skip Holidays/Proximity Hub/Kathleen's)
+2. Mirror privacy-safe caseload due-dates vault-side (case codes + dates only) for "approaching pressure" reporting? (lean: yes — same pattern as schedule files)
+3. Upgrade to the 5-element minimum design in the same pass? (lean: yes)
+4. Include the gentle tap occasionally? (lean: yes)
+
+Current prompt (8/10) is a vault-digest with stale context (e.g. "Amazon ships to FBA Monday" was 8/10) — refresh context when rebuilding. Enabled toolsets: file+terminal (Google reads go through the google-workspace skill CLI / direct API).
+
+## The gap in one line
+
+The brief is a working **report**, but the **system** it was designed to become
+(calendar-grounded, meeting-protecting, cross-linking scheduled outputs) is now
+foundation-built and waiting on Avi's four spine decisions above. When
+rebuilding: fold the full accumulated design into the cron prompt, get Avi's
+sign-off, update the prompt — and refresh stale context.

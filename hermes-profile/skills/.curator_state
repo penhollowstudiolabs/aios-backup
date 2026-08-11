@@ -1,9 +1,9 @@
 {
-  "last_report_path": null,
-  "last_run_at": "2026-08-04T00:04:43.178076+00:00",
-  "last_run_duration_seconds": null,
-  "last_run_summary": "deferred first run — curator seeded, will run after one interval; use `hermes curator run --dry-run` to preview now",
+  "last_report_path": "/root/.hermes/profiles/alyosha/logs/curator/20260811-003730",
+  "last_run_at": "2026-08-11T00:37:30.908812+00:00",
+  "last_run_duration_seconds": 1.255333,
+  "last_run_summary": "auto: no changes; llm: skipped (consolidation off)",
   "last_run_summary_shown_at": "2026-08-04T00:04:43.178076+00:00",
   "paused": false,
-  "run_count": 0
+  "run_count": 1
 }

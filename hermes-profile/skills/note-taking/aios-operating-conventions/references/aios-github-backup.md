@@ -60,7 +60,13 @@ desktop-attachments  desktop-ssh  desktop  pending_messages  pairing
 models_dev_cache.json  ollama_cloud_models_cache.json
 provider_models_cache.json  web-ui-build-stamp.json  processes.json
 *.lock  *.pid
+cron/output/e92fb7734829
 ```
+
+`cron/output/e92fb7734829` is the AgentMail coordination watchdog's output
+dir — it writes a new file every 5 min, so syncing it (a) races the backup and
+(b) churns ~288 files/day into the repo. Exclude it; the meaningful outputs
+(daily brief, captures) are archived in the vault anyway.
 
 Then `rm -f kanban.db-shm kanban.db-wal` (SQLite sidecars).
 
@@ -92,6 +98,24 @@ every message, which bloats the repo.
 
 ## Pitfalls
 
+- **rsync aborts the whole backup on a transient "file has vanished" warning
+  (code 24).** `backup.sh` runs `set -euo pipefail`, so when the AgentMail
+  watchdog rotates its output file mid-copy, rsync exits 24 and the cron job
+  reports `script failed` without ever reaching the commit+push. This is a
+  *warning*, not corruption — and under `set -euo pipefail` it hard-stops the
+  backup and leaves the day's changes staged-but-unpushed. Fixed 8/10 two ways:
+  exclude the watchdog output dir (above) AND wrap the rsync call so only code
+  24 is tolerated (any other exit still aborts loudly):
+  ```bash
+  if ! rsync -a ... "$SRC/" "$DEST/"; then
+    rc=$?; [ "$rc" -ne 24 ] && { echo "rsync failed exit $rc" >&2; exit "$rc"; }
+  fi
+  ```
+  **Rule: tolerate 24 ONLY, never blanket-ignore rsync errors** — a backup that
+  fails silently is worse than one that cries wolf. When a backup alert fires,
+  read `.backup.log` + the cron output file before assuming data loss; a
+  stdout of `backup pushed:` + exit 0 after a manual `bash backup.sh` re-run is
+  the clean recovery regardless of the earlier code-24 alert.
 - **SSH can't create repos.** You can only push to a repo that exists. The
   empty private repo must be created in the browser first. Don't try
   `git push` to a nonexistent repo and call it "almost done" — the repo does

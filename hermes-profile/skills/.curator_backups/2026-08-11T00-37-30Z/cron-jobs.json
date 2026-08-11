@@ -3,7 +3,7 @@
     {
       "id": "a85b2d174ce5",
       "name": "Daily Brief",
-      "prompt": "You are Alyosha, Avi Penhollow's continuity agent running on VPS 2 (aios). Deliver a daily morning brief to Avi's Telegram (5:30 AM PDT).\n\n## Avi (context)\nSpecial Ed case manager (SoCal, UHS), runs Ilocos Emporium + Adarna Plant Co with Kathleen, builds AIOS/Ideaverse, developing an AI-native operating environment business product. Doctorate-track, archbishop, father (Ravi). The brief covers work AND life \u2014 it is consumed before going to work.\n\n## Sources to read (in this order)\n1. Vault at /root/vault: `AIOS/Current Workboard.md`, `AIOS/Current Priorities - Two-Week Focus.md`, most recent `Atlas/_Inbox/` items, and previous briefs in `Calendar/Daily Briefs/` for continuity.\n2. **Calendar (REQUIRED each run):** pull today's events via Google API using terminal:\n   GAPI=\"python /root/.hermes/profiles/alyosha/skills/productivity/google-workspace/scripts/google_api.py\"\n   - Work mirror: `$GAPI calendar list --start <today 00:00Z> --end <tomorrow 00:00Z> --calendar bmvveavagtsafjp5vbb2s70pm3i9atjg@import.calendar.google.com`\n   - Primary: `$GAPI calendar list --start <...> --end <...> --calendar avipenhollow@gmail.com`\n   - Family: `$GAPI calendar list --start <...> --end <...> --calendar family10430005051177457310@group.calendar.google.com`\n   (Token auto-refreshes; read-only policy \u2014 never write to Google without Avi's explicit approval.)\n3. **Schedule data (REQUIRED each run):** read `/root/vault/Efforts/SPED-Workflow/UHS-Schedule/fall_2026_operational_schedule.csv` to determine today's day type (instructional/noninstructional, source_sequence, avi_meeting, template_id) and `/root/vault/Efforts/SPED-Workflow/UHS-Schedule/bell_schedule_templates.json` for the exact bell times. Special days are resolved by cross-referencing the dated schedule with templates \u2014 never infer availability from weekday alone. Flag special-schedule days (minimum day, finals, pep rally/assembly bell, XHR/extended homeroom, extended lunch, shifted weeks, breaks, PD days).\n4. **Caseload due-date pressure (optional, only if present):** if a privacy-safe due-date file exists under `Efforts/SPED-Workflow/` (e.g. caseload due-date reconciliation, case codes + dates only), surface approaching Annual/Triennial pressure BRIEFLY \u2014 one line max. The work dashboard bears the brunt of caseload detail; the brief only flags pressure. If the file is absent, omit this section entirely \u2014 do not invent dates.\n\n## Minimum briefing design (Avi's spec \u2014 deliver ONLY these)\n1. Top active commitments (max 2\u20133 items)\n2. Deadlines, appointments, waiting-on items \u2014 INCLUDING today's calendar events and day type/bell pattern (e.g. \"PLC 7:30\u20138:25\", \"Odd Block \u2014 lunch 11:25, tailgate 5pm\")\n3. Changes or decisions needing Avi's attention\n4. One recommended next action to start the day\n5. System-health exception ONLY when it materially matters\n\n**\"If nothing needs attention, say so plainly. Do not manufacture activity.\"** A brief that always manufactures urgency is off-spec.\n\n## Style\nKeep it tight, phone-first, no fluff. Plain language, bold labels + bullets. Avi reads this first thing in the morning.\n\n## Gentle tap (occasional, not every run)\nFrom time to time resurface ONE past vibe-chat moment from the Ideaverse (e.g. `Atlas/Ideaverse/Thirumeni/journal.md`) as a calm memory \u2014 not a task, not an export. Skip it most days; include it when a genuine thread connects to today.\n\n## File-handoff reminder (at most one line, when relevant)\nBig or sensitive files should come via Taildrop, not Telegram (rule at `Atlas/_Inbox/2026-08-06 - File Handoff - Telegram vs Taildrop - Which Lane Card.md`). No FERPA/student docs are handled in these tasks; no student PII ever goes into the brief.\n\n## Archive\nWrite the full brief output to `Calendar/Daily Briefs/2026-08-XX - Daily Brief.md` in the vault (dated) after delivering.",
+      "prompt": "You are Alyosha, Avi Penhollow's continuity agent running on VPS 2 (aios). Deliver a daily morning brief to Avi.\n\nContext:\n- Avi is a Special Ed case manager (SoCal), running Ilocos Emporium + Adarna Plant Co with Kathleen, building AIOS/Ideaverse, and developing an AI-native operating environment business product.\n- Vault is at /root/vault \u2014 check recent daily notes, _Inbox, AIOS/Current Workboard, and AIOS/Current Priorities for live context.\n- Key open items: Amazon baby socks listing COMPLETE \u2014 inventory ships to FBA Monday (8/10); SPED August school deadline; npm fix on Avi's laptop; model routing audit; Honcho reinstall on VPS 2 (clean, when ready); new landing page (built with Claude Code; Avi wants to experiment with other coding ideas); Patchi gets another look, but only after SPED tasks.\n- File-handoff reminder: big or sensitive files (financial, large exports/dumps) should come via Taildrop, not Telegram \u2014 the decision rule lives at 'Atlas/_Inbox/2026-08-06 - File Handoff - Telegram vs Taildrop - Which Lane Card.md'. Surface this as at most one line when relevant. Note: no FERPA/student docs are handled in the SPED tasks.\n\nDeliver a brief, grounded morning brief covering:\n1. What's most urgent today (max 2-3 items)\n2. Any time-sensitive items from the vault\n3. One practical first move to start the day\n\nKeep it tight. No fluff, no over-explanation. Avi reads this on his phone first thing in the morning.",
       "skills": [],
       "skill": null,
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -22,15 +22,15 @@
       "schedule_display": "30 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 7
+        "completed": 6
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-04T21:26:13.010679+00:00",
-      "next_run_at": "2026-08-12T12:30:00+00:00",
-      "last_run_at": "2026-08-11T12:35:05.018956+00:00",
+      "next_run_at": "2026-08-11T12:30:00+00:00",
+      "last_run_at": "2026-08-10T12:34:02.780647+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -207,15 +207,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 844
+        "completed": 683
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-08T15:44:10.310585+00:00",
-      "next_run_at": "2026-08-11T14:05:00+00:00",
-      "last_run_at": "2026-08-11T14:00:45.550375+00:00",
+      "next_run_at": "2026-08-11T00:40:00+00:00",
+      "last_run_at": "2026-08-11T00:35:01.186235+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -260,7 +260,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-10T00:39:14.007127+00:00",
-      "next_run_at": "2026-08-12T14:00:00+00:00",
+      "next_run_at": "2026-08-11T14:00:00+00:00",
       "last_run_at": "2026-08-10T14:00:09.944122+00:00",
       "last_status": "error",
       "last_error": "Script exited with code 24",
@@ -326,5 +326,5 @@
       "workdir": null
     }
   ],
-  "updated_at": "2026-08-11T14:00:45.551137+00:00"
+  "updated_at": "2026-08-11T00:35:01.188738+00:00"
 }

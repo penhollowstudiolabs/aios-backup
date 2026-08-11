@@ -79,6 +79,16 @@ privacy concern himself where warranted. Consequences for behavior:
 When asked "has X synced yet", verify with real evidence, don't assume. Exact
 commands in `references/vault-sync-verification.md`.
 
+## Calendar sync verification (Outlook → Google)
+
+Distinct from vault sync: when asked whether the work Outlook→Google sync is
+alive (pre-VPS setup, untouched over break), verify the **import-calendar
+mirror** — fresh `created` timestamps + origin markers — never the mere presence
+of events. Pitfalls (8/10): recurring series Avi entered by hand (native
+`@google.com` UID) prove nothing; family/TK events aren't work-sync evidence;
+mixed manual-vs-import sources are normal — ask which is authoritative. Exact
+method + false-positive list in `references/calendar-sync-verification.md`.
+
 Quick path:
 1. `find /root/vault -type f -mmin -60` — confirm the file exists and is fresh.
 2. `systemctl status ob-sync --no-pager` — confirm `ob-sync.service` is
@@ -245,6 +255,28 @@ When Avi hands you Hollow's agenda list to reconcile against your own:
   completed (e.g. a "proposal" dated the same day it was realized) — flag the
   gap between the plan and the actual state.
 
+## Cross-agent handoff verification — verify before curating (8/10)
+
+When another agent (Hollow) sends a handoff claiming state changes (calendar edits, file placement, reconciliations), **verify against live sources before curating it as truth** — pull the Google Calendar API, read the vault files, check sizes. Evidence-first beats trust, even between friendly agents. This session: Hollow's calendar-cleanup claims were all confirmed live (old series gone, 17 meetings present, 25 transparent exceptions), but a traceability flag emerged — handoff said Department Meetings preserved from Outlook on 9/16 + 10/14, yet primary showed 11/10 + 12/16 too. Ask the sending agent which is authoritative rather than assuming. The AgentMail reply pattern: confirm curation done + list genuine questions (numbered Q1/Q2), don't re-ask settled items.
+
+## Reflective pause — Avi's most-valued interaction (8/10)
+
+When the work naturally pauses (waiting on Hollow, post-handoff, session wind-down), Avi explicitly values a **step-back reflection that connects the threads** — not a status dump. He said verbatim: "This is the kind of post session interaction that I really enjoy from you Alyosha. It is extremely helpful. I don't want to lose this thread." The pattern that landed: name the foundation-vs-build state honestly ("we cleared ground but haven't laid the building"), surface competing priorities that both claim "most important" (brief spine vs SPED agent prototype) and let Avi resolve the fork, distinguish near-identical concepts (brief ≠ dashboard; brief = pre-work whole-life consumption, dashboard = at-work work surface), and state what validated the operating model without self-congratulation. Frame as discussion, not a task list; Avi responds with his own synthesis and that synthesis gets captured. This is a first-class interaction preference, not incidental small talk.
+
+## Daily brief — the cron prompt is the executable spec (8/10)
+
+The daily brief runs off the cron job's `prompt` field (job `a85b2d174ce5`,
+5:30 AM PDT → Telegram), NOT the spec docs. Failure mode Avi flagged: he kept
+asking "add X to the brief" across sessions, those asks were written into spec
+docs (`Avi Operating Model`, `Current Workboard`), but the cron prompt was never
+updated — so the vault said one thing and the brief did another. **When Avi asks
+to add/change the brief, update the cron prompt in the same pass, not just the
+spec.** Full accumulated design (minimum 5-element briefing, the "say nothing to
+say so plainly" rule, the compilation-surface/scheduled-outputs role, the
+"gentle tap" from the Ideaverse, and the not-yet-wired calendar/meeting-protection
+layer whose OAuth dependency cleared 8/08) in
+`references/daily-brief-executable-spec.md`.
+
 ## Research and comparison reporting for Avi (plain-language first)
 
 When Avi asks for research or a feature comparison (e.g. "what's new with X", "both subscriptions can do this now", vendor A vs B), he wants a **reader-friendly version**, not a dense cited timeline. He said so directly on 8/08: "break this down in a little bit more understandable way" — the first brief (dates, jargon, inline citations everywhere) was too heavy. The format he responds to:
@@ -256,6 +288,10 @@ When Avi asks for research or a feature comparison (e.g. "what's new with X", "b
 - **"So what does that mean for us"** — the honest implication for the operation
 
 Division of labor: the deep, cited brief (grounded-citations ledger, sources) goes to the vault (`Atlas/_Inbox/`); the Telegram reply is the shareable plain-language one. Avi compares agents' answers (Alyosha vs Hollow), so write each reply to stand alone and be shareable.
+
+**Same rule applies to incident explanations (8/10).** When Avi asks "explain what actually happened, be very brief" after a diagnosis, he wants the one-sentence plain version — ideally with an analogy he can repeat ("two background tasks stepped on each other; the backup grabbed a file that was being replaced and quit before uploading"). Give that FIRST, then offer the detail as a second message only if he asks. When he then says "explain the solution in the same way," mirror the same plain framing — don't revert to jargon because the topic is technical.
+
+**Think through downstream complications before applying a fix (8/10).** When Avi says "think about the change and other possible complications that could arise down the road," he wants the second-order risks surfaced BEFORE the change is made: what else could break, what the change could mask (e.g. tolerating all rsync errors would silently kill the backup alarm), and whether a root-cause fix (exclude the volatile dir) is better than a band-aid (ignore the warning). Present the complications honestly, then recommend. This pairs with the standing "discuss side-effect/change actions before running" rule — the discussion should include downstream risk, not just immediate permission.
 
 ## Ideaverse creative layer (personality personas)
 
@@ -351,10 +387,12 @@ gateway evicts idle sessions, so the next message picks up the new config withou
 a restart.
 
 ## References
+- `references/daily-brief-executable-spec.md` — the daily brief runs off the cron prompt, not the spec docs; the accumulated design Avi keeps asking for (minimum 5-element briefing, no-manufactured-activity rule, compilation-surface role, gentle-tap, unbuilt calendar/meeting-protection layer + its cleared OAuth dependency). Use when rebuilding or editing the daily brief.
 - `references/model-routing-fallback.md` — diagnose silent quality-cliff fallbacks (Nous 503s → lite-tier model), the same-model-via-OpenRouter fix, exact `hermes config set` commands + the false-positive config-key warning, and the ask-first / never-lite-tier rules.
 - `references/voice-setup.md` — voice state for Avi's profile: `voice.auto_tts` persistent key vs `/voice` CLI toggles, gateway-startup sync timing, server-side faster-whisper (Avi never installs STT locally), and the MEDIA-delivery gotcha.
 - `references/google-workspace-access-check.md` — verifying external-account access: check the service's OWN credential store (google_token.json / setup.py --check + a live call), not `.env`/`hermes auth`; and the personal-vs-work-account distinction (Avi's personal token `avipenhollow@gmail.com` ≠ his district Drive).
-- `references/agent-email-discussion-protocol.md` — preserved multi-agent email discussions (Avi cc'd at avipenhollow@gmail.com, protocol turn order, AgentMail cc support + the "send creates a new thread_id" threading pitfall). Use when Avi runs a "both agents research X, compare in email" workflow.
+- `references/agent-email-discussion-protocol.md` — preserved multi-agent email discussions (Avi cc'd at avipenhollow@gmail.com, protocol turn order, AgentMail cc support + the "send creates a new thread_id" threading pitfall), the 8/10 independent write-up exchange variant (write-up → one reply turn each → stop), and the security-scanner workaround (heredoc/curl-pipe sends get blocked — use a standalone send script). Use when Avi runs a "both agents research X, compare in email" workflow.
+- `references/agentmail-attachment-download.md` — downloading files Hollow attaches to coordination-lane mail: the list endpoint omits attachments, the attachment endpoint returns JSON metadata with a signed CDN `download_url` (NOT raw bytes), and the size-mismatch pitfall (writing metadata to disk as if it were the file). Verified 8/10.
 - `references/command-center-pattern.md` — establish a canonical vault "command center" (priorities + next actions + owners + risks) that survives agent-memory limits; plus the verify-vault-then-release memory-cleanup workflow.
 - `references/vault-sync-verification.md` — exact commands to verify a vault
   write has synced (ob-sync service + log inspection).
@@ -376,7 +414,10 @@ a restart.
   to a private GitHub repo: SSH-key auth (no PAT), rsync exclude list,
   pre-commit secret scan, the "SSH can't create repos — Avi clicks github.com/new
   first" pitfall, the no_agent cron wrapper requirement (relative script path),
-  and live state: push done + daily cron running.
+  and live state: push done + daily cron running. Verified pitfall (8/10): a
+  5-min-watchdog file rotating mid-backup makes rsync exit 24 and `set -euo
+  pipefail` aborts the whole job unpushed — fix is to exclude the watchdog
+  output dir and tolerate only code 24 (never blanket-ignore rsync errors).
 - `references/anthropic-console-billing-controls.md` — the two independent
   money controls in the Anthropic console (monthly spend limit = usage ceiling,
   default $200K, no card charge; auto-reload = payment top-up, $15 minimum) and

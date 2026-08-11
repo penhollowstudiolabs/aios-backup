@@ -4,14 +4,14 @@ Infra: VPS1=ilocos/commerce(Mayumi), VPS2=aios(alyosha); tailnet aios,ilocos,avi
 §
 vision gemini-2.5-flash(OR); fallback OR.
 §
-User: own laptop NOT a Mac (no macOS ~10 yrs); Mac guidance only for daughter's MacBook; daughter: LYT Kit + Hermes/Telegram setup; knows LLMs, new to agents.
+Own laptop NOT Mac; macOS guidance only for daughter's MacBook (LYT Kit + Hermes/Telegram; knows LLMs, new to agents).
 §
 AgentMail lane live (coordination@agentmail.to, Hollow→Alyosha); 5-min watchdog alerts Telegram; poll authorized.
 §
 Avi authorizes scoped autonomous actions; no gateway/workflow disruption.
 §
-Direction (8/8): assistant+vault brain = VPS-homed Hermes, reachable laptop/phone/school; keep local operator (hybrid, not consolidation); Hollow not replaced.
+Direction (8/8): brain = VPS-homed Hermes, reachable laptop/phone/school; keep local operator hybrid; Hollow not replaced.
 §
 TTS: Edge provider, voice en-US-ChristopherNeural (set 8/10); samples voices at tts.travisvn.com.
 §
-Left doctoral program after brother's death in 2021; brother was mentally ill/substance abuser — deeply sensitive topic.
+Left doctoral program after brother's death 2021; brother mentally ill/substance abuser — sensitive. Theo bloodline: apocatastasis/theosis/unitive; aims to be a man of action, not busy.
