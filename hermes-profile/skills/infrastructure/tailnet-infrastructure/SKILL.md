@@ -33,9 +33,14 @@ metadata:
 - `tailscale status` = live human view (trust this after a rename).
 - `tailscale status --json` = cached peer records; can lag on renames. Prefer human view for "did the rename stick."
 
-### Enable Tailscale SSH (servers)
+### Enable / diagnose Tailscale SSH (servers)
 - `tailscale set --ssh` — additive; leaves public OpenSSH untouched.
 - The `tailscale ssh` wrapper hits a first-connect host-key strict-check quirk under some setups; the normal, recommended path is plain `ssh root@<node>` over the tailnet (MagicDNS/IP).
+- **`tailscale status --json` is NOT the authority for whether Tailscale SSH is serving auth.** `Self.SSHEnabled` can read `None` even when SSH is actively intercepting port 22 (the field lags / reflects the ACL, not the daemon pref). Authoritative checks:
+  - `tailscale debug prefs` → `"RunSSH": true` is the real daemon-level answer.
+  - Wire proof from a client: remote banner `SSH-2.0-Tailscale` + the "To authenticate, visit https://login.tailscale.com/a/…" additional-check prompt = Tailscale SSH is answering on :22, NOT plain OpenSSH. When you see that, no authorized_keys edit will help — auth is being intercepted before OpenSSH is reached.
+- Diagnosing "key-based SSH blocked" over a tailnet-only box (8/11 incident): check, in order — (a) TCP to the tailnet IP opens, (b) banner type (Tailscale vs OpenSSH), (c) client host-key in known_hosts, (d) the laptop's key fingerprint is actually in aios `authorized_keys`, (e) `tailscale debug prefs` RunSSH. Fingerprint server keys with `ssh-keygen -lf` on each base64 from `authorized_keys` (field 2), and compare to the client's active + revoked keys — a revoked predecessor key may be present while the active one is too.
+- **Fix when Tailscale SSH is the blocker and key auth is wanted:** `tailscale set --ssh=false` on the server returns :22 auth to plain OpenSSH + `authorized_keys`; if the client's active key is already installed, `ssh root@<node>` then just works. Public SSH stays closed (sshd bound to tailnet IPs only). Reversible. Alternative if you must keep Tailscale SSH: complete the additional-check flow on the client instead. Any of this needs Avi's go-ahead (config mutation).
 
 ### Taildrop file handoff
 - Send: `tailscale file cp /path <node>:`
@@ -58,7 +63,8 @@ metadata:
    - **Real incident (8/7):** aios was locked to tailnet-only while Hermes Desktop's saved SSH host still pointed at the public IP → desktop failed with "SSH connection failed"; desktop.log showed endless `connecting (no-mux) to root@<PUBLIC_IP>:22` and never `aios`. Fix: desktop Gateway settings → host = tailnet name `aios` (or tailnet IP), or click "Use local gateway" for a self-contained laptop-local backend (no SSH/tailnet, but not the VPS agent). Desktop persists this in its Electron userData `connection.json` (SSH block: host/user/port/keyPath/remoteHermesPath/remoteProfile).
 
 ## Verify after any SSH lockdown change
-- `ss -tlnp | grep ':22 '` → only tailnet IPs, never `0.0.0.0:22` / `[::]:22`.
+- `ss -tlnp | grep ':22 '` → LOCAL bind addresses (column 4) are only tailnet IPs, never `0.0.0.0:22` / `[::]:22`.
+- **PITFALL (8/11):** `ss -tlnp | grep ':22 ' | grep '0.0.0.0'` does NOT prove a public bind — every socket shows a peer column of `0.0.0.0:*` / `[::]:*` (the remote wildcard), and a naive grep matches it, falsely reporting "public bind found." Always inspect the **LOCAL bind column** (field 4, e.g. `100.78.203.127:22`), or run an explicit wildcard scan that anchors to the local column: `ss -tlnp | awk '$4 ~ /(^0\.0\.0\.0:22$|^\[::\]:22$)/'` (empty output = no wildcard/public bind). Read the local column, not the peer column.
 - `timeout 5 bash -c 'cat < /dev/null > /dev/tcp/<PUBLIC_IP>/22'` → Connection refused (CLOSED).
 - `timeout 5 bash -c 'cat < /dev/null > /dev/tcp/<TAILNET_IP>/22'` → succeeds (OPEN).
 - `ssh -o BatchMode=yes root@<tailnet-ip> 'echo ok'` → works.

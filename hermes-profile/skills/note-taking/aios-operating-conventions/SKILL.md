@@ -189,6 +189,21 @@ roles are necessary," hold this posture:
   (e.g. "what 3 things...") if it diverts from tasks already stated; go with
   what's on the board unless he opts in.
 
+## Dropped-in content for later review — park it, don't lecture (8/11)
+
+When Avi drops a link/document/note with a casual "just dropping this so I can
+review it" (or similar), treat it as a **park request, not a request for
+analysis**. The right move: a light dated capture in `Atlas/_Inbox/` (source +
+one-line note of why it matters to him), sync confirmed, done. Do NOT launch
+into a full summary, a themed take, or an offer to "connect it to your work."
+That reads as noise against someone knowledgeable. Two hard tells:
+- He says "I'm familiar with X" → do not explain X, summarize less, or assert
+  how it maps to his operation. Capture and stop.
+- He explicitly says he wants to *review* it later → the deliverable is the
+  parked note, not the analysis.
+This mirrors the existing "don't over-engineer / simplest stated design"
+pitfall: a capture is not a failure to impress, it is the correct execution.
+
 ## Batch changes — don't dribble updates mid-session (Avi preference)
 
 When Avi says "hold off on updates until we are done with the session" or "I'd
@@ -244,6 +259,28 @@ When Avi hands you Hollow's agenda list to reconcile against your own:
 5. Mark the update header with the reconciliation date, decision, and the
    one-agent-per-task note. Verify it synced via `ob-sync` before closing out.
 
+## Stale workboard — recover records, don't defend (8/11)
+
+When Avi says the current state differs from the `Current Workboard`, the board
+is likely **stale**, not Avi wrong — check its `Last updated` header first and
+pull the actual daily briefs / sessions instead of defending it. The post-8/09
+board missed 8/10–8/11 work because that work happened partly in sessions I had
+no record of (Hollow held it). Treatment:
+
+- **Lead with the evidence you DO have, name what you don't.** Pull the real
+  briefs and session history; for each flagged item say "I have a record of X,
+  no record of Y." Never claim a resolution you can't back.
+- **Don't paper over the drift.** Acknowledging "my source was stale" beats
+  inventing a defense. This is exactly when Avi wants a **reconciliation email
+  exchange** (send → reply → reply → reply → report) so Hollow's records fill
+  the gaps — see `references/agent-email-discussion-protocol.md`.
+- **Boundary:** never touch the workboard until Avi confirms the ordering AND
+  answers the surfaced decisions (re-scope / park / identify / confirm). Apply
+  his answers in his order only after the exchange converges.
+- Apply the patch in small anchored fragments — the fuzzy matcher occasionally
+  fails on long multi-line blocks with em-dashes; replace one `**State:**` line
+  at a time and re-read before the next.
+
 ## Orienting / surfacing ideas from the vault
 
 - Read the **most recent** entries first (sort by mtime), then the Current
@@ -263,6 +300,27 @@ When another agent (Hollow) sends a handoff claiming state changes (calendar edi
 
 When the work naturally pauses (waiting on Hollow, post-handoff, session wind-down), Avi explicitly values a **step-back reflection that connects the threads** — not a status dump. He said verbatim: "This is the kind of post session interaction that I really enjoy from you Alyosha. It is extremely helpful. I don't want to lose this thread." The pattern that landed: name the foundation-vs-build state honestly ("we cleared ground but haven't laid the building"), surface competing priorities that both claim "most important" (brief spine vs SPED agent prototype) and let Avi resolve the fork, distinguish near-identical concepts (brief ≠ dashboard; brief = pre-work whole-life consumption, dashboard = at-work work surface), and state what validated the operating model without self-congratulation. Frame as discussion, not a task list; Avi responds with his own synthesis and that synthesis gets captured. This is a first-class interaction preference, not incidental small talk.
 
+## Capture & retrieval convention (8/11) — shared with Hollow
+
+When Avi drops a link, video, or note in chat, file it to `Atlas/_Inbox/` using
+the Obsidian Web Clipper frontmatter format PLUS retrieval tags, so items are
+findable by tag/backlink/source across the Ideaverse. Template lives at
+`AIOS/Templates/Capture-Template.md`.
+
+**Frontmatter fields:** `type` (link|video|article|note), `title`, `source`
+(original URL), `author`, `published`, `created`, `description`, `tags`.
+**Body:** source link kept in body (so backlinks work), "Context / Avi's notes"
+(Avi's own words vs interpretation distinguished), a short plain summary (note
+if a video transcript was pulled and where), and a light "What this connects to".
+
+**Tag conventions (start minimal, no strict taxonomy):** always `inbox` + the
+type tag (`link`/`video`); add domain tags Avi cares about when obvious (AI,
+SPED, theology, Ilocos, LHB, publishing, etc.). Do NOT invent a heavy taxonomy —
+tags are for retrieval, Avi trims them. This is the SAME method Hollow uses, so
+it doesn't matter which agent files a capture — Obsidian retrieval treats them
+identically. Source preservation matters: the original URL/thought stays intact,
+distinguishable from later interpretation.
+
 ## Daily brief — the cron prompt is the executable spec (8/10)
 
 The daily brief runs off the cron job's `prompt` field (job `a85b2d174ce5`,
@@ -276,6 +334,31 @@ say so plainly" rule, the compilation-surface/scheduled-outputs role, the
 "gentle tap" from the Ideaverse, and the not-yet-wired calendar/meeting-protection
 layer whose OAuth dependency cleared 8/08) in
 `references/daily-brief-executable-spec.md`.
+
+### Audio-first — Avi reads then listens in the car (8/11)
+
+Avi reads the brief first thing, then **listens to it as audio in the car**.
+So EVERY section must read aloud cleanly: short sentences, plain language,
+bold labels + bullets, **no markdown tables** (unreadable when spoken), and
+links on their own `Source:` line rather than inline URL noise. Apply this to
+the whole brief, not just newly added sections.
+
+### Overnight-scan → brief-fold pattern (8/11, Power & Tech Watch lane)
+
+When Avi wants an **outside-world / live-data lane** in the brief but the brief
+job only has `file`+`terminal` toolsets (no `web`), don't bolt web onto the
+brief. Instead stand up a **separate overnight cron job** with the `web`
+toolset (e.g. `power-tech-watch-scan`, 3:00 AM PDT, deliver=`local` so it does
+NOT message Avi) that writes a dated file to a vault dir
+(`Calendar/Power-Tech-Watch/<date>.md`), and have the brief prompt read the
+**most recent** file in that dir and fold it in as a section. Headroom: scan at
+3 AM → brief at 5:30 AM. Web works fine for Alyosha on aios; **Hollow is the
+fallback only** if a lane ever gets fragile (Avi offered this). When Avi asks
+for such a lane, he often wants a specific **voice** (e.g. Power & Tech Watch =
+"critical but objective": treat claims from the administration AND tech
+oligarchs as self-interested until sourced; report material fact + sharp
+skeptical read; **no hard cap** on items; quiet-when-clean). Record the agreed
+voice in the scan job's prompt.
 
 ## Research and comparison reporting for Avi (plain-language first)
 
@@ -393,6 +476,7 @@ a restart.
 - `references/google-workspace-access-check.md` — verifying external-account access: check the service's OWN credential store (google_token.json / setup.py --check + a live call), not `.env`/`hermes auth`; and the personal-vs-work-account distinction (Avi's personal token `avipenhollow@gmail.com` ≠ his district Drive).
 - `references/agent-email-discussion-protocol.md` — preserved multi-agent email discussions (Avi cc'd at avipenhollow@gmail.com, protocol turn order, AgentMail cc support + the "send creates a new thread_id" threading pitfall), the 8/10 independent write-up exchange variant (write-up → one reply turn each → stop), and the security-scanner workaround (heredoc/curl-pipe sends get blocked — use a standalone send script). Use when Avi runs a "both agents research X, compare in email" workflow.
 - `references/agentmail-attachment-download.md` — downloading files Hollow attaches to coordination-lane mail: the list endpoint omits attachments, the attachment endpoint returns JSON metadata with a signed CDN `download_url` (NOT raw bytes), and the size-mismatch pitfall (writing metadata to disk as if it were the file). Verified 8/10.
+- `references/agentmail-send-from-aios.md` — the reusable `agentmail_send.py` sender, the terminal-guard null-byte + wrong-endpoint-path send bugs and their fixes (run via `execute_code` + `subprocess.run`), and the right `/v0/inboxes/{from}/messages/send` path. Use for any Avi-directed send to Hollow.
 - `references/command-center-pattern.md` — establish a canonical vault "command center" (priorities + next actions + owners + risks) that survives agent-memory limits; plus the verify-vault-then-release memory-cleanup workflow.
 - `references/vault-sync-verification.md` — exact commands to verify a vault
   write has synced (ob-sync service + log inspection).
@@ -428,7 +512,12 @@ a restart.
   the post-audit verification checklist (A/B/C/D rows), supersede-by-direction
   handling, and Obsidian deep-link format for sending Avi vault links.
 - `references/residential-egress-services.md` — services that block VPS
-  datacenter IPs (Amazon, YouTube transcript API) and the residential-egress
-  rule: Hollow on the laptop fetches, Alyosha processes. Includes the
-  youtube-transcript-api install + venv-interpreter pitfall and the
-  execute_code subprocess workaround for the terminal guard's null-byte error.
+  datacenter IPs (Amazon, YouTube transcript API) and the egress rules. **YouTube
+  transcripts (8/11): primary path is now a third-party API
+  (`/root/.hermes/profiles/alyosha/scripts/fetch_youtube_transcript.py`, key
+  `YOUTUBE_TRANSCRIPT_API_KEY` in profile .env) that works directly from the VPS
+  — Basic-auth header, `{"ids":[...]}` body, browser-User-Agent requirement, no
+  language selection on free tier. Hollow-laptop fetch is the fallback for
+  specific-language requests. Includes the youtube-transcript-api venv-interpreter
+  pitfall and the execute_code subprocess workaround for the terminal guard's
+  null-byte error.

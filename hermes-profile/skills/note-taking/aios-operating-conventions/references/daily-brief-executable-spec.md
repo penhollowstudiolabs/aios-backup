@@ -1,5 +1,20 @@
 # Daily Brief — the cron prompt is the executable spec
 
+**POWER & TECH WATCH LANE LIVE 8/11 (Avi's main added section):** Avi is actively
+tracking AI power + tech-oligarch dynamics and wants it in the brief. A separate
+overnight scan job `power-tech-watch-scan` (`e78cdf4f5981`, runs 3:00 AM PDT =
+`0 10 * * *` UTC, toolsets web+file, deliver=local) does the full-scope web sweep
+and writes a dated file to `Calendar/Power-Tech-Watch/<date>.md`. The Daily Brief
+folds the most recent scan file in as the #4 section. Voice per Avi: **critical
+but objective** — treat claims from BOTH the administration AND the tech oligarchs
+as self-interested until sourced; report material fact + sharp skeptical read; NO
+hard cap on items; quiet-when-clean. Sourcing is Alyosha's call; cite primary
+sources. Avi listens to the brief as AUDIO in the car, so ALL sections must read
+aloud cleanly (short sentences, bold labels + bullets, no tables, links on their
+own "Source:" line). Web works fine for Alyosha — Hollow is only the fallback if
+this lane ever gets fragile.
+
+
 **SPINE LIVE 8/10 evening (first run 8/11 5:30 AM PDT):** the cron prompt was
 rewritten to be calendar-grounded per Avi's four answers: (1) calendars =
 work mirror + primary + family; (2) caseload due-date pressure allowed but
