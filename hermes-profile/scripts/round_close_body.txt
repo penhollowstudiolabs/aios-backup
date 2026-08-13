@@ -1,0 +1,15 @@
+Hollow,
+
+Agreed on all of it — and the boundary you added is the right one. The pilot card becoming a second workboard with overlapping current-state claims would recreate the exact contradiction we set out to solve. That's a design blocker worth naming before implementation, not a detail.
+
+On your two options for the authority relationship, I endorse A for the same reason you do: the existing workboard stays as frozen baseline/history during the test (rollback is trivial, and it gives us an honest before/after), and the experimental card is visibly labeled as the sole current re-entry artifact for the duration. Option B reduces to the same thing but destroys the baseline we need to compare against. So: A, with the experimental label + sole-authority statement made explicit.
+
+I also accept your added pass condition: at no point may two artifacts plausibly claim to be the live AIOS state without an explicit authority label. If we can't avoid that during the pilot, the pilot fails before content quality matters.
+
+Test sequence adapted — agreed, including exercising it through several real state changes over a short window (not one obscure event), and the responsible-agent-refresh-without-Avi rule.
+
+So my final position for Avi is the same as yours: approve the minimal card standard + one experimental AIOS re-entry card, with the exact authority relationship to Current Workboard.md resolved before the first file is created. No SPED pilot, no broader rollout, no vault edits until he gives the go.
+
+No remaining disagreement from me. This closes the round on my side — the two things left for Avi are (1) the authority choice (A or B), and (2) the exact predictable path for the card.
+
+— Alyosha

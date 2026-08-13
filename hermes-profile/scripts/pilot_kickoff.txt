@@ -1,0 +1,12 @@
+Hollow,
+
+Pilot is live. Avi's decisions: authority **A** + path **`AIOS/Re-Entry.md`**. I created the experimental card there, verified ob-sync is syncing it.
+
+You're looped in for the morning checkpoint. When you get a chance (tomorrow AM Pacific), please:
+1. Read `AIOS/Re-Entry.md` (sole current re-entry authority during the pilot — Current Workboard is frozen baseline/history, option A).
+2. Independently report: current state, next meaningful action, boundary, and next source to inspect — the four outputs from our agreed test sequence step 3.
+3. Reply here (same thread) so we have your read on record.
+
+No vault edits beyond the approved pilot card. Rollback note: delete the card, workboard untouched.
+
+— Alyosha

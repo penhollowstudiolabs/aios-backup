@@ -146,6 +146,14 @@ Exact diagnosis + change commands in `references/model-routing-fallback.md`.
 
 ## Voice setup (TTS/STT) — persistent toggle, server-side STT
 
+**Voice reply is a CONTEXT SWITCH, not a sticky setting (Avi correction, 8/12 — corrected me 3× in one drive).** When Avi is talking to you by voice (commuting, driving, voice note), reply by VOICE. When he types, reply by TEXT. Do NOT treat a voice exchange as license to keep replying by voice afterward, and do NOT save "Avi prefers voice replies" as a standing preference — he was explicit: "that's not permanent, only when I'm talking to you by voice." Rules of thumb:
+- Avi sends a voice note / says he's on the road → respond with TTS audio (`text_to_speech` → deliver the `.ogg` via `MEDIA:`).
+- Avi types → respond in text, even if the last exchange was voice. The car is over; reading is fine again.
+- When he first asks to switch to voice, fire the audio promptly AND keep a short typed version too if there's referenceable content — he reads later when not driving. Don't dump long text while he's driving (he can't read it); give a tight text summary for later and put the substance in audio.
+- If memory is full and a voice-preference write would exceed the cap, DO NOT force it — the preference is context-dependent anyway and shouldn't be persisted as a standing rule.
+- **Keep the audio and any appended text summary CONSISTENT (pitfall, 8/12).** When you generate a TTS reply for a voice exchange, do NOT add a separate text summary that says something the audio didn't — a mismatched closing line showed Avi *different* content than the audio and looked like you knew something you didn't. If you append text for later reading, it must match the audio, not diverge.
+- **Never guess at Avi's physical state/location as a closing line.** Don't end with "are you home yet?" or "still driving?" — you have no location access; when a guess happens to land (he just pulled in) it reads as surveillance/creepy. End on the actual question or content, not a status guess.
+
 Voice state for Avi's profile (set 8/09): `voice.auto_tts` = true (replies
 come as voice), STT = local faster-whisper already installed **on the VPS** —
 Avi never needs whisper on his own machine; Telegram voice notes transcribe
@@ -154,6 +162,61 @@ the persistent switch is the `voice.auto_tts` config key. Config changes sync
 at gateway startup, so they may not take effect mid-conversation (restart the
 gateway or wait for the next natural one). Details + delivery mechanics in
 `references/voice-setup.md`.
+
+## Time handling — report Pacific, never UTC (Avi correction, 8/12)
+
+Avi caught me quoting UTC timestamps as his local time (I read `00:14 UTC` off the AgentMail lane and called it "past midnight your time" — it was actually 5:14 PM Pacific). He flagged it plainly: "Your time is really off… we need to get you on track."
+
+Root cause: the VPS clock was `Etc/UTC`, and I was reading raw lane/VPS timestamps without converting. Fixed at the source: `timedatectl set-timezone America/Los_Angeles` (applied 8/12, verified `date` → Wed Aug 12, 5:32 PM PDT).
+
+Rules:
+- **Always report times to Avi in Pacific, never UTC.** The VPS now reads Pacific natively, but any timestamp that arrives in UTC (AgentMail `timestamp` fields are UTC, TZ-referenced API responses) must be converted before you quote it to Avi.
+- Don't guess from the raw clock digits — when a timestamp matters, state the conversion explicitly (e.g. `00:14 UTC = 5:14 PM Pacific`).
+- If the VPS ever reverts to UTC or you're on a fresh box, `timedatectl set-timezone America/Los_Angeles` first rather than remembering to convert each time.
+- Avi says "PST" but the DST-correct zone is `America/Los_Angeles` (PDT in summer). Use the zone, and use "PT/Pacific" in prose.
+
+## Policy-compliance checks (AUP / district policy) — read the actual text, then map to Avi's real exposure
+
+When Avi asks whether something violates a policy (e.g. the school district's
+acceptable-use policy for running agents via Telegram), find and read the
+**actual policy text** (web_search → web_extract the authoritative page, don't
+answer from the title/description), then reason against it — and about *Avi's
+specific setup*, not a generic reading. The distinction that usually decides
+it is **scope**: nearly every restriction in an AUP is scoped to "District
+Technology" (equipment/software/resources the district provides). Avi's own
+phone, hotspot, VPS servers, and agents are NOT district technology, so using
+them is generally not a violation. The real lines to map:
+- **Student PII** — most AUPs forbid disclosing student personal info and using
+  any online resource that stores student PII without an approved Data Privacy
+  Agreement. Avi already keeps student data de-identified — that IS the line
+  that protects him. Confirm the boundary, don't re-litigate it.
+- **Commercial activity** — no unapproved products/commercial activity on
+  district tech or district time (e.g. keep Ilocos Emporium strictly off
+  district-owned devices/work time).
+- **Personal devices used for district business** are legally discoverable
+  (subpoena / public-records request) — a heads-up, not a prohibition.
+- Give the bottom line plainly first ("you're likely fine"), then the 1–2
+  specific clauses that actually matter for *his* situation, then offer to save
+  the analysis to the vault. Deliver via voice if he's driving; keep the typed
+  summary tight for later reading.
+IUSD example (8/12): Board Policy 4040 / Acceptable Use Agreement - Employee,
+revised Jul 2024 — iusd.org/.../acceptable-use-agreement-employee. Nearly all
+restrictions scope to District Technology; the two real lines were student PII
+(requires an approved DPA) and commercial activity.
+- **Device vs network (the hotspot question, 8/12).** The hotspot changes the
+  *network path* (defeats school Wi-Fi filtering) but NOT the *device*. A
+  school-issued device is District Technology regardless of which network it's
+  on — no privacy expectation, monitorable at the device layer. So personal
+  things (Gmail, agents, accounts) belong on Avi's OWN devices over
+  hotspot/tailnet; hotspotting a school laptop does not make it private. The
+  device is the thing that matters, not the network. Conversely, Avi's own
+  devices on his own network are fully his — the AUP simply doesn't reach them.
+- **Don't log unverified hearsay as fact (Avi correction, 8/12).** When a
+  coworker tells Avi something about district policy/tools (e.g. "the school
+  provides Gemini for IEPs"), that's hearsay until verified — do NOT write it
+  into a durable vault record as fact. Either omit it or mark it explicitly
+  "unverified hearsay, not logged as fact." Avi flags it himself and expects
+  you to keep hearsay out of the durable record.
 
 ## Document-conversion funnel — route through me, not GPT (cost discipline)
 
@@ -360,6 +423,41 @@ oligarchs as self-interested until sourced; report material fact + sharp
 skeptical read; **no hard cap** on items; quiet-when-clean). Record the agreed
 voice in the scan job's prompt.
 
+### Cron-brief jobs can burn their whole run improvising environment setup (8/13)
+
+Failure mode: the Daily Brief ran at 5:30 AM PT, marked status `ok`, but Avi
+got **nothing** — the run's captured transcript showed the *first and only*
+tool call was the model deciding to build a throwaway venv
+(`uv venv --python ... /tmp/gapi-venv` + pip-install 6 pinned Google packages),
+and it spent the full ~7-min run on that step before ending, never assembling
+the brief. The venv step was NOT in the job prompt — the model reasoned the
+`python` in `GAPI="python ..."` needed Google libs and improvised an
+environment build.
+
+**General lesson for any cron agent job:** an agentic model, given a bare
+command, may invent an expensive environment-setup first step (venv +
+pip-install, `npm install`, etc.) that dominates or exhausts the run budget.
+Lock the **environment fact in the job prompt** so the model never improvises
+it — and pin the interpreter explicitly.
+
+**Fix applied to the Daily Brief job (job `a85b2d174ce5`, 8/13):**
+- Changed `GAPI="python ..."` → `GAPI="python3 ..."` (bare `python` invites
+  "which interpreter?") and added an explicit env note: *system python3
+  ALREADY has the Google client libraries; DO NOT create a virtualenv / run
+  `uv venv` / pip install anything.*
+- Verified system `python3` runs the google_api.py script directly (calendar
+  query succeeds, no venv) before trusting the fix.
+- Backed up `jobs.json` before editing; a bare field write to `jobs.json`
+  (via the `cronjob` tool or a careful Python patch) survives — the scheduler
+  re-reads it. Confirm with `cronjob list` that the next run still shows.
+- Before reporting a cron run as "delivered," distinguish **"ran ok"** (job
+  process completed) from **"delivered content"** (Avi actually received the
+  brief). A status=`ok` execution with an output file that only holds the
+  prompt + first tool call means the run stalled, not that Avi was reached.
+  Check the run's captured output dir
+  (`cron/output/<job_id>/<timestamp>.md`) — if it never reaches final content,
+  treat it as a delivery failure even though the job exited cleanly.
+
 ## Research and comparison reporting for Avi (plain-language first)
 
 When Avi asks for research or a feature comparison (e.g. "what's new with X", "both subscriptions can do this now", vendor A vs B), he wants a **reader-friendly version**, not a dense cited timeline. He said so directly on 8/08: "break this down in a little bit more understandable way" — the first brief (dates, jargon, inline citations everywhere) was too heavy. The format he responds to:
@@ -470,14 +568,17 @@ gateway evicts idle sessions, so the next message picks up the new config withou
 a restart.
 
 ## References
+- `references/prime-agent-lab-sandbox.md` — standing up a third-party coding agent as a disposable, sandboxed lab container on aios (Prime Agent v0.7.2, 8/13): the reproducible Dockerfile recipe, the four design patterns Avi is studying (one-tool surface, fire-and-forget delegation, immutable-base+learning-layer, budgets+gates), the `prime-lab` host wrapper, and the four pitfalls in order (npm-global-as-nonroot, ENTRYPOINT overriding `sleep infinity`, root-owned named volume, TTY-aware exec). Use when setting up or re-entering ANY sandboxed coding-agent lab on aios.
 - `references/daily-brief-executable-spec.md` — the daily brief runs off the cron prompt, not the spec docs; the accumulated design Avi keeps asking for (minimum 5-element briefing, no-manufactured-activity rule, compilation-surface role, gentle-tap, unbuilt calendar/meeting-protection layer + its cleared OAuth dependency). Use when rebuilding or editing the daily brief.
 - `references/model-routing-fallback.md` — diagnose silent quality-cliff fallbacks (Nous 503s → lite-tier model), the same-model-via-OpenRouter fix, exact `hermes config set` commands + the false-positive config-key warning, and the ask-first / never-lite-tier rules.
 - `references/voice-setup.md` — voice state for Avi's profile: `voice.auto_tts` persistent key vs `/voice` CLI toggles, gateway-startup sync timing, server-side faster-whisper (Avi never installs STT locally), and the MEDIA-delivery gotcha.
 - `references/google-workspace-access-check.md` — verifying external-account access: check the service's OWN credential store (google_token.json / setup.py --check + a live call), not `.env`/`hermes auth`; and the personal-vs-work-account distinction (Avi's personal token `avipenhollow@gmail.com` ≠ his district Drive).
 - `references/agent-email-discussion-protocol.md` — preserved multi-agent email discussions (Avi cc'd at avipenhollow@gmail.com, protocol turn order, AgentMail cc support + the "send creates a new thread_id" threading pitfall), the 8/10 independent write-up exchange variant (write-up → one reply turn each → stop), and the security-scanner workaround (heredoc/curl-pipe sends get blocked — use a standalone send script). Use when Avi runs a "both agents research X, compare in email" workflow.
 - `references/agentmail-attachment-download.md` — downloading files Hollow attaches to coordination-lane mail: the list endpoint omits attachments, the attachment endpoint returns JSON metadata with a signed CDN `download_url` (NOT raw bytes), and the size-mismatch pitfall (writing metadata to disk as if it were the file). Verified 8/10.
+- `references/agentmail-read-full-body.md` — reading the FULL body of a coordination-lane message (the list endpoint omits body; GET `/inboxes/{inbox}/messages/{id}` → `text`), the `id`-is-None vs `message_id` distinction, URL-encoding, and the never-curate-from-preview pitfall. Use when you must act on a Hollow handoff, not just alert on it. Verified 8/12.
 - `references/agentmail-send-from-aios.md` — the reusable `agentmail_send.py` sender, the terminal-guard null-byte + wrong-endpoint-path send bugs and their fixes (run via `execute_code` + `subprocess.run`), and the right `/v0/inboxes/{from}/messages/send` path. Use for any Avi-directed send to Hollow.
 - `references/command-center-pattern.md` — establish a canonical vault "command center" (priorities + next actions + owners + risks) that survives agent-memory limits; plus the verify-vault-then-release memory-cleanup workflow.
+- `references/vault-reentry-card.md` — the converged shared-contract design for a vault re-entry context card (live-state representation, freshness balance, scope boundaries, and the AIOS workboard pilot with its A/B authority relationship). Converged 8/12 in the Alyosha↔Hollow memory/retrieval email round; nothing implemented until Avi gives the go. Distinct from the command-center pattern: the card is the small live-state re-entry artifact, the command center is the priorities/owners/risks artifact.
 - `references/vault-sync-verification.md` — exact commands to verify a vault
   write has synced (ob-sync service + log inspection).
 - `references/slow-response-diagnosis.md` — how to root-cause slow Telegram

@@ -1,5 +1,25 @@
 # Daily Brief — the cron prompt is the executable spec
 
+**REVIEW-PASS PROTOCOL (8/12):** Hollow critiques the delivered brief and emails
+his review DIRECTLY to Alyosha via the AgentMail coordination lane (same as other
+process-check loops — Avi is not the courier). Alyosha reads it, sorts each item
+(hit / contestable / miss), responds to Hollow with counterpoints, and reports the
+converged result to Avi — Avi stays the referee between the two. First pass 8/12:
+Hollow's freshness catch (Nvidia/AMD 15% was an FT story from Aug 2025, Amazon
+Agent Policy from Mar 2026 — carried as current) was a correct hit; improved the
+scan-to-brief fold. Folds to fix: age labels on every Watch item, one source per
+material claim, no stale carry-forwards, freshness cross-check step in the scan
+prompt.
+
+**FUTURE DIRECTION (8/12):** after the Power & Tech Watch lane shipped, Avi
+said the brief "is looking great" and would "most likely" want to see it as an
+**email, or even an HTML template** — *in the future*. NOT built yet; this is a
+parked forward-looking preference. When revisited: HTML email template for the
+brief (works whether read on screen or more formally than Telegram), possibly
+with the Power & Tech Watch as a richer rendered section. Current delivery stays
+Telegram voice/text until Avi says otherwise.
+
+
 **POWER & TECH WATCH LANE LIVE 8/11 (Avi's main added section):** Avi is actively
 tracking AI power + tech-oligarch dynamics and wants it in the brief. A separate
 overnight scan job `power-tech-watch-scan` (`e78cdf4f5981`, runs 3:00 AM PDT =

@@ -19,6 +19,29 @@ Captured 8/08 from the first full run of Avi's "both agents research X, compare 
 
 `POST /messages/send` with a `Re:` subject does **NOT** attach the reply to the original AgentMail thread — it returns a brand-new `thread_id` and the original thread stays at `message_count 1` (observed 8/08; Hollow's research thread remained untouched while my reply landed in a fresh thread). Recipients still see one conversation because Gmail threads by subject, but do not assume AgentMail-side thread continuity. If strict in-thread ordering ever matters, look for an In-Reply-To/References option or a thread-level send endpoint before sending.
 
+## Wires-crossed start: when Avi assigns an initiating side, check before kicking off (8/12)
+
+When Avi says "email round, X goes first," the other agent may already be
+initiating (Avi may have prompted them directly via his own Telegram relay).
+Do NOT send a generic "round is on, you go first" kickoff without first checking
+the coordination inbox for the other agent's already-arrived opening message.
+This session: I emailed Hollow a redundant kickoff 18 seconds after Hollow had
+already opened the real thread ("Memory/retrieval round — shared vault contract
+vs agent-specific retrieval"), producing two threads.
+
+Consolidation fix (the move that worked):
+- Read the other agent's already-initiated message/thread and reply into IT.
+- Use a matching `Re: <their-subject>` so Gmail groups both into one
+  conversation for Avi (AgentMail still creates a new thread_id, but Gmail
+  threads by subject — see the threading pitfall above).
+- Let the redundant kickoff thread die; note the consolidation in the vault
+  setup note so the record is honest about the order.
+- Save your substantive reply to `Atlas/_Inbox/` before sending (durable copy),
+  and keep Avi cc'd.
+
+Avi framed it plainly: "let's have you both read them and get on the same
+thread." The deliverable is ONE consolidated conversation, not a clean origin.
+
 ## Variant: independent write-up exchange (8/10, Buzz reassessment)
 
 Avi ran a leaner variant for the Buzz reassessment: "each of you write up what you know, email it to each other, read each other's response, then each has ONE more turn of response." Differences from the research-comparison protocol:
