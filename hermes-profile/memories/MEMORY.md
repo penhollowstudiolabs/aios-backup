@@ -14,13 +14,13 @@ Mayumi=exec assistant Ilocos/Adarna (VPS1); vault via Docker; DeepSeek since 8/1
 §
 Evidence-first curation: verify delivery; 1–3 Inbox ideas; no move/escalate without Avi's choice.
 §
-Daily Brief 5:30am PT cron→TG; brief≠dashboard; details in aios-operating-conventions skill ref.
+Daily Brief 5:30am PT cron→TG; brief≠dashboard (see aios-operating-conventions skill).
 §
 Persona bots sandboxed; only Avi's spoken affirmation exports to workboard.
 §
 Ask before routing/fallback changes. Fallback NEVER lite-tier; same model via OpenRouter preferred.
 §
-Work wifi blocks VPN→phone hotspot. Battery short; heavy VPS-side. Avi on Telegram at work desktop+laptop(8/12).
+Work wifi blocks HTTPS to api.telegram.org (TG Bot API) → Hollow's TG channel dead at work; works on hotspot; dashboard = work-wifi workaround (dash bypasses TG). Battery short; heavy VPS-side; Hollow/laptop usually home.
 §
 Hollow: Telegram↔OpenClaw + AgentMail lane (watchdog); Avi relays non-mail.
 §
@@ -32,8 +32,8 @@ GPT quota: Hollow/Codex draws ChatGPT sub; Alyosha does NOT.
 §
 Avi waits a few days after updates before applying; stability/workflows first.
 §
-Avi: agent help for personal PII, no redaction; ONLY student PII restricted (pro names fine); local model deferred (PII-lane trigger); browser collab=Hollow lane.
+Avi: agent help for personal PII, no redaction; ONLY student PII restricted (pro names fine); PII-lane now active — Avi leans local-LLM de-id on SPED machine; browser collab=Hollow lane.
 §
-SPED SaaS: Avi hand-built v1 for learning; now convinced an agent harness (e.g. Prime) builds it better+faster — he holds boundary+verification, agent constructs; de-ID=core IP, prove in sandbox lab first.
+SPED SaaS: Avi hand-built v1; wants an agent harness (Prime) to build it — he holds boundary/verification; de-ID=core IP, prove in sandbox lab first.
 §
 Avi enjoys post-session strategic reflection (step-back, connect threads, name forks).

@@ -22,15 +22,15 @@
       "schedule_display": "30 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 9
+        "completed": 10
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-04T21:26:13.010679+00:00",
-      "next_run_at": "2026-08-14T12:30:00+00:00",
-      "last_run_at": "2026-08-13T12:37:26.377356+00:00",
+      "next_run_at": "2026-08-15T12:30:00+00:00",
+      "last_run_at": "2026-08-14T12:36:15.471857+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -160,15 +160,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 1419
+        "completed": 1708
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-08T15:44:10.310585+00:00",
-      "next_run_at": "2026-08-13T14:05:00+00:00",
-      "last_run_at": "2026-08-13T13:55:18.251762+00:00",
+      "next_run_at": "2026-08-14T14:05:00+00:00",
+      "last_run_at": "2026-08-14T14:00:36.563959+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -206,15 +206,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 4
+        "completed": 5
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-10T00:39:14.007127+00:00",
-      "next_run_at": "2026-08-14T14:00:00+00:00",
-      "last_run_at": "2026-08-12T14:00:07.848150+00:00",
+      "next_run_at": "2026-08-15T14:00:00+00:00",
+      "last_run_at": "2026-08-13T14:00:20.160285+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -300,17 +300,17 @@
       "schedule_display": "0 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 2
+        "completed": 3
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-12T05:36:35.358100+00:00",
-      "next_run_at": "2026-08-14T10:00:00+00:00",
-      "last_run_at": "2026-08-13T10:14:22.264856+00:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-08-15T10:00:00+00:00",
+      "last_run_at": "2026-08-14T10:17:54.092096+00:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Response truncated due to output length limit",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -328,5 +328,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-13T14:00:17.469750+00:00"
+  "updated_at": "2026-08-14T14:00:36.564537+00:00"
 }

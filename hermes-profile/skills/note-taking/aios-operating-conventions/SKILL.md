@@ -535,6 +535,19 @@ crash: the node itself drops off the tailnet.
 - Don't make Avi hunt for docs/status while rebooting — one short "laptop shows
   offline, power it up and ping me" is enough; confirm the moment it's reachable.
 
+## Hollow silent on Telegram — the dashboard-works tell (work-wifi Bot-API block, 8/13)
+
+When Hollow gives ZERO Telegram reply but the OpenClaw dashboard/webchat replies
+and the gateway is healthy, the fault is the Telegram channel + laptop egress —
+most often **Avi's work wifi blocking HTTPS to `api.telegram.org` (the Bot API)
+at the TLS layer**, not OpenClaw. Decisive probe: `Test-NetConnection` (raw TCP)
+succeeds but `(Invoke-WebRequest "https://api.telegram.org")` fails while
+`openrouter.ai` returns fine = layer-7 firewall. Telegram *clients* (MTProto)
+still work so Avi can use the app while the bot stays silent. Fix: dashboard on
+work wifi, or hotspot the laptop. Full proven diagnostic path, log signatures,
+the `openclaw models set` primary-model fix, and the dead-end trails (.migrated
+files, IPv4-first) in `references/openclaw-telegram-channel-diagnosis.md`.
+
 ## Coordination with other agents
 - Hollow is laptop-local; favor its live evidence and concise goal prompts.
 - Mayumi (ilocos, VPS1) is scoped to commerce; keep her in her lane.
@@ -567,6 +580,35 @@ positive — `hermes --profile ilocos fallback list` confirms the live chain. Th
 gateway evicts idle sessions, so the next message picks up the new config without
 a restart.
 
+## Hermes-feature questions — docs beat transcripts (8/14)
+
+When Avi shares a YouTube/video link about **Hermes itself** (or any tool we
+run), do NOT chase a transcript — the Hermes docs
+(`https://hermes-agent.nousresearch.com/docs`, plus `hermes --help`, the
+source tree, and the `hermes-agent` skill) are the authoritative source and
+are never IP-blocked. A content-creator video (e.g. Julian Goldie SEO, a
+views-chasing channel) is marketing framing over a real but modest update —
+check the docs to separate substance from drama. VPS transcript fetches stay
+blocked; that's covered in `residential-egress-services.md`.
+
+Concrete fact worth carrying (8/14): Hermes "went portable" = installs on
+**Android via Termux**, but it's **Tier 2** (best-effort, "may break, can't
+promise prompt fixes") with known phone limitations. Avi's phone-reach
+architecture already works via Telegram + dashboard; an old spare Android
+(Galaxy S9) has no use case as a second compute surface — too weak for local
+inference, too old for an isolated worker. Filed "someday maybe," not today.
+
+## Anthropic direct key → Claude Code only; agents are insulated (8/14)
+
+Avi's **direct Anthropic API key** (in `~/.claude/settings.json`, "Avi's Individual Org") feeds **Claude Code on the VPS and nothing else.** It is NOT the model path for any agent:
+- **Alyosha** — DeepSeek via Nous/OpenRouter. Untouched.
+- **Hollow** — primary `deepseek-v4-pro` via OpenRouter; his `claude-sonnet-4-6` fallback routes via OpenRouter too (bills OpenRouter, not the direct Anthropic key).
+- So an **exhausted direct-Anthropic balance (or any direct-vendor credits outage) kills only Claude Code**, never the agents — unless a peer's *fallback* mistakenly points at the direct key, in which case a primary hiccup cascades into the dead fallback and the agent goes silent. Stabilize: hard-set primary on a good provider via OpenRouter, move any direct-vendor fallback to OpenRouter or drop it, `openclaw gateway restart`. When time-critical, do the minimal stable fix now and park re-linking/deferred work for later.
+
+Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow's config from aios; route a message via the AgentMail lane and walk the human operator through `openclaw models …` manually on the laptop.
+
+**Hollow model switch — the CLI write can be overridden by the running gateway (8/14).** `openclaw models set openrouter/deepseek/deepseek-v4-pro` writes `agents.defaults.model.primary`, but on a gateway restart the *running* runtime can keep its own model override (Telegram showed `Current: anthropic/claude-sonnet-4-6` even after the CLI set "took"). The **reliable live switch is the in-chat slash command** in Hollow's Telegram: `/model openrouter/deepseek/deepseek-v4-pro`, then `/model status` to verify. So for a time-critical stabilization, have the operator use `/model` first; the config-write + `openclaw models fallbacks list/clear/add` makes it durable afterward.
+
 ## References
 - `references/prime-agent-lab-sandbox.md` — standing up a third-party coding agent as a disposable, sandboxed lab container on aios (Prime Agent v0.7.2, 8/13): the reproducible Dockerfile recipe, the four design patterns Avi is studying (one-tool surface, fire-and-forget delegation, immutable-base+learning-layer, budgets+gates), the `prime-lab` host wrapper, and the four pitfalls in order (npm-global-as-nonroot, ENTRYPOINT overriding `sleep infinity`, root-owned named volume, TTY-aware exec). Use when setting up or re-entering ANY sandboxed coding-agent lab on aios.
 - `references/daily-brief-executable-spec.md` — the daily brief runs off the cron prompt, not the spec docs; the accumulated design Avi keeps asking for (minimum 5-element briefing, no-manufactured-activity rule, compilation-surface role, gentle-tap, unbuilt calendar/meeting-protection layer + its cleared OAuth dependency). Use when rebuilding or editing the daily brief.
@@ -595,6 +637,12 @@ a restart.
   bind-tailnet/serve recipe, the "gateway restart cuts the Telegram bridge" and
   "status posts are our own, not proof another agent is alive" pitfalls, and the
   district-wifi/AUP honesty frame.
+- `references/openclaw-telegram-channel-diagnosis.md` — Hollow silent on
+  Telegram while the dashboard works: the proven diagnostic path (gateway-health
+  first, log signatures, TCP-vs-HTTP discriminator), the confirmed root cause
+  (work wifi blocks `api.telegram.org` Bot API at TLS layer → dashboard/hotspot
+  workaround), the `openclaw models set` primary-model fix, and the dead-end
+  trails (.migrated files, IPv4-first). Use when Hollow won't reply on Telegram.
 - `references/aios-github-backup.md` — fire-drill backup of the Hermes profile
   to a private GitHub repo: SSH-key auth (no PAT), rsync exclude list,
   pre-commit secret scan, the "SSH can't create repos — Avi clicks github.com/new

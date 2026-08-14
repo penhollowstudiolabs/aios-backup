@@ -53,6 +53,30 @@ readable, not a prerequisite for capture.
 API. Fallback is audio → local faster-whisper, but that burns compute; treat as
 edge case, not default.
 
+## Hermes-content videos → consult the docs, skip the transcript (Avi correction, 8/14)
+
+When Avi drops a YouTube video that is **about Hermes itself** (or about any
+subject whose authoritative docs are directly reachable from aios — e.g. the
+Hermes docs at `hermes-agent.nousresearch.com/docs/`, which are NOT
+datacenter-blocked), **do not chase a transcript at all.** Avi's exact words:
+"you must have access to Hermes related information that it's not blocked so
+the transcript might not even be necessary." A views-chasing creator's video
+(e.g. an SEO channel) rehashes the release; the docs are the source of truth
+and often richer. Read the docs, answer from them, and if the video adds
+anything worth keeping, capture that.
+
+## Re-diagnosing a settled block is the failure (8/14)
+
+This session I knew the VPS-side API helper existed, yet on a fresh YouTube
+link I re-diagnosed the block from scratch (tried `youtube-transcript-api`,
+Invidious, yt-dlp) and even routed to Hollow first — before reading this
+reference and using the working `fetch_youtube_transcript.py` path. Rule:
+**check this reference (and the primary API path) BEFORE improvising or
+routing to Hollow.** A settled datacenter-IP block is not something to
+re-litigate each time; pick the documented path immediately. And confirm Hollow
+is even awake before spending a routing message on him (he was asleep in Avi's
+backseat this session).
+
 ## Decision rule for Avi
 
 Do NOT burn money/infra on proxying from the VPS when the laptop already has a
