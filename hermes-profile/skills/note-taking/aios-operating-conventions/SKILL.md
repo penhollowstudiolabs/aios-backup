@@ -229,6 +229,51 @@ with pymupdf (installed); screenshots → send to me, OCR/vision via Gemini
 flash (pennies, not GPT quota). GPT work/agent mode is the wrong tool for
 grunt conversion; reserve it for judgment work.
 
+## Inventory-first — don't ask Avi what the vault already answers (8/14 correction)
+
+When Avi asks you to *review/optimize* something he's already set up (models,
+subscriptions, routing, costs, wallets), pull the vault inventory FIRST and
+reconcile against it before asking him a single question. He corrected me hard
+mid-review: *"you should know this already. We have an inventory. We've talked
+about this before."* — I asked him to restate which of his subscriptions are
+fixed vs variable, and he already had it documented.
+
+- The canonical tracking file is
+  `Efforts/Captain-Avi-System/Model-Token-Usage-Tracking.md` (baseline routing
+  per agent, wallets/limits, weekly log, recalibration checklist, incidents).
+  Cross-check `AIOS/Current Workboard.md` and the Re-Entry card for the live
+  state. Only after reading those may you ask a *genuinely new* question — and
+  one at a time when he's on voice/commute.
+- Reading the inventory is free and read-only; asking him to recite it burns
+  his time and reads as not knowing the operation. Prefer a voiced summary of
+  what you already hold ("here's the routing I have confirmed…") over an
+  open-ended question.
+- Only flag inventory as uncertain if you genuinely cannot reconcile it (e.g.
+  it's stale vs a real model change) — then say "the board says X but I have no
+  record of Y" rather than asking him to re-explain the whole setup.
+
+## Agent-model cost review — the routing-optimization frame (8/14)
+
+When Avi wants to optimize the model stack (maximize thinking quality, route
+each task efficiently, decide whether keeping all three subscriptions is worth
+it vs reallocating the ~$100/mo), structure the review as a **task-to-model
+mapping**, not a shopping exercise:
+
+- **Map every recurring task type to the quality tier it actually needs.** His
+  continuity/planning/vault work (Alyosha) is well served by DeepSeek flash —
+  cheap, no top-tier reasoning needed. Hollow's present-moment + SPED build work
+  benefits from the strongest coding model (he sits on Codex via the ChatGPT
+  sub). Mayumi's commerce work is cheap/simple. The expensive subs should sit on
+  the agents that need the thinking; the cheap model covers routine load.
+- **Per-subscription money question:** is each sub earning its cost, or could
+  the spend reallocate? Concrete candidate from 8/14: Hollow's direct-Anthropic
+  leg (a $15 auto-reload on top of the $20 Claude Pro plan) ran dry and went
+  quiet. Routing his Claude fallback through OpenRouter (key already held) could
+  drop the direct-Anthropic spend — a first-class reallocation candidate.
+- **Before firing the exchange with Hollow**, check if any task's current model
+  is off-limits ("don't touch this one"). Everything else is on the table.
+- Carry the exact new DeepSeek pricing in `references/agent-model-cost-review.md`.
+
 ## Assess-first, don't-delegate reset (Avi operating preference)
 
 When Avi says a fresh start / "assess what we have, then decide to what extent
@@ -609,7 +654,11 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
 
 **Hollow model switch — the CLI write can be overridden by the running gateway (8/14).** `openclaw models set openrouter/deepseek/deepseek-v4-pro` writes `agents.defaults.model.primary`, but on a gateway restart the *running* runtime can keep its own model override (Telegram showed `Current: anthropic/claude-sonnet-4-6` even after the CLI set "took"). The **reliable live switch is the in-chat slash command** in Hollow's Telegram: `/model openrouter/deepseek/deepseek-v4-pro`, then `/model status` to verify. So for a time-critical stabilization, have the operator use `/model` first; the config-write + `openclaw models fallbacks list/clear/add` makes it durable afterward.
 
+**Never guess OpenClaw CLI commands (8/14 correction).** I proposed `openclaw models get`/`models list` while Avi sat at the laptop and he called it: "Something tells me you don't know claw commands." When walking the human operator through a remote-agent CLI you don't fully know, get the ACTUAL command set first — have them run `openclaw --help` / `openclaw models --help`, or verify against docs.openclaw.ai — never fabricate a name they're about to type. The verified OpenClaw model/status/fallback/auth command set + the 8/14 stabilization sequence are in `references/openclaw-model-cli-reference.md`.
+
 ## References
+- `references/agent-model-cost-review.md` — the model-stack optimization frame (task-to-model mapping, per-subscription money question), canonical wallet/routing source, the exact 8/2026 DeepSeek price-increase numbers (effective 8/16, peak/off-peak split), the **final 8/14 subscription decisions** (Google → 2 TB AI Plus, Anthropic auto-reload off + manual emergency wallet, keep GPT/Claude), the **provider-diversity rule** (don't collapse all fallbacks onto OpenRouter), the **OpenRouter cost-measurement endpoint** (`/api/v1/auth/key` → `data.usage`) vs the non-measurable Nous Portal blank, and the Google storage-migration context (free 15 GB incl. Gmail, Amazon Photos free w/ Prime, One tier prices). Use when reviewing/optimizing Avi's model routing or subscriptions.
+- `references/openclaw-model-cli-reference.md` — the verified OpenClaw model CLI command set (`models status/list/set`, `fallbacks list/clear/add`, `auth list`, `gateway restart`) + the in-chat `/model` live-switch, the 8/14 stabilization sequence, and the don't-guess-CLI-names rule. Use when walking Avi/Hollow through any model change on the laptop.
 - `references/prime-agent-lab-sandbox.md` — standing up a third-party coding agent as a disposable, sandboxed lab container on aios (Prime Agent v0.7.2, 8/13): the reproducible Dockerfile recipe, the four design patterns Avi is studying (one-tool surface, fire-and-forget delegation, immutable-base+learning-layer, budgets+gates), the `prime-lab` host wrapper, and the four pitfalls in order (npm-global-as-nonroot, ENTRYPOINT overriding `sleep infinity`, root-owned named volume, TTY-aware exec). Use when setting up or re-entering ANY sandboxed coding-agent lab on aios.
 - `references/daily-brief-executable-spec.md` — the daily brief runs off the cron prompt, not the spec docs; the accumulated design Avi keeps asking for (minimum 5-element briefing, no-manufactured-activity rule, compilation-surface role, gentle-tap, unbuilt calendar/meeting-protection layer + its cleared OAuth dependency). Use when rebuilding or editing the daily brief.
 - `references/model-routing-fallback.md` — diagnose silent quality-cliff fallbacks (Nous 503s → lite-tier model), the same-model-via-OpenRouter fix, exact `hermes config set` commands + the false-positive config-key warning, and the ask-first / never-lite-tier rules.

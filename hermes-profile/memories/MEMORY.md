@@ -20,9 +20,7 @@ Persona bots sandboxed; only Avi's spoken affirmation exports to workboard.
 §
 Ask before routing/fallback changes. Fallback NEVER lite-tier; same model via OpenRouter preferred.
 §
-Work wifi blocks HTTPS to api.telegram.org (TG Bot API) → Hollow's TG channel dead at work; works on hotspot; dashboard = work-wifi workaround (dash bypasses TG). Battery short; heavy VPS-side; Hollow/laptop usually home.
-§
-Hollow: Telegram↔OpenClaw + AgentMail lane (watchdog); Avi relays non-mail.
+Work wifi blocks api.telegram.org → Hollow's TG dead at work; hotspot OK; dashboard bypasses. Battery short; laptop usually home.
 §
 Amazon/retail block VPS datacenter IPs; use residential egress.
 §
@@ -37,3 +35,5 @@ Avi: agent help for personal PII, no redaction; ONLY student PII restricted (pro
 SPED SaaS: Avi hand-built v1; wants an agent harness (Prime) to build it — he holds boundary/verification; de-ID=core IP, prove in sandbox lab first.
 §
 Avi enjoys post-session strategic reflection (step-back, connect threads, name forks).
+§
+Avi expects me to consult vault records (Model-Token-Usage, workboard) before asking questions already documented; dislikes being re-asked about his subscriptions/routing.

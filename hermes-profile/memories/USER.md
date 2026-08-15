@@ -1,8 +1,8 @@
-Avi Penhollow: SPED case mgr/teacher (SoCal); wif Kathleen (Ilocana); NOT Ilocano himself — Filipino heritage work is cultural sustainability + son Ravi's connection to mother's language/culture; interspiritual (not merely orthodox) though archbishop Mar Thoma Orthodox Church; Ilocos Emporium + Adarna Plant Co; Penhollow Studiolabs/Little Hollow Books; AIOS builder. Direct/honest, no scaffolding, cost/token-conscious.
+AIOS builder. Direct/honest, no scaffolding, cost/token-conscious; has Amazon Prime.
 §
 Infra: VPS1=ilocos(Mayumi), VPS2=aios(alyosha); tailnet aios,ilocos,avi-laptop,avi-iphone; ob-sync; TG 8743718071; brief 5:30am PT — Avi in Pacific time (PST/PDT).
 §
-vision gemini-2.5-flash(OR); fallback OR.
+vision gemini-2.5-flash (OR).
 §
 Own laptop NOT Mac; macOS guidance only for daughter's MacBook (LYT Kit + Hermes/Telegram; knows LLMs, new to agents).
 §
