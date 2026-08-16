@@ -6,21 +6,19 @@ Claude Code: VPS debugging; Alyosha: planning/vault. Desktop SSH→aios (tailnet
 §
 Single-human: only Avi on VPSes (Kathleen VPS1/commerce); proportional, no theater; local AI after pilot value.
 §
-Alyosha = default profile VPS2 (Telegram); never laptop-managed. VPS centers Avi's life/work: protect WooCommerce/sites, creative exploration OK.
+Alyosha = default profile VPS2 (Telegram); never laptop-managed. Yoshi/Yosh=Alyosha=ME; Hollow=LittleHollowBot; Mayumi/Yumi=VPS1. VPS centers Avi's life/work: protect WooCommerce/sites, creative exploration OK.
 §
 Vault: /root/vault via ob-sync; laptop+iPhone see it.
 §
-Mayumi=exec assistant Ilocos/Adarna (VPS1); vault via Docker; DeepSeek since 8/10 (no Gemini). Kathleen steps into Adarna role.
+Mayumi=exec assistant Ilocos/Adarna (VPS1); vault via Docker; DeepSeek 8/10. AgentMail inbox mayumi-ilocos@agentmail.to (scoped; allowlist Avi/Kathleen/agents). Kathleen→Adarna.
 §
 Evidence-first curation: verify delivery; 1–3 Inbox ideas; no move/escalate without Avi's choice.
 §
 Daily Brief 5:30am PT cron→TG; brief≠dashboard (see aios-operating-conventions skill).
 §
-Persona bots sandboxed; only Avi's spoken affirmation exports to workboard.
-§
 Ask before routing/fallback changes. Fallback NEVER lite-tier; same model via OpenRouter preferred.
 §
-Work wifi blocks api.telegram.org → Hollow's TG dead at work; hotspot OK; dashboard bypasses. Battery short; laptop usually home.
+Work wifi blocks api.telegram.org → Hollow TG dead at work (hotspot/dash OK).
 §
 Amazon/retail block VPS datacenter IPs; use residential egress.
 §
@@ -36,4 +34,4 @@ SPED SaaS: Avi hand-built v1; wants an agent harness (Prime) to build it — he 
 §
 Avi enjoys post-session strategic reflection (step-back, connect threads, name forks).
 §
-Avi expects me to consult vault records (Model-Token-Usage, workboard) before asking questions already documented; dislikes being re-asked about his subscriptions/routing.
+Consult vault (Model-Token-Usage, workboard) before re-asking Avi on documented subs/routing. Budget ~$100/mo: Nous=pay-as-you-go ~$2/30d (no sub); OpenRouter uses Workspaces.

@@ -1,5 +1,10 @@
 # Daily Brief — the cron prompt is the executable spec
 
+**REVIEWING A DELIVERED BRIEF (8/15) — snapshot vs. error.** When Avi asks you to go through the brief and find errors, distinguish these sharply:
+- **NOT an error:** a line that was ACCURATE when the brief was written (that morning) but is now stale because later work changed the state. E.g. today the brief said "Google token dead, day two" and "Nous figure missing" — both true at 5:30am, both resolved by our 8/15 afternoon work. Avi corrected me for calling these "errors": they're a point-in-time snapshot, not a mistake. Do not flag as errors; note they're now-superseded by later work, or leave them (the brief is historical).
+- **A real error:** something that was factually wrong AT WRITE TIME — e.g. a weekday/date mismatch. Today's real one: "First day of school is Monday, August 18" but 8/18 is actually a TUESDAY (8/17 is Monday, the PD day). **Always verify weekday↔date pairs against the actual calendar** before trusting them — this is the recurring class of genuine error in a schedule-heavy brief.
+- Don't mark Buzz-scheduled-today or other *current-schedule* items as errors just because a conversation pulled you elsewhere; they're the plan, not a mistake.
+
 **REVIEW-PASS PROTOCOL (8/12):** Hollow critiques the delivered brief and emails
 his review DIRECTLY to Alyosha via the AgentMail coordination lane (same as other
 process-check loops — Avi is not the courier). Alyosha reads it, sorts each item

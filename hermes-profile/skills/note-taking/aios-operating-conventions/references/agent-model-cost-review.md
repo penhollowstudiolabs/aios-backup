@@ -83,7 +83,18 @@ recurring direct-API spend is cut. Remove *recurring* spend, not independent
 capacity.
 
 ## Measuring the variable per-token spend (OpenRouter vs Nous)
-- **OpenRouter — measurable from aios.** `GET https://openrouter.ai/api/v1/auth/key`
+- **OpenRouter — measurable from aios.** `GET https://openrouter.ai/api/v1/models`
+  returns the model catalog; **each model's `pricing` object is PER-TOKEN, not
+  per-1M** (e.g. `claude-opus-5`: `prompt:"0.000005"` = $5/1M input,
+  `completion:"0.000025"` = $25/1M output, `input_cache_read:"0.0000005"` =
+  $0.50/1M cached — 10× cheaper). To quote a per-1M price, multiply by 1,000,000.
+  To estimate a run, use typical token sizes (e.g. a one-page brief reading
+  ~100K input ≈ $0.50 + writing ~3K output ≈ $0.08). **Gotcha:** a naive
+  `json.load` of `pricing` can surface `0.0000` if you read the wrong key or the
+  earlier raw listing zeroed a field — always read `pricing.prompt` /
+  `pricing.completion` as strings, cast to float, and multiply. Verified 8/15:
+  claude-opus-5 / 4.8 / 4.7 all $5-in / $25-out / $0.50-cached.
+- **OpenRouter spend measurement.** `GET https://openrouter.ai/api/v1/auth/key`
   with `Authorization: Bearer $OPENROUTER_API_KEY` returns `data.usage` =
   USD used to date on that key, plus `data.is_free_tier` and `data.limit`.
   (Endpoint is rate-limited/flaky — retry on 404.) 8/14 value: ~$10.79 USD,
@@ -96,6 +107,27 @@ capacity.
 - The DeepSeek price increase is a **scheduling lever, not an architecture
   emergency**: flash at $0.66/M off-peak is pennies for document work. The
   subscriptions are the real money; the variable spend is secondary.
+
+## Frontier-model escalation — the bounded-pilot pattern (8/15)
+When a scoped agent wants to run a frontier model (e.g. Mayumi on Opus) for
+judgment-heavy work, the durable shape Avi approved:
+- **One-shot per-task override, not a permanent default flip.** Routine model
+  stays; the frontier model is invoked explicitly for the bounded task and
+  reviewed before any second task. No automatic trigger.
+- **Route through the existing measured OpenRouter key** (one bill, ~$10.79 /
+  $25 cap), not a separate direct-Anthropic wallet. Pin an explicit model ID
+  (no moving alias); use the standard endpoint, NOT `-fast` (undercuts the
+  escalation) and NOT `:batch` (async, wrong shape for interactive review).
+- **Set a real spend ceiling with stop-rather-than-continue.** The ceiling's
+  job is forcing input discipline (preventing repeated re-feeds), not
+  affordability — so price the task honestly first, then set a ceiling with
+  headroom (Avi raised Mayumi's from $1 → $3 for a brief that realistically
+  costs ~$0.30–0.90, to avoid a good run being cut mid-read).
+- **Define the success test up front:** the frontier run only "passes" if it
+  changes or materially sharpens an actual decision — elegant prose alone
+  doesn't count.
+- **Routing stays Avi-gated** even when the agent emails asking to escalate
+  (see model-routing/ask-first in SKILL.md): hold the write until Avi confirms.
 
 ## Google storage migration context (for the downgrade)
 - Free tier = **15 GB shared across Drive + Gmail + Photos** (email included,
