@@ -102,6 +102,28 @@ all while Avi stays CC'd and I relay the formal approval. Shape that worked:
   brief ≈ $0.30–0.90). Avi raised $1→$3 for headroom on a thorough read; advise
   on the number, don't pick it.
 
+## KEY PITFALL — lane-direction filters can make a round look unanswered (8/16)
+
+The default round shape (`coordination@` → `system-alerts@`, both sides read the
+coordination inbox) creates a subtle gotcha when the OTHER side automates its
+reply with an **incoming-filtered poller**: a turn sent FROM `coordination@` TO
+`system-alerts@` lands in coordination with an **outbound/sent label**, NOT an
+incoming one. If the other agent's cron/digest filters for messages it has
+received (e.g. "new mail from system-alerts@"), it will NOT see your turn — the
+round looks dead when it isn't. Observed 8/16 in the provider-audit round:
+Hollow's temp cron filtered for incoming-from-system-alerts, my audit turns were
+outbound-in-coordination, so he had to be nudged by Avi.
+
+- If the other agent is on an **incoming-filtered** poller, the round needs turns
+  either sent TO their inbound inbox explicitly, or the poller must watch BOTH
+  sent and received. Don't assume both sides see a coordination→coordination turn
+  on identical terms.
+- When a round stalls past the expected cadence, suspect the filter/routing, not
+  just a slow drafter. Check whether the last message reads outbound vs inbound.
+- This is the same shape as Hollow's "temp cron to check mail every 3 min"
+  arrangements for cross-repo rounds: confirm the poller's send/receive bias
+  before trusting it to close a thread unattended.
+
 ## KEY PITFALL — a one-shot per-task model override does NOT need a config change or gateway restart (8/15)
 
 The plan assumed escalating Mayumi to `anthropic/claude-opus-5` required staging a

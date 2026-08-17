@@ -191,6 +191,7 @@ Rules:
 - Don't guess from the raw clock digits — when a timestamp matters, state the conversion explicitly (e.g. `00:14 UTC = 5:14 PM Pacific`).
 - If the VPS ever reverts to UTC or you're on a fresh box, `timedatectl set-timezone America/Los_Angeles` first rather than remembering to convert each time.
 - Avi says "PST" but the DST-correct zone is `America/Los_Angeles` (PDT in summer). Use the zone, and use "PT/Pacific" in prose.
+- **A new-session time-of-day greeting is a FRESH CLOCK (Avi correction, 8/16).** When Avi starts a session with "good morning/afternoon/evening," treat the clock as freshly set — anchor to that day, and do NOT fuse the prior session's date/thread ("yesterday") into "today." After a long stretch between sessions this is exactly where I drifted: I carried Sunday's marathon into Saturday's thread and started a new session believing yesterday's date. Confirm `date` (Pacific) if unsure, and orient to the greeting as the boundary marker.
 
 ## Policy-compliance checks (AUP / district policy) — read the actual text, then map to Avi's real exposure
 
@@ -271,6 +272,8 @@ fixed vs variable, and he already had it documented.
 
 ## Agent-model cost review — the routing-optimization frame (8/14)
 
+**Don't double-spend a flat paid lane with two agents on the same task (8/16).** When a heavy build runs (e.g. SPED productionization), Avi had the iterative work happening **inside ChatGPT** (Claude Code came packaged in a ChatGPT session) while **Hollow rode along on the same sessions** — so the flat Codex/ChatGPT weekly cap was consumed twice per turn by two agents pulling the same plan. It burned the weekly quota (~4 of 7 days). Fix: **one agent per paid-plan-heavy task; the other does periodic check-ins, not turn-by-turn ride-along.** Avi: "I will ensure the two of them aren't both pulling from the same resource at the same time; whichever agent is driving, that one holds the lane." Also: the ChatGPT/Codex **plan page is a cap meter, not a spend report** — it shows only % remaining + a reset date, never tokens or dollars, so you cannot retrofit exact per-task cost from it afterward. If you want real per-use numbers for heavy work, route it through a **measurable lane** (API/OpenRouter) instead of the flat plan.
+
 When Avi wants to optimize the model stack (maximize thinking quality, route
 each task efficiently, decide whether keeping all three subscriptions is worth
 it vs reallocating the ~$100/mo), structure the review as a **task-to-model
@@ -309,6 +312,8 @@ better." Pull live per-1M rates from the OpenRouter catalog
 multiply by 1e6) rather than guessing.
 
 ## Assess-first, don't-delegate reset (Avi operating preference)
+
+**Audit cadence — full audit → ONE converged recommendation with ZERO open items (8/16).** When Avi wants a system/financial review settled ("no open items like this," e.g. the routing/cost audit), he wants BOTH agents to run the complete audit independently, exchange turns to a converged recommendation, and bring Avi a single decision with the open items closed — before he decides anything. He will explicitly say "I am not making any decisions yet — you two do the complete audit, then bring me the recommendation." Do not hand him half-surfaced open questions as a decision; close what can be closed from evidence first (and be honest about provider-gated items he must supply, like a console-only balance or a subscription price he reads himself). He also accepted a **guide-not-law** framing of that audit's labor split (see the standing-stop-gaps section): judge by efficiency and friendliness, never by lane rigidity.
 
 When Avi says a fresh start / "assess what we have, then decide to what extent
 roles are necessary," hold this posture:
@@ -494,8 +499,19 @@ toolset (e.g. `power-tech-watch-scan`, 3:00 AM PDT, deliver=`local` so it does
 NOT message Avi) that writes a dated file to a vault dir
 (`Calendar/Power-Tech-Watch/<date>.md`), and have the brief prompt read the
 **most recent** file in that dir and fold it in as a section. Headroom: scan at
-3 AM → brief at 5:30 AM. Web works fine for Alyosha on aios; **Hollow is the
-fallback only** if a lane ever gets fragile (Avi offered this). When Avi asks
+3 AM → brief at 5:30 AM.
+
+**REVERSED 8/16 (Avi decision) — Hollow is the PRIMARY P&T Watch producer, not
+the fallback.** aios web access requires a PAID Firecrawl/Nous web lane, which
+Avi refused as not worth funding; Hollow runs from a residential IP and reads
+the web freely. So Avi allocated the P&T web-scan to **Hollow**, cost-free, and
+any aios `power-tech-watch-scan` cron that depends on web tools should be
+PAUSED (it's web-dead). Mechanics unchanged for the brief: it reads the
+most-recent file in `Calendar/Power-Tech-Watch/`, so Hollow writes a dated scan
+there (Obsidian mirror on the laptop) and it gets folded in. If a week passes
+with no new file from Hollow, flag it on the lane — don't silently drop the
+section, and don't fund a paid web lane on aios while Hollow's reach works.
+Follow the same "critical but objective" voice in the scan contract. When Avi asks
 for such a lane, he often wants a specific **voice** (e.g. Power & Tech Watch =
 "critical but objective": treat claims from the administration AND tech
 oligarchs as self-interested until sourced; report material fact + sharp
@@ -536,6 +552,56 @@ it — and pin the interpreter explicitly.
   Check the run's captured output dir
   (`cron/output/<job_id>/<timestamp>.md`) — if it never reaches final content,
   treat it as a delivery failure even though the job exited cleanly.
+
+## Provider-health watchdog — an unmeasurable primary is UNMONITORED, not "priced" (8/16)
+
+When an agent's primary provider is a **pay-as-you-go pocket with no usage
+endpoint from the API** (e.g. Nous Portal — the dollar figure lives only in the
+web dashboard), writing a number on it ("$5 top-up, ~$1.82/d") does NOT make it
+measured. It makes it **unmonitored and quietly able to run dry**, dumping every
+call onto the fallback lane — which still "feels fine" while steadily spending
+the fallback's bill. Tests before trusting a routing change is stable:
+- **Confirm which provider served the last call**, not just that a call
+  succeeded. A hot fallback is not health — it is the primary silently dead.
+- **Treat a known-unmeasurable pocket as open-to-monitor, never as "costed."**
+  In the same pass that prices it, add a check that the primary responds and is
+  funded; otherwise the "resolution" stores the blind spot harder. (This exact
+  miss caused the 8/16 Nous-drain incident — the consolidation session had
+  "resolved" Nous without a liveness/funding check.)
+- **Web tools that ride the same pocket die with it.** Nous-managed web tools
+  (Firecrawl) share the primary's credit pool — when it drains, web search/
+  extract errors ("SET FIRECRAWL_API_KEY / no usable paid credits") are a
+  downstream symptom of the same empty pocket, not a separate web-tool bug.
+
+Ready-made guard: `scripts/provider_health_watchdog.sh` (silent-when-clean,
+alerts once per DOWN then once on RECOVERY) + the incident write-up in
+`references/provider-health-watchdog.md`.
+
+## When you can't verify basics — be TIGHT, don't fabricate volume (8/16)
+
+Avi's frustration when the primary & web tools were down and I couldn't pull
+basic facts: *"Don't generate so much crap when you can't even access basic
+information. I'll look."* When a tool/credential blocks you from verifying a
+fact (rate-limited portal, dead provider, missing key):
+- **State the one-line gap and STOP.** e.g. "I can't read the exact price —
+  the portal is rate-limiting and web tools are down on the same empty pocket."
+- **Do NOT pad** with framing, options tables, or a "here's how we'll decide"
+  essay built on top of a number you couldn't confirm. A wall over an unknown
+  reads as noise and waste, and Avi explicitly told me it does.
+- **Hand the unverifiable fact to Avi and wait** — he'd rather look at the
+  source himself than read a long structure over a hole.
+- **Before concluding "can't verify," try a DIFFERENT working route (8/16).** A dead
+  primary pocket does not mean the world is unverifiable: if the primary quiet
+  provider (Nous) and its web tools are down, we often STILL hold a working
+  Gemini-via-OpenRouter route (`auxiliary.vision`) or direct API keys — cheap
+  lookups (a model call, an `oembed` endpoint, a curl to a static page) that don't
+  need the dead tool. Avi pulled the Nous price table himself in seconds via Gemini
+  flash and flagged: *"I'm not sure why neither you or Hollow could have done this."*
+  See `references/nous-portal-plans-and-lookups.md` for the exact tier price list.
+- Keep the honest headline tight: "the primary provider is dead; we're on the
+  fallback" — that's the news, stated in one line.
+- This pairs with the tool-failure rule: capture the FIX (install/config/
+  credential), never "tool X is broken" as a standing constraint.
 
 ## Research and comparison reporting for Avi (plain-language first)
 
@@ -729,6 +795,8 @@ do what."* The reliable split, so it doesn't get re-derived each time:
 2. **EVIDENCE-THEN-RECONCILE** — after target-env sign-off the operator sends an evidence packet; Alyosha reconciles the vault AFTER evidence. Reconciliation records operational truth, never precedes it.
 Alyosha = continuity/requirements/vault reconciliation; does NOT provision credentials/configs or become a midpoint in system config. See the canonical file for the full split and the test-on-next-real-task plan.
 
+**Avi's governing intent (8/16) — the boundary is a default, NOT a law.** After approving the calibration as standing, Avi made it load-bearing: *"we can keep this boundary without making it law. I am not trying to prohibit either one of you from the ability to do anything. I am only looking for efficiency and user friendly ways."* So: hold the split as the efficient DEFAULT, but NEVER let it block either agent from acting. If the "wrong" lane is genuinely more efficient or more user-friendly in a given case, do it — judge every deviation by *is it efficient? is it user-friendly?*, not *whose lane is it?*. Both stop-gaps describe the default; neither is a wall that creates ceremony. This pairs with the recurring principle that Avi values efficiency and user-friendliness over role rigidity.
+
 If the guard refuses, do NOT keep escalating (setsid, wrapping, renaming, cron
 one-shots all eventually fail — the guard greps the text). The clean finish is
 **Avi or Hollow runs the restart from outside the gateway.** Ask, don't fight.
@@ -778,7 +846,11 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
 **Never guess OpenClaw CLI commands (8/14 correction).** I proposed `openclaw models get`/`models list` while Avi sat at the laptop and he called it: "Something tells me you don't know claw commands." When walking the human operator through a remote-agent CLI you don't fully know, get the ACTUAL command set first — have them run `openclaw --help` / `openclaw models --help`, or verify against docs.openclaw.ai — never fabricate a name they're about to type. The verified OpenClaw model/status/fallback/auth command set + the 8/14 stabilization sequence are in `references/openclaw-model-cli-reference.md`.
 
 ## References
-- `references/agent-model-cost-review.md` — the model-stack optimization frame (task-to-model mapping, per-subscription money question), canonical wallet/routing source, the exact 8/2026 DeepSeek price-increase numbers (effective 8/16, peak/off-peak split), the **final 8/14 subscription decisions** (Google → 2 TB AI Plus, Anthropic auto-reload off + manual emergency wallet, keep GPT/Claude), the **provider-diversity rule** (don't collapse all fallbacks onto OpenRouter), the **OpenRouter cost-measurement endpoint** (`/api/v1/auth/key` → `data.usage`) vs the non-measurable Nous Portal blank, and the Google storage-migration context (free 15 GB incl. Gmail, Amazon Photos free w/ Prime, One tier prices). Use when reviewing/optimizing Avi's model routing or subscriptions.
+- `references/provider-cost-reliability-audit.md` — class-level provider cost-reliability frame (measurable-single-purpose-capped vs unmeasured-multi-purpose-single-point-of-failure), verified Nous paid tiers (Plus $20→$22 incl. web tools), Nous-web-via-Firecrawl coupling, Nous not independent of OpenRouter, the **"cap written in a note is not an enforced limit"** gotcha (OpenRouter `limit:None`), and the "verify facts through a WORKING lane (Gemini/curl/oembed) when the primary is down" lesson. Use for any routing/cost incident or cost review.
+- `references/nous-portal-plans-and-lookups.md` — the Nous Portal paid-tier price list (Plus $20 → $22 credits incl. web tools; Super $100; Ultra $200) and the routing implication (Plus restores the original "one door" intent) + the **"use a working route when one lane is down"** lesson (dead Nous ≠ unverifiable; we hold a Gemini-via-OpenRouter route). Use when pricing Nous vs OpenRouter, or when a primary provider/tool is down and a fast lookup is needed.
+- `references/provider-health-watchdog.md` — the 8/16 Nous-drain incident: a **pay-as-you-go primary with no API usage endpoint is UNMONITORED until you add a liveness/funding check**; a hot fallback is not health (confirm which provider served the last call); web tools riding the same pocket die with it. Include the ready-made guard `scripts/provider_health_watchdog.sh` (silent-when-clean, once per DOWN then once on RECOVERY). Use whenever a primary provider needs a durability check or after any routing change to confirm it truly flipped.
+- `references/provider-measurability-map.md` — WHO CAN SEE COST, by provider (8/16): only **OpenRouter automates** (`/api/v1/auth/key`→usage, `/api/v1/credits`→remaining); Anthropic/Nous/ChatGPT-Codex are console/laptop-gated and hand-snapshot only (the Codex plan page shows NO numbers — a cap meter, not a report). The right shape is NOT a dashboard (1 of 5 lanes automates) — it's a daily OpenRouter CSV + a silent night-watch guard (low <`$5`, burn-spike >`$8`). Live aios pieces: `openrouter_usage_snapshot` (5am PT, CSV) + `openrouter-night-watch` (3:30am PT). Verify caps are enforced, not just written. Use for any cost/monitoring/routing decision.
+- `references/agent-model-cost-review.md` — the model-stack optimization frame (task-to-model mapping, per-subscription money question), canonical wallet/routing source, the exact 8/2026 DeepSeek price-increase numbers, the **final 8/14 subscription decisions**, the **provider-diversity rule** (don't collapse all fallbacks onto OpenRouter), the **OpenRouter cost-measurement endpoint** vs non-measurable Nous, and the Google storage context. Use when reviewing/optimizing Avi's model routing or subscriptions.
 - `references/agent-cost-review-closure-2026-08-15.md` — the 8/15 closure facts: Nous has **NO subscription** (pay-as-you-go top-up, ~$1.82/30d — closes the budget blank), Google downgrade to 2 TB AI Plus **executed** (effective 8/17), Anthropic auto-reload was **already off** (vault "$15 auto-reload" note was wrong; ~$19.22 emergency wallet), Honcho key identified as OpenRouter `honcho-memory-v1` and retired (resolved the ownership-reconciliation item), OpenRouter measured ~$10.79. Read alongside `agent-model-cost-review.md`.
 - `references/openclaw-model-cli-reference.md` — the verified OpenClaw model CLI command set (`models status/list/set`, `fallbacks list/clear/add`, `auth list`, `gateway restart`) + the in-chat `/model` live-switch, the 8/14 stabilization sequence, and the don't-guess-CLI-names rule. Use when walking Avi/Hollow through any model change on the laptop.
 - `references/prime-agent-lab-sandbox.md` — standing up a third-party coding agent as a disposable, sandboxed lab container on aios (Prime Agent v0.7.2, 8/13): the reproducible Dockerfile recipe, the four design patterns Avi is studying (one-tool surface, fire-and-forget delegation, immutable-base+learning-layer, budgets+gates), the `prime-lab` host wrapper, and the four pitfalls in order (npm-global-as-nonroot, ENTRYPOINT overriding `sleep infinity`, root-owned named volume, TTY-aware exec). Use when setting up or re-entering ANY sandboxed coding-agent lab on aios.
@@ -791,8 +863,10 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
 - `references/scoped-drive-folder-access.md` — giving a scoped agent read/write on ONE Drive folder (the `drive.file` scope + folder-share-at-Editor pattern, Google has no per-folder OAuth), the **Alyosha-as-Drive-bridge** alternative (my token already holds full `drive` scope on Avi's personal account → I can read/write the folder for the agent, no new account/consent), and the dead-token pitfall (`invalid_grant` despite a token file on disk). Check both paths and offer the bridge first. Verified 8/15.
 - `references/google-oauth-reauth-flow.md` — re-authorizing a REVOKED Google OAuth token: the `--auth-url` → Avi consents → copy the `localhost:1/?code=...` address-bar URL → `--auth-code` exchange → verify LIVE. Pitfalls: **desktop browser is the reliable path (mobile freezes on the localhost redirect)** — say this up front, don't flip device guidance after the freeze; regenerate a fresh URL if the session stalls; `ERR_UNSAFE_PORT` is the SUCCESS state (extract the code). Use when Alyosha's Google access shows `invalid_grant: expired or revoked`.
 - `references/google-oauth-remote-agent-and-sandbox.md` — provisioning OAuth for ANOTHER agent on a REMOTE host (set `HERMES_HOME` to the profile home or the write lands in the wrong profile), and the critical gap: **host-profile `setup.py --check-live` OK does NOT prove the Docker-sandbox can use it** when the agent has a mounted integration path holding a stale/revoked token. Sync the fresh token into the mounted integration + point the sandbox token, then verify FROM the sandbox (read, create/write, folder verify, Trash). Use when giving any peer agent (Mayumi et al.) Google/Workspace access.
-- `references/openrouter-workspaces-and-limits.md` — OpenRouter Workspaces (per-workspace keys/config, one shared bill) + per-key **Credit limit** / **Reset limit** (choose monthly) + the `/api/v1/auth/key` → `data.usage` spend measurement ($10.79 on 8/14) + the Honcho `honcho-memory-v1` key finding. Use when capping OpenRouter spend or configuring agent environments.
+- `references/openrouter-workspaces-and-limits.md` — OpenRouter Workspaces (per-workspace keys/config, one shared bill) + per-key **Credit limit** / **Reset limit** (choose monthly) + the `/api/v1/auth/key` → `data.usage` spend measurement ($10.79 on 8/14) + **`GET /api/v1/credits` → `total_credits`/`total_usage` for the true remaining balance** (8/16: caught the fallback at $1.79 from dry — audit BOTH primary AND fallback, not just spent-to-date) + the "recorded $25 cap ≠ enforced limit; no API to set one" gotcha + the Honcho `honcho-memory-v1` key finding. Use when capping OpenRouter spend or configuring agent environments.
 - `references/agent-email-discussion-protocol.md` — preserved multi-agent email discussions (Avi cc'd at avipenhollow@gmail.com, protocol turn order, AgentMail cc support + the "send creates a new thread_id" threading pitfall), the 8/10 independent write-up exchange variant (write-up → one reply turn each → stop), and the security-scanner workaround (heredoc/curl-pipe sends get blocked — use a standalone send script). Use when Avi runs a "both agents research X, compare in email" workflow.
+
+**PITFALL — an email round is invisible to the peer's INCOMING-filtered cron if you send FROM the shared inbox (8/16).** When running a multi-agent turn (the provider/routing audit round), I sent each turn FROM `coordination@agentmail.to` TO `system-alerts@agentmail.to`. Because both the sender and Hollow's mailbox share the coordination inbox, my own turns landed there as **outbound** — and Hollow's temp cron (set to poll *incoming* mail from system-alerts) never saw them, so he stayed silent until manually nudged. Two fixes for any future round: (a) the polling cron must match how the thread actually arrives (inbound from the peer's address), and (b) when the peer has an incoming-filtered cron, ensure the turns genuinely enter their inbox as inbound — or expect to nudge manually rather than trusting a temp cron to pick the thread up. This is the same class as the agentmail "send creates a new thread_id" pitfall — the lane's routing semantics matter as much as the content.
 - `references/agentmail-attachment-download.md` — downloading files Hollow attaches to coordination-lane mail: the list endpoint omits attachments, the attachment endpoint returns JSON metadata with a signed CDN `download_url` (NOT raw bytes), and the size-mismatch pitfall (writing metadata to disk as if it were the file). Verified 8/10.
 - `references/agentmail-read-full-body.md` — reading the FULL body of a coordination-lane message (the list endpoint omits body; GET `/inboxes/{inbox}/messages/{id}` → `text`), the `id`-is-None vs `message_id` distinction, URL-encoding, and the never-curate-from-preview pitfall. Use when you must act on a Hollow handoff, not just alert on it. Verified 8/12.
 - `references/agentmail-send-from-aios.md` — the reusable `agentmail_send.py` sender, the terminal-guard null-byte + wrong-endpoint-path send bugs and their fixes (run via `execute_code` + `subprocess.run`), and the right `/v0/inboxes/{from}/messages/send` path. Use for any Avi-directed send to Hollow.

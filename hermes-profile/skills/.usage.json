@@ -29,14 +29,14 @@
     "archived_at": null,
     "created_at": "2026-08-05T05:04:13.328752+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-08-16T02:28:11.642359+00:00",
-    "last_used_at": "2026-08-16T07:13:14.418544+00:00",
-    "last_viewed_at": "2026-08-16T07:13:14.412996+00:00",
-    "patch_count": 157,
+    "last_patched_at": "2026-08-16T23:40:05.075935+00:00",
+    "last_used_at": "2026-08-16T23:39:54.111646+00:00",
+    "last_viewed_at": "2026-08-16T23:39:54.106512+00:00",
+    "patch_count": 182,
     "pinned": false,
     "state": "active",
-    "use_count": 157,
-    "view_count": 157
+    "use_count": 175,
+    "view_count": 175
   },
   "airtable": {
     "archived_at": null,
@@ -420,13 +420,13 @@
     "created_at": "2026-08-04T05:24:32.142940+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-08-15T21:07:29.525311+00:00",
-    "last_viewed_at": "2026-08-15T21:07:29.521534+00:00",
+    "last_used_at": "2026-08-16T22:47:50.315243+00:00",
+    "last_viewed_at": "2026-08-16T22:47:50.300712+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 27,
-    "view_count": 27
+    "use_count": 29,
+    "view_count": 29
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,

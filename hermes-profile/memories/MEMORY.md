@@ -18,8 +18,6 @@ Daily Brief 5:30am PT cron→TG; brief≠dashboard (see aios-operating-conventio
 §
 Ask before routing/fallback changes. Fallback NEVER lite-tier; same model via OpenRouter preferred.
 §
-Work wifi blocks api.telegram.org → Hollow TG dead at work (hotspot/dash OK).
-§
 Amazon/retail block VPS datacenter IPs; use residential egress.
 §
 Google OAuth = Avi's PERSONAL gmail only, NOT district/work Drive. Creds in profile, auto-refresh.
@@ -34,4 +32,6 @@ SPED SaaS: Avi hand-built v1; wants an agent harness (Prime) to build it — he 
 §
 Avi enjoys post-session strategic reflection (step-back, connect threads, name forks).
 §
-Consult vault (Model-Token-Usage, workboard) before re-asking Avi on documented subs/routing. Budget ~$100/mo: Nous=pay-as-you-go ~$2/30d (no sub); OpenRouter uses Workspaces.
+PRIMARY=OpenRouter (deepseek-v4-flash); Nous dropped 8/16 (drained). Cost-sensitive; one agent per paid-heavy task (don't double a paid lane).
+§
+Avi opens a new long-gap session with a time-of-day greeting (e.g. good morning) = fresh date; don't carry prior-session fog.

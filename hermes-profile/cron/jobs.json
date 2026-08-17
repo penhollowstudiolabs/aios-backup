@@ -7,7 +7,7 @@
       "skills": [],
       "skill": null,
       "model": "deepseek/deepseek-v4-flash-0731",
-      "provider": "nous",
+      "provider": "openrouter",
       "provider_snapshot": null,
       "model_snapshot": null,
       "base_url": null,
@@ -22,15 +22,15 @@
       "schedule_display": "30 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 12
+        "completed": 13
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-04T21:26:13.010679+00:00",
-      "next_run_at": "2026-08-17T12:30:00+00:00",
-      "last_run_at": "2026-08-16T12:33:20.016846+00:00",
+      "next_run_at": "2026-08-18T12:30:00+00:00",
+      "last_run_at": "2026-08-17T12:33:37.720538+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -50,7 +50,7 @@
       "skills": [],
       "skill": null,
       "model": "deepseek/deepseek-v4-flash-0731",
-      "provider": "nous",
+      "provider": "openrouter",
       "provider_snapshot": null,
       "model_snapshot": null,
       "base_url": null,
@@ -160,15 +160,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 2283
+        "completed": 2572
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-08T15:44:10.310585+00:00",
-      "next_run_at": "2026-08-16T14:05:00+00:00",
-      "last_run_at": "2026-08-16T13:55:25.850568+00:00",
+      "next_run_at": "2026-08-17T14:05:00+00:00",
+      "last_run_at": "2026-08-17T14:00:50.358917+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -206,15 +206,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 7
+        "completed": 8
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-10T00:39:14.007127+00:00",
-      "next_run_at": "2026-08-17T14:00:00+00:00",
-      "last_run_at": "2026-08-15T14:00:10.980695+00:00",
+      "next_run_at": "2026-08-18T14:00:00+00:00",
+      "last_run_at": "2026-08-16T14:00:28.018363+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -304,9 +304,9 @@
         "times": null,
         "completed": 5
       },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-08-16T18:02:42.940837+00:00",
       "paused_reason": null,
       "created_at": "2026-08-12T05:36:35.358100+00:00",
       "next_run_at": "2026-08-17T10:00:00+00:00",
@@ -374,7 +374,99 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": null
+    },
+    {
+      "id": "34721288cf48",
+      "name": "openrouter-usage-snapshot",
+      "prompt": "Daily OpenRouter usage snapshot \u2014 appends one line to a local CSV. No delivery.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": "openrouter_usage_snapshot.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "display": "0 12 * * *"
+      },
+      "schedule_display": "0 12 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T16:09:50.003515+00:00",
+      "next_run_at": "2026-08-18T12:00:00+00:00",
+      "last_run_at": "2026-08-17T12:00:43.895173+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    },
+    {
+      "id": "0319af33f404",
+      "name": "openrouter-night-watch",
+      "prompt": "OpenRouter night watch \u2014 silent unless balance low or burn spikes.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": "openrouter_night_watch.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 10 * * *",
+        "display": "30 10 * * *"
+      },
+      "schedule_display": "30 10 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-16T19:15:22.586713+00:00",
+      "next_run_at": "2026-08-18T10:30:00+00:00",
+      "last_run_at": "2026-08-17T10:30:39.093324+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-16T14:00:25.424392+00:00"
+  "updated_at": "2026-08-17T14:00:50.359661+00:00"
 }

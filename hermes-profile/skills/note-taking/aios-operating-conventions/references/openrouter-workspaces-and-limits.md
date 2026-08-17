@@ -23,6 +23,23 @@ GET https://openrouter.ai/api/v1/auth/key   (Authorization: Bearer <key>)
 - On 8/14 this read **$10.79** usage on the `hermes-vps-fallback` key (non-free tier, no limit set). The key page also shows its own 30-day spend graph (the fallback key was only $0.04/30d in this review).
 - Per-key, per-window spend is available via `/api/v1/key` → `usage_daily/weekly/monthly`.
 
+**THE true-remaining endpoint (8/16): `GET /api/v1/credits`.** `/auth/key` only
+returns `usage` (spent-to-date) — it does NOT tell you the remaining balance, and
+its `limit` field is often `None` even when a "$25 cap" was *written down* (a
+recorded cap is NOT an enforced limit; a real per-key cap is a dashboard click,
+and OpenRouter has **no API to SET** a hard limit). When you must know whether a
+lane is about to run dry, call `/credits`:
+```python
+GET https://openrouter.ai/api/v1/credits  -> data.total_credits, data.total_usage
+remaining = total_credits - total_usage
+```
+Verified 8/16: `credits:21, usage:19.21, remaining≈1.79` — caught the fallback
+lane a hair from exhaustion. **Always audit BOTH the primary AND the fallback
+balance** — a primary that dies silently leaves the fallback burning, and the
+fallback can itself be near-empty. Confirm which provider served the last call
+(`grep "OpenAI client created" .../logs/agent.log | grep -o "provider=*"`), not
+just that a call succeeded.
+
 ## Honcho key (8/14 finding)
 The mysterious "unexplained usage" was an **OpenRouter key named `honcho-memory-v1`** — Honcho's memory pipeline calls OpenAI embeddings + GPT-5.6 through it (App: "Honcho Deep Reasoning"). Revoke it **in OpenRouter → API Keys**, not in app.honcho.dev. Retiring it resolves the ownership-reconciliation item: that key was Honcho's, its usage was legitimate, and removing it gives a clean slate for a fresh Honcho reinstall later.
 
