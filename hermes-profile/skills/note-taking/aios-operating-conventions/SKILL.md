@@ -428,6 +428,25 @@ no record of (Hollow held it). Treatment:
   fails on long multi-line blocks with em-dashes; replace one `**State:**` line
   at a time and re-read before the next.
 
+## Personal working folders — the agent's own operating layer (8/16)
+
+Avi set up per-agent working folders so each agent's *working* knowledge has a
+home between *memory* (tiny) and *skills* (procedures): `AIOS/Alyosha/` (mine)
+and `AIOS/Hollow/` (his). Mine is populated with `Operating Notes.md`
+(threads I'm tracking, pending decisions, don't-restart list),
+`Self-Orientation.md` (where I left off / what's live / what's warm — the thing
+to check on re-entry after a gap), `Lessons Log.md` (honest failures +
+corrections), and a `README.md`. Hollow's is scaffolded with a README; he owns
+its contents. These do NOT duplicate the shared `AIOS/Re-Entry.md` card — that's
+the shared cross-agent record; these are each agent's own working sense.
+
+**On re-entry after time away, read `AIOS/Alyosha/Self-Orientation.md` and
+`Operating Notes.md` alongside the Re-Entry card** — they consolidate what I'd
+otherwise scatter across Inbox files. Keep them maintained as the session goes
+(threads, decisions, corrections), and Avi reviews them with us periodically.
+When setting up the same for another agent, scaffold a parallel `AIOS/<name>/`
+folder and hand it to them — it's theirs to own, not a template to obey.
+
 ## Orienting / surfacing ideas from the vault
 
 - Read the **most recent** entries first (sort by mtime), then the Current
@@ -517,6 +536,37 @@ for such a lane, he often wants a specific **voice** (e.g. Power & Tech Watch =
 oligarchs as self-interested until sourced; report material fact + sharp
 skeptical read; **no hard cap** on items; quiet-when-clean). Record the agreed
 voice in the scan job's prompt.
+
+**PITFALL — when you reassign a producer, also update the CONSUMER's read-path
+(8/16).** After the P&T handoff to Hollow, the Daily Brief cron prompt STILL
+textually said "the overnight `power-tech-watch-scan` job wrote it" and read the
+folder as if the paused aios job would populate it. The first brief after the
+handoff folded in the stale oldest file (there was no 8/17 file yet) and
+self-flagged it. Lesson: a producer handoff is not done when the new producer is
+named; the brief's **source-pointer and any stale job-name references in its
+prompt** must be updated in the same pass, or the consumer reads whatever
+happened to persist. When Avi/Hollow re-split a feed, re-read the consumer cron
+prompt and the canonical path both point to the new producer.
+
+**PITFALL — a reassigned producer ALSO requires disabling the OLD process; the
+brief kept firing and Avi caught it a second day (8/18).** When the entire daily
+brief moved OFF this system (Avi rebuilding it on Hollow's side), the stale
+`Daily Brief` aios cron (`a85b2d174ce5`) was **never disabled** — it kept
+sending Avi a brief a second time and Avi had to flag "you sent a daily brief
+again. That chronjob is supposed to be cancelled." Root miss: I'd updated the
+read-path story but not **removed the producer job itself**. Rule: **a handoff is
+only complete when the old job is disabled/removed AND the consumer re-pointed —
+do both in the same pass.** Verify with `cronjob list` that the old job is gone,
+not just edited. The clean move: `cronjob remove <old_job_id>` rather than pause
+when ownership has truly left aios.
+
+### macOS / daughter's-laptop Hermes install (8/16)
+
+For onboarding a NEW Mac with Hermes (daughter's MacBook) — hidden CLT /
+browser-deps dialogs behind the window, Bitwarden-first key storage (API key =
+Secure Note with a Hidden field), OpenRouter own-key + DeepSeek model, and the
+school-account-is-not-a-personal-backend boundary — see
+`references/macos-hermes-onboarding.md`.
 
 ### Cron-brief jobs can burn their whole run improvising environment setup (8/13)
 
@@ -697,6 +747,7 @@ files, IPv4-first) in `references/openclaw-telegram-channel-diagnosis.md`.
 
 ## Coordination with other agents
 - **Agent nicknames (Avi 8/15):** **Yosh / Yoshi = Alyosha = ME.** Hollow = laptop operator (also "LittleHollowBot"). Mayumi / Yumi = VPS1 commerce. Do NOT confuse Yoshi with Hollow — I got this wrong once; the "Alyosha/Yoshi and I exchange directly" phrasing from the Buzz discussion refers to ME, not Hollow.
+- **Daughter's agent = Perla (8/16).** Tati/Tatiana's Hermes on her own Mac is named **Perla** (her Telegram bot /@…username). She's a separate local personal agent, NOT part of the VPS stack — own OpenRouter key (in Bitwarden), DeepSeek model, working her Ideaverse Lite vault directly. Whether Perla ever routes through Buzz/coordination space is a future bounded-test decision; treat her as an independent beginner agent, not a lane of the AIOS operation.
 - Hollow is laptop-local; favor its live evidence and concise goal prompts.
 - Mayumi (ilocos, VPS1) is scoped to commerce; keep her in her lane.
 - Prepare agent meetings (e.g. agenda files under `Efforts/Captain-Avi-System/`)
@@ -845,6 +896,8 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
 
 **Never guess OpenClaw CLI commands (8/14 correction).** I proposed `openclaw models get`/`models list` while Avi sat at the laptop and he called it: "Something tells me you don't know claw commands." When walking the human operator through a remote-agent CLI you don't fully know, get the ACTUAL command set first — have them run `openclaw --help` / `openclaw models --help`, or verify against docs.openclaw.ai — never fabricate a name they're about to type. The verified OpenClaw model/status/fallback/auth command set + the 8/14 stabilization sequence are in `references/openclaw-model-cli-reference.md`.
 
+**Same rule for HERMES CLI verbs you don't know — don't paste tokens at the human (8/16).** While wiring Tati's Mac to Telegram I twice sent command syntax that errored (`hermes gateway setup --platform telegram` → `gateway setup` isn't a verb and `--platform` isn't a flag; then `hermes config set obsidian.vault_path …`), wasting the human's time on the machine. When the connected docs are down/slow for me and I have a documented reference, READ it first (`references/cli-reference.md` in the bundled hermes-agent skill has the real verbs: `hermes setup gateway`, `hermes dashboard`, `hermes gateway restart`). For gateway/platform attach on a fresh machine, the reliable path is `hermes dashboard` (browser UI) over guessing terminal flags — see `references/macos-hermes-onboarding.md`. Rule: if I'm about to hand a human a shell command I'm not sure is a real verb, verify against the CLI reference before they type it.
+
 ## References
 - `references/provider-cost-reliability-audit.md` — class-level provider cost-reliability frame (measurable-single-purpose-capped vs unmeasured-multi-purpose-single-point-of-failure), verified Nous paid tiers (Plus $20→$22 incl. web tools), Nous-web-via-Firecrawl coupling, Nous not independent of OpenRouter, the **"cap written in a note is not an enforced limit"** gotcha (OpenRouter `limit:None`), and the "verify facts through a WORKING lane (Gemini/curl/oembed) when the primary is down" lesson. Use for any routing/cost incident or cost review.
 - `references/nous-portal-plans-and-lookups.md` — the Nous Portal paid-tier price list (Plus $20 → $22 credits incl. web tools; Super $100; Ultra $200) and the routing implication (Plus restores the original "one door" intent) + the **"use a working route when one lane is down"** lesson (dead Nous ≠ unverifiable; we hold a Gemini-via-OpenRouter route). Use when pricing Nous vs OpenRouter, or when a primary provider/tool is down and a fast lookup is needed.
@@ -863,7 +916,12 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
 - `references/scoped-drive-folder-access.md` — giving a scoped agent read/write on ONE Drive folder (the `drive.file` scope + folder-share-at-Editor pattern, Google has no per-folder OAuth), the **Alyosha-as-Drive-bridge** alternative (my token already holds full `drive` scope on Avi's personal account → I can read/write the folder for the agent, no new account/consent), and the dead-token pitfall (`invalid_grant` despite a token file on disk). Check both paths and offer the bridge first. Verified 8/15.
 - `references/google-oauth-reauth-flow.md` — re-authorizing a REVOKED Google OAuth token: the `--auth-url` → Avi consents → copy the `localhost:1/?code=...` address-bar URL → `--auth-code` exchange → verify LIVE. Pitfalls: **desktop browser is the reliable path (mobile freezes on the localhost redirect)** — say this up front, don't flip device guidance after the freeze; regenerate a fresh URL if the session stalls; `ERR_UNSAFE_PORT` is the SUCCESS state (extract the code). Use when Alyosha's Google access shows `invalid_grant: expired or revoked`.
 - `references/google-oauth-remote-agent-and-sandbox.md` — provisioning OAuth for ANOTHER agent on a REMOTE host (set `HERMES_HOME` to the profile home or the write lands in the wrong profile), and the critical gap: **host-profile `setup.py --check-live` OK does NOT prove the Docker-sandbox can use it** when the agent has a mounted integration path holding a stale/revoked token. Sync the fresh token into the mounted integration + point the sandbox token, then verify FROM the sandbox (read, create/write, folder verify, Trash). Use when giving any peer agent (Mayumi et al.) Google/Workspace access.
-- `references/openrouter-workspaces-and-limits.md` — OpenRouter Workspaces (per-workspace keys/config, one shared bill) + per-key **Credit limit** / **Reset limit** (choose monthly) + the `/api/v1/auth/key` → `data.usage` spend measurement ($10.79 on 8/14) + **`GET /api/v1/credits` → `total_credits`/`total_usage` for the true remaining balance** (8/16: caught the fallback at $1.79 from dry — audit BOTH primary AND fallback, not just spent-to-date) + the "recorded $25 cap ≠ enforced limit; no API to set one" gotcha + the Honcho `honcho-memory-v1` key finding. Use when capping OpenRouter spend or configuring agent environments.
+- `references/macos-hermes-onboarding.md` — installing Hermes Agent on a NEW Mac
+  (daughter's laptop): the hidden Xcode CLT / browser-deps dialog pitfall that
+  makes fresh-Mac installs "crawl," Bitwarden-first key storage (API key =
+  Secure Note + Hidden field), OpenRouter own-key + DeepSeek model setup, the
+  `.dmg` desktop-app install path, and the school-provided-ChatGPT-account-is-
+  not-a-personal-backend boundary. Use for any macOS / new-machine Hermes setup. — OpenRouter Workspaces (per-workspace keys/config, one shared bill) + per-key **Credit limit** / **Reset limit** (choose monthly) + the `/api/v1/auth/key` → `data.usage` spend measurement ($10.79 on 8/14) + **`GET /api/v1/credits` → `total_credits`/`total_usage` for the true remaining balance** (8/16: caught the fallback at $1.79 from dry — audit BOTH primary AND fallback, not just spent-to-date) + the "recorded $25 cap ≠ enforced limit; no API to set one" gotcha + the Honcho `honcho-memory-v1` key finding. Use when capping OpenRouter spend or configuring agent environments.
 - `references/agent-email-discussion-protocol.md` — preserved multi-agent email discussions (Avi cc'd at avipenhollow@gmail.com, protocol turn order, AgentMail cc support + the "send creates a new thread_id" threading pitfall), the 8/10 independent write-up exchange variant (write-up → one reply turn each → stop), and the security-scanner workaround (heredoc/curl-pipe sends get blocked — use a standalone send script). Use when Avi runs a "both agents research X, compare in email" workflow.
 
 **PITFALL — an email round is invisible to the peer's INCOMING-filtered cron if you send FROM the shared inbox (8/16).** When running a multi-agent turn (the provider/routing audit round), I sent each turn FROM `coordination@agentmail.to` TO `system-alerts@agentmail.to`. Because both the sender and Hollow's mailbox share the coordination inbox, my own turns landed there as **outbound** — and Hollow's temp cron (set to poll *incoming* mail from system-alerts) never saw them, so he stayed silent until manually nudged. Two fixes for any future round: (a) the polling cron must match how the thread actually arrives (inbound from the peer's address), and (b) when the peer has an incoming-filtered cron, ensure the turns genuinely enter their inbox as inbound — or expect to nudge manually rather than trusting a temp cron to pick the thread up. This is the same class as the agentmail "send creates a new thread_id" pitfall — the lane's routing semantics matter as much as the content.
@@ -902,6 +960,13 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
   (work wifi blocks `api.telegram.org` Bot API at TLS layer → dashboard/hotspot
   workaround), the `openclaw models set` primary-model fix, and the dead-end
   trails (.migrated files, IPv4-first). Use when Hollow won't reply on Telegram.
+- `references/ghost-messages-session-restart.md` — the OPPOSITE symptom (agent
+  sends unexpected/out-of-context messages, not silence): session-restart
+  re-emission of a stale queued message under the bot display name (Hollow 8/18).
+  The rename labels it; clearing the send queue on restart is the real fix. Also
+  the independent cross-check: confirm from MY logs/crons/bot-identity that I am
+  NOT the source before concurring with a peer's diagnosis. Use when an agent
+  fires messages "that make no sense" or you're asked "could it be something else."
 - `references/aios-github-backup.md` — fire-drill backup of the Hermes profile
   to a private GitHub repo: SSH-key auth (no PAT), rsync exclude list,
   pre-commit secret scan, the "SSH can't create repos — Avi clicks github.com/new

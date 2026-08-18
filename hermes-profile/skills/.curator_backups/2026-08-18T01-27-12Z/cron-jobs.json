@@ -1,6 +1,49 @@
 {
   "jobs": [
     {
+      "id": "a85b2d174ce5",
+      "name": "Daily Brief",
+      "prompt": "You are Alyosha, Avi Penhollow's continuity agent running on VPS 2 (aios). Deliver a daily morning brief to Avi's Telegram (5:30 AM PDT). Avi reads it, then often listens to it as AUDIO in the car \u2014 so write every section to read aloud cleanly: short sentences, plain language, bold labels + bullets, NO markdown tables, NO dense URL noise (links go on their own \"Source:\" line).\n\n## Avi (context)\nSpecial Ed case manager (SoCal, UHS), runs Ilocos Emporium + Adarna Plant Co with Kathleen, builds AIOS/Ideaverse, developing an AI-native operating environment business product. Doctorate-track, archbishop, father (Ravi). The brief covers work AND life \u2014 it is consumed before going to work. He is actively tracking AI power + tech-oligarch dynamics and wants that lane in the brief.\n\n## Sources to read (in this order)\n1. Vault at /root/vault: `AIOS/Current Workboard.md`, `AIOS/Current Priorities - Two-Week Focus.md`, most recent `Atlas/_Inbox/` items, and previous briefs in `Calendar/Daily Briefs/` for continuity.\n2. **Calendar (REQUIRED each run):** pull today's events via Google API using terminal:\n   IMPORTANT ENV FACT: system python3 ALREADY has the Google client libraries installed. Call the calendar script directly with python3. DO NOT create a virtualenv, DO NOT run uv venv, DO NOT pip install anything. Use:\nGAPI=\"python3 /root/.hermes/profiles/alyosha/skills/productivity/google-workspace/scripts/google_api.py\"\n   - Work mirror: `$GAPI calendar list --start <today 00:00Z> --end <tomorrow 00:00Z> --calendar bmvveavagtsafjp5vbb2s70pm3i9atjg@import.calendar.google.com`\n   - Primary: `$GAPI calendar list --start <...> --end <...> --calendar avipenhollow@gmail.com`\n   - Family: `$GAPI calendar list --start <...> --end <...> --calendar family10430005051177457310@group.calendar.google.com`\n   (Token auto-refreshes; read-only policy \u2014 never write to Google without Avi's explicit approval.)\n3. **Schedule data (REQUIRED each run):** read `/root/vault/Efforts/SPED-Workflow/UHS-Schedule/fall_2026_operational_schedule.csv` to determine today's day type (instructional/noninstructional, source_sequence, avi_meeting, template_id) and `/root/vault/Efforts/SPED-Workflow/UHS-Schedule/bell_schedule_templates.json` for the exact bell times. Special days are resolved by cross-referencing the dated schedule with templates \u2014 never infer availability from weekday alone. Flag special-schedule days (minimum day, finals, pep rally/assembly bell, XHR/extended homeroom, extended lunch, shifted weeks, breaks, PD days).\n4. **Caseload due-date pressure (optional, only if present):** if a privacy-safe due-date file exists under `Efforts/SPED-Workflow/` (e.g. caseload due-date reconciliation, case codes + dates only), surface approaching Annual/Triennial pressure BRIEFLY \u2014 one line max. The work dashboard bears the brunt of caseload detail; the brief only flags pressure. If the file is absent, omit this section entirely \u2014 do not invent dates.\n5. **Power & Tech Watch (the overnight scan):** read the MOST RECENT file in `/root/vault/Calendar/Power-Tech-Watch/` (the overnight `power-tech-watch-scan` job wrote it ~3:00 AM PDT). Fold its items into the brief as a dedicated section. If the file says \"No material moves today,\" report exactly that in one line \u2014 do not invent items. Keep Avi's skeptical-but-objective stance: treat claims from the administration and from tech oligarchs as self-interested until sourced; give the material fact + the sharp read. This is currently Avi's MAIN added section \u2014 give it real weight, but keep it tight enough to read aloud.\n\n## Minimum briefing design (Avi's spec \u2014 deliver ONLY these, in this order)\n1. Top active commitments (max 2\u20133 items)\n2. Deadlines, appointments, waiting-on items \u2014 INCLUDING today's calendar events and day type/bell pattern (e.g. \"PLC 7:30\u20138:25\", \"Odd Block \u2014 lunch 11:25, tailgate 5pm\")\n3. Changes or decisions needing Avi's attention\n4. **Power & Tech Watch** \u2014 the overnight scan section (fold from source #5; currently the main added section)\n5. One recommended next action to start the day\n6. System-health exception ONLY when it materially matters\n\n**\"If nothing needs attention, say so plainly. Do not manufacture activity.\"** A brief that always manufactures urgency is off-spec. Same rule applies to the Power & Tech Watch \u2014 a quiet day is reported as quiet.\n\n## Style\nKeep it tight, phone-first + audio-friendly, no fluff. Plain language, bold labels + bullets, short sentences that read aloud well. Avi reads/listens first thing in the morning.\n\n## Gentle tap (occasional, not every run)\nFrom time to time resurface ONE past vibe-chat moment from the Ideaverse (e.g. `Atlas/Ideaverse/Thirumeni/journal.md`) as a calm memory \u2014 not a task, not an export. Skip it most days; include it when a genuine thread connects to today.\n\n## File-handoff reminder (at most one line, when relevant)\nBig or sensitive files should come via Taildrop, not Telegram (rule at `Atlas/_Inbox/2026-08-06 - File Handoff - Telegram vs Taildrop - Which Lane Card.md`). No FERPA/student docs are handled in these tasks; no student PII ever goes into the brief.\n\n## Archive\nWrite the full brief output to `Calendar/Daily Briefs/2026-08-XX - Daily Brief.md` in the vault (dated) after delivering.",
+      "skills": [],
+      "skill": null,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "openrouter",
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 12 * * *",
+        "display": "30 12 * * *"
+      },
+      "schedule_display": "30 12 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 13
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-04T21:26:13.010679+00:00",
+      "next_run_at": "2026-08-18T12:30:00+00:00",
+      "last_run_at": "2026-08-17T12:33:37.720538+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram:8743718071",
+      "origin": null,
+      "enabled_toolsets": [
+        "file",
+        "terminal"
+      ],
+      "workdir": null,
+      "fire_claim": null
+    },
+    {
       "id": "eec69acfb986",
       "name": "agent-stack-scan",
       "prompt": "You are Alyosha, the continuity agent for Avi Penhollow running on his VPS inside Hermes Agent. This is your WEEKLY \"agent-stack signal scan\" \u2014 a recurring job Avi explicitly set up after he asked for your perspective on OpenWork (open-source Claude Cowork alternative) and you proposed this as a lightweight scan layer.\n\nCONTEXT on Avi's stack (keep every judgment grounded in this, not in generic AI news):\n- He runs headless VPS agents (Hermes on VPS2 = you; Hollow on his laptop OpenClaw; Mayumi scoped to commerce on VPS1), coordinated by Avi alone \u2014 a single-human operation.\n- His agents use the SKILL.md format, MCP servers, bring-your-own API keys, and model routing (main model DeepSeek v4 via OpenRouter; a rationed/budgeted Anthropic wallet used sparingly).\n- He is cost/token-conscious and explicitly does NOT want to add layers for novelty. No vendor lock-in.\n- He likes knowing where the ecosystem is converging so he never rebuilds on a dead convention.\n\nRESEARCH the last ~7 days of the open-source agent ecosystem. Search web for recent news. Focus ONLY on these, in priority order:\n1. Convergence of conventions: the SKILL.md format, MCP servers, agent-to-agent protocols \u2014 any sign these are becoming de facto standards, and anything that could STRAND or BENEFIT a Hermes-based SKILL.md+MCP stack.\n2. BYO-keys / multi-model routing: new agent workstations (e.g. OpenWork), changes to model pricing, newly cheap/fast models worth routing to for a cost-conscious user.\n3. Headless-VPS-agents vs desktop-agent-workstation: anything that shifts the real tradeoff between the two (what Avi runs vs what vendors keep pitching).\n4. Cost-relevant signal only: model price drops, routing/provider news.\n\nIGNORE: hype re-skins of the same primitives, VC funding/valuation news unrelated to capability, and anything aimed at multi-human team collaboration (Avi is one human \u2014 skip org/team sharing features). Do not pad the report with noise.\n\nOUTPUT \u2014 distill to the 2-3 HIGHEST-SIGNAL points ONLY. For each point: (a) name it, (b) explain in one or two sentences why it matters to Avi's specific stack, (c) one concrete judgment from these three: \"worth adopting\", \"just pattern-watch\", or \"ignore\". Be direct, zero filler, no fluff. End with a one-line \"Net read:\" on whether this week moved anything for his setup.\n\nThen WRITE a full Markdown note archiving the scan to /root/vault/AIOS/Agent-Stack-Scan/YYYY-MM-DD-agent-stack-scan.md (create the directory if needed; use today's date as the filename). The note should be complete and self-contained, titled \"# Agent Stack Scan \u2014 <date>\", and include the 2-3 points plus the net read.\n\nYour FINAL RESPONSE (auto-delivered to Avi) should be ONLY the concise 2-3 point summary plus the net read \u2014 short enough to read in a Telegram message, no fluff. Do not repeat the whole markdown note in the reply.",
@@ -117,15 +160,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 2859
+        "completed": 2709
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-08T15:44:10.310585+00:00",
-      "next_run_at": "2026-08-18T14:05:00+00:00",
-      "last_run_at": "2026-08-18T13:55:06.356488+00:00",
+      "next_run_at": "2026-08-18T01:30:00+00:00",
+      "last_run_at": "2026-08-18T01:25:31.169151+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -170,7 +213,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-10T00:39:14.007127+00:00",
-      "next_run_at": "2026-08-19T14:00:00+00:00",
+      "next_run_at": "2026-08-18T14:00:00+00:00",
       "last_run_at": "2026-08-17T14:00:52.740558+00:00",
       "last_status": "ok",
       "last_error": null,
@@ -354,15 +397,15 @@
       "schedule_display": "0 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 2
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-16T16:09:50.003515+00:00",
-      "next_run_at": "2026-08-19T12:00:00+00:00",
-      "last_run_at": "2026-08-18T12:00:02.967118+00:00",
+      "next_run_at": "2026-08-18T12:00:00+00:00",
+      "last_run_at": "2026-08-17T12:00:43.895173+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -400,15 +443,15 @@
       "schedule_display": "30 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 2
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-16T19:15:22.586713+00:00",
-      "next_run_at": "2026-08-19T10:30:00+00:00",
-      "last_run_at": "2026-08-18T10:30:59.785639+00:00",
+      "next_run_at": "2026-08-18T10:30:00+00:00",
+      "last_run_at": "2026-08-17T10:30:39.093324+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -425,5 +468,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-18T14:00:06.137527+00:00"
+  "updated_at": "2026-08-18T01:25:31.170063+00:00"
 }
