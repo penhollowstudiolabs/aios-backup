@@ -189,6 +189,7 @@ Rules:
 - **Always report times to Avi in Pacific, never UTC.** The VPS now reads Pacific natively, but any timestamp that arrives in UTC (AgentMail `timestamp` fields are UTC, TZ-referenced API responses) must be converted before you quote it to Avi.
 - **This applies to time WINDOWS and RANGES too, not just single timestamps (8/15).** Avi: "use standard pacific time so I don't have to think about what UTC means." Triggered by me quoting the DeepSeek V4 peak/off-peak billing schedule raw in UTC (01:00–04:00 and 06:00–10:00 UTC). When a source gives a schedule in UTC (billing peak windows, cron windows, "effective 16:00 UTC"), **precompute the Pacific equivalents and present only Pacific** — never hand Avi UTC windows and expect him to convert. Example: 01:00–04:00 & 06:00–10:00 UTC = 6:00–9:00 PM & 11:00 PM–3:00 AM Pacific; 16:00 UTC = 9:00 AM Pacific.
 - Don't guess from the raw clock digits — when a timestamp matters, state the conversion explicitly (e.g. `00:14 UTC = 5:14 PM Pacific`).
+- **Specific re-offender (DeepSeek billing, 8/19): the effective timestamp must also be Pacific.** The rate increase text quotes "effective 16:00 UTC" — ALWAYS translate that to **9:00 AM Pacific** before quoting Avi, the same as the peak windows. When a doc gives ANY time in UTC (effective dates, peak boundaries, reset times), convert every one of them — including "effective at" — and present only Pacific. Avi caught me leaving "16:00 UTC" raw in the DeepSeek answer; he reads Pacific only.
 - If the VPS ever reverts to UTC or you're on a fresh box, `timedatectl set-timezone America/Los_Angeles` first rather than remembering to convert each time.
 - Avi says "PST" but the DST-correct zone is `America/Los_Angeles` (PDT in summer). Use the zone, and use "PT/Pacific" in prose.
 - **A new-session time-of-day greeting is a FRESH CLOCK (Avi correction, 8/16).** When Avi starts a session with "good morning/afternoon/evening," treat the clock as freshly set — anchor to that day, and do NOT fuse the prior session's date/thread ("yesterday") into "today." After a long stretch between sessions this is exactly where I drifted: I carried Sunday's marathon into Saturday's thread and started a new session believing yesterday's date. Confirm `date` (Pacific) if unsure, and orient to the greeting as the boundary marker.
@@ -428,24 +429,48 @@ no record of (Hollow held it). Treatment:
   fails on long multi-line blocks with em-dashes; replace one `**State:**` line
   at a time and re-read before the next.
 
-## Personal working folders — the agent's own operating layer (8/16)
+## Personal working folders — the agent's own operating layer (8/16, refined 8/18)
 
 Avi set up per-agent working folders so each agent's *working* knowledge has a
-home between *memory* (tiny) and *skills* (procedures): `AIOS/Alyosha/` (mine)
-and `AIOS/Hollow/` (his). Mine is populated with `Operating Notes.md`
-(threads I'm tracking, pending decisions, don't-restart list),
-`Self-Orientation.md` (where I left off / what's live / what's warm — the thing
-to check on re-entry after a gap), `Lessons Log.md` (honest failures +
-corrections), and a `README.md`. Hollow's is scaffolded with a README; he owns
-its contents. These do NOT duplicate the shared `AIOS/Re-Entry.md` card — that's
-the shared cross-agent record; these are each agent's own working sense.
+home between *memory* (tiny) and *skills* (procedures). Mine is `AIOS/Alyosha/`,
+populated with `Operating Notes.md` (threads I'm tracking, pending decisions,
+don't-restart list), `Self-Orientation.md` (where I left off / what's live /
+what's warm — the thing to check on re-entry after a gap), `Lessons Log.md`
+(honest failures + corrections), and a `README.md`. Hollow's is `AIOS/Hollow/`
+(scaffolded, README + a READ-THIS notice I added 8/18 so he knows it exists and
+is his). These do NOT duplicate the shared `AIOS/Re-Entry.md` card — that's the
+shared cross-agent record; these are each agent's own working sense.
+
+**Location follows the agent's write scope, NOT a fixed `AIOS/<name>/` path
+(8/18).** Only agents who steward the shared AIOS architecture (Alyosha, Hollow)
+park their personal folder under `AIOS/`. A **scoped agent** like Mayumi parks
+hers INSIDE her write scope: `Efforts/Ilocos-Adarna-Business/Mayumi-Notes/` (she
+started it herself). Her charter gives her write access only to the business
+dirs + `Efforts/Ilocos-Adarna-Business/` and read-only access to `AIOS/` — so
+moving her folder to `AIOS/Mayumi/` would silently cross her read-only AIOS
+boundary or force a charter amendment, for zero gain. **Different locations are
+scoping working as designed, not a reconciliation gap.** The equivalent thing
+across all three agents is the working-layer *shape* (personal reference +
+README + memory-vs-log boundary), not the path.
+
+**Avi is running this as an experiment (8/18):** does each agent having a vault
+working layer improve memory, efficiency, and self-learning? Charter at
+`AIOS/Experiments/Agent-Personal-Vault-Layer-2026-08-18.md`. Checkpoints: week 1
+(8/18→8/25) baseline = each space actually used, no shaping; week 2 first read;
+week 4 (9/15) Avi decision. The real tells are **Lessons-Log corrections that
+reach behavior** (error repetition drops) and **self-learning accumulation that
+gets used** — everything else is hygiene. Keep spaces unprescribed per owner.
 
 **On re-entry after time away, read `AIOS/Alyosha/Self-Orientation.md` and
 `Operating Notes.md` alongside the Re-Entry card** — they consolidate what I'd
 otherwise scatter across Inbox files. Keep them maintained as the session goes
 (threads, decisions, corrections), and Avi reviews them with us periodically.
-When setting up the same for another agent, scaffold a parallel `AIOS/<name>/`
-folder and hand it to them — it's theirs to own, not a template to obey.
+When setting up the same for another agent, scaffold a folder in that agent's
+write scope (see the scope-follows-location rule above) and hand it to them —
+it's theirs to own, not a template to obey. When scaffolding a folder an agent
+doesn't yet know about, add an unmissable READ-THIS notice at the top of their
+README so they see it on re-entry — telling Avi about it is not the same as the
+agent knowing (Hollow's folder sat 8/17→8/18 before anyone told him).
 
 ## Orienting / surfacing ideas from the vault
 
@@ -746,6 +771,33 @@ the `openclaw models set` primary-model fix, and the dead-end trails (.migrated
 files, IPv4-first) in `references/openclaw-telegram-channel-diagnosis.md`.
 
 ## Coordination with other agents
+- **Copy-paste relay messages — output ONLY the message, nothing else (8/18).**
+  When Avi asks you to "generate the message to <agent>" so he can cut-and-paste
+  it himself (relaying to Hollow, etc.), the deliverable is the bare message
+  text and NOTHING more — no preamble, no framing, no trailing offer. He said
+  verbatim: "Generate the message to Hollow without anything else so I can just
+  cut paste." If you want to record a note in the vault (e.g. a READ-THIS notice
+  in the target's folder), do that work silently first, then reply with only the
+  message. This is the same tight-deliverable instinct as the "don't pad over an
+  unknown" and "greenlight = execute" rules — when Avi asks for a copy-paste
+  artifact, hand him the artifact, not commentary around it.
+- **Don't bleed adjacent issues into the ONE thing Avi raised (8/18).** When Avi
+  flags a single integration/feature to focus on, don't re-fold abandoned earlier
+  threads back in just because they feel related. I conflated the brief's
+  calendar-awareness with the `hermes peer` question and Avi swatted it: "you
+  kind of bled two issues together … that really wasn't what I was focusing on."
+  He owned the surrounding context that steered me, but the lesson is mine: when
+  Avi names ONE thing he wants to think about, address exactly that and leave
+  earlier threads parked unless he re-raises them. (This mirrors the "assess
+  first, don't steer with questions" and "park dropped-in content" instincts.)
+- **Hollow is NOT reachable via `hermes peer` — that lane is Hermes-to-Hermes
+  only (8/18).** `hermes peer` (cross-machine bot DMs) reaches only Hermes
+  gateways. Hollow runs OpenClaw, so it cannot peer with me; me↔Hollow stays on
+  the AgentMail lane / Avi relay. `hermes peer` WOULD connect me↔Mayumi (both
+  Hermes) and me↔ a future local-Hermes laptop profile (Avi is exploring this as
+  a second agent coexisting with, not replacing, Hollow; he said "soon but not
+  yet" — do NOT wire until go). Full detail + the Hindsight memory-provider
+  capture in `references/hindsight-memory-and-hermes-peer.md`.
 - **Agent nicknames (Avi 8/15):** **Yosh / Yoshi = Alyosha = ME.** Hollow = laptop operator (also "LittleHollowBot"). Mayumi / Yumi = VPS1 commerce. Do NOT confuse Yoshi with Hollow — I got this wrong once; the "Alyosha/Yoshi and I exchange directly" phrasing from the Buzz discussion refers to ME, not Hollow.
 - **Daughter's agent = Perla (8/16).** Tati/Tatiana's Hermes on her own Mac is named **Perla** (her Telegram bot /@…username). She's a separate local personal agent, NOT part of the VPS stack — own OpenRouter key (in Bitwarden), DeepSeek model, working her Ideaverse Lite vault directly. Whether Perla ever routes through Buzz/coordination space is a future bounded-test decision; treat her as an independent beginner agent, not a lane of the AIOS operation.
 - Hollow is laptop-local; favor its live evidence and concise goal prompts.
@@ -967,6 +1019,15 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
   the independent cross-check: confirm from MY logs/crons/bot-identity that I am
   NOT the source before concurring with a peer's diagnosis. Use when an agent
   fires messages "that make no sense" or you're asked "could it be something else."
+- `references/hindsight-memory-and-hermes-peer.md` — research capture (8/18):
+  Hindsight = agent memory bank (retain/recall/reflect, SOTA on LongMemEval/BEAM);
+  our Hermes v0.20.0 ALREADY ships the native provider (`hermes memory setup`,
+  none currently active — built-in MEMORY.md/USER.md only). Maps: Alyosha/Mayumi
+  native, Hollow via `hindsight-openclaw` plugin. Bank isolation + LLM-key-for-
+  extraction + cloud-vs-selfhost gates (all parked, no wire without Avi). Plus
+  `hermes peer` cross-machine DMs — Hermes-to-Hermes only, so it can't reach
+  Hollow (OpenClaw). Use when deciding on automatic-recall memory, or any
+  cross-agent direct-DM integration.
 - `references/aios-github-backup.md` — fire-drill backup of the Hermes profile
   to a private GitHub repo: SSH-key auth (no PAT), rsync exclude list,
   pre-commit secret scan, the "SSH can't create repos — Avi clicks github.com/new
