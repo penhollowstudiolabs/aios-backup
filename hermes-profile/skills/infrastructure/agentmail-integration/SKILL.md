@@ -12,6 +12,8 @@ metadata:
 
 # AgentMail Integration (Hollow↔Alyosha coordination lane)
 
+**STATUS 8/20 — RESOLVED (incident cleared).** The 8/19 service-wide send pause (`403 MessageRejectedError: Sending paused for this account`, provider-side AgentMail/AWS incident, NOT account or key-scoped) is over. Verified by a successful round-trip test sent 8/20 03:57 UTC (`coordination@` → `system-alerts@`; label `received, unread` on recipient). No agent changed config to recover; none should. Do not re-run the "sending paused" diagnosis unless a fresh 403 appears. If a future send 403s: first check status.agentmail.to before touching config — the 8/19 episode proved this error is normally provider-side.
+
 AgentMail gives agents email inboxes. On this operation it is the primary **asynchronous agent-to-agent lane** (Hollow→Alyosha handoffs), with the shared vault as context and Telegram (via Avi) as the urgent human-mediated relay.
 
 ## Key facts

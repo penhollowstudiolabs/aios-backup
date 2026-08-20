@@ -19,3 +19,5 @@ Avi keeps GPT (ChatGPT/Codex) and Claude Pro subs; Google 2TB AI Plus main stora
 Comms to Kathleen: warm, conversational, in Mayumi's own voice — never an audit/checklist; open dialogue over interrogation.
 §
 HWOS: building Household Wealth Operating System + Kathleen; chose 4-week diagnostic (full later); no real budget/full income-expense pic yet. Sensitive.
+§
+Planning a local Hermes profile on laptop too ("soon, not yet") → enables hermes-peer direct bot-to-bot DMs with Alyosha; coexists with Hollow (OpenClaw), not a replacement.

@@ -781,6 +781,22 @@ files, IPv4-first) in `references/openclaw-telegram-channel-diagnosis.md`.
   message. This is the same tight-deliverable instinct as the "don't pad over an
   unknown" and "greenlight = execute" rules — when Avi asks for a copy-paste
   artifact, hand him the artifact, not commentary around it.
+- **Deliver a ready-to-send draft CLEAN — never hand Avi a draft + edit-notes
+  about it (8/19).** After drafting the AgentMail support email I appended a
+  "tweak to make before sending" that referenced a stray `**` placeholder in
+  MY OWN framing; Avi (rightly) replied "I have no fucking idea what you mean
+  about the tweak." A ready-to-send artifact is finished, spelled out, with no
+  remaining edit instructions for the reader to decode — if a draft needs a
+  correction, fix it silently and resend the final copy. Picture the user
+  Ctrl-A / Ctrl-C / Ctrl-V'ing exactly what you wrote.
+- **Reads working ≠ sends working on the AgentMail lane — run a real SEND test
+  to prove "up" (8/19).** When Hollow reported AgentMail broken, my read-only
+  (list inboxes/messages) checks all passed and I wrongly concluded "the lane is
+  fine" — but sending was PAUSED org-wide. Reads never touch the send
+  permission, and the read-only watchdog (silent-when-clean) stays silent during
+  a send outage by design. A send test is the ONLY reliable health probe for
+  outbound. Full account-level details in
+  `references/agentmail-send-pause-diagnosis.md`.
 - **Don't bleed adjacent issues into the ONE thing Avi raised (8/18).** When Avi
   flags a single integration/feature to focus on, don't re-fold abandoned earlier
   threads back in just because they feel related. I conflated the brief's
@@ -980,6 +996,7 @@ Also durable: **`avi-laptop` has no SSH open** — you cannot read/change Hollow
 - `references/agentmail-attachment-download.md` — downloading files Hollow attaches to coordination-lane mail: the list endpoint omits attachments, the attachment endpoint returns JSON metadata with a signed CDN `download_url` (NOT raw bytes), and the size-mismatch pitfall (writing metadata to disk as if it were the file). Verified 8/10.
 - `references/agentmail-read-full-body.md` — reading the FULL body of a coordination-lane message (the list endpoint omits body; GET `/inboxes/{inbox}/messages/{id}` → `text`), the `id`-is-None vs `message_id` distinction, URL-encoding, and the never-curate-from-preview pitfall. Use when you must act on a Hollow handoff, not just alert on it. Verified 8/12.
 - `references/agentmail-send-from-aios.md` — the reusable `agentmail_send.py` sender, the terminal-guard null-byte + wrong-endpoint-path send bugs and their fixes (run via `execute_code` + `subprocess.run`), and the right `/v0/inboxes/{from}/messages/send` path. Use for any Avi-directed send to Hollow.
+- `references/agentmail-send-pause-diagnosis.md` — the 8/19 **send-paused org-wide** incident: `403 MessageRejectedError` = a SUSPENDED account (not a per-key/per-agent restriction). Reads passing ≠ sending OK — a real send test is the only reliable outbound health probe. One `organization_id` all inboxes share, so the pause blocks every agent at once; fix is account-owner-side (email support@agentmail.to), not any agent config. Includes the resume-send-test protocol and the support email template. Use whenever AgentMail "isn't working," to distinguish a client/plugin issue from an account-level suspension.
 - `references/command-center-pattern.md` — establish a canonical vault "command center" (priorities + next actions + owners + risks) that survives agent-memory limits; plus the verify-vault-then-release memory-cleanup workflow.
 - `references/vault-reentry-card.md` — the converged shared-contract design for a vault re-entry context card (live-state representation, freshness balance, scope boundaries, and the AIOS workboard pilot with its A/B authority relationship). Converged 8/12 in the Alyosha↔Hollow memory/retrieval email round; nothing implemented until Avi gives the go. Distinct from the command-center pattern: the card is the small live-state re-entry artifact, the command center is the priorities/owners/risks artifact.
 - `references/vault-sync-verification.md` — exact commands to verify a vault
