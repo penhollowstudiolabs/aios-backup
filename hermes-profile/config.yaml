@@ -95,10 +95,10 @@ display:
   busy_input_mode: interrupt
   bell_on_complete: false
   show_reasoning: false
+  background_process_notifications: concise
   streaming: true
   skin: default
   interim_assistant_messages: true
-  background_process_notifications: all
   busy_ack_detail: true
   cleanup_progress: false
   long_running_notifications: true
@@ -121,16 +121,17 @@ memory:
   user_profile_enabled: true
   memory_char_limit: 2200
   user_char_limit: 1375
-  flush_min_turns: 6
   nudge_interval: 10
+  flush_min_turns: 6
 delegation:
-  max_iterations: 50
+  max_iterations: 250
 skills:
   creation_nudge_interval: 15
 approvals:
   destructive_slash_confirm: false
 command_allowlist:
   - script execution via heredoc
+  - script execution via -e/-c flag
   - execute_code
 code_execution:
   max_tool_calls: 50
@@ -140,6 +141,7 @@ streaming:
 onboarding:
   seen:
     busy_input_prompt: true
+    openclaw_residue_cleanup: true
 telemetry:
   shared_metrics:
     enabled: false
@@ -147,7 +149,7 @@ updates:
   pre_update_backup: false
   backup_keep: 5
   non_interactive_local_changes: stash
-_config_version: 33
+_config_version: 38
 fallback_model:
   model: deepseek/deepseek-v4-flash-0731
   provider: openrouter
@@ -181,3 +183,22 @@ session_reset:
   at_hour: 4
   idle_minutes: 1440
   mode: none
+bot_peers:
+  ilocos:
+    url: http://100.86.81.127:8642
+
+# ── Security ──────────────────────────────────────────────────────────
+# Secret redaction is ON by default — strings that look like API keys,
+# tokens, and passwords are masked in tool output, logs, and chat
+# responses before the model or user ever sees them. Set redact_secrets
+# to false to disable (e.g. when developing the redactor itself).
+# tirith pre-exec scanning is enabled by default when the tirith binary
+# is available. Configure via security.tirith_* keys or env vars
+# (TIRITH_ENABLED, TIRITH_BIN, TIRITH_TIMEOUT, TIRITH_FAIL_OPEN).
+#
+# security:
+#   redact_secrets: true
+#   tirith_enabled: true
+#   tirith_path: "tirith"
+#   tirith_timeout: 5
+#   tirith_fail_open: true

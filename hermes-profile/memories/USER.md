@@ -8,7 +8,7 @@ AgentMail lane live (coordination@agentmail.to, Hollow→Alyosha); 5-min watchdo
 §
 Avi authorizes scoped autonomous actions; no gateway/workflow disruption.
 §
-Direction (8/8): brain = VPS-homed Hermes, reachable laptop/phone/school; keep local operator hybrid; Hollow not replaced.
+Direction (8/8): brain = VPS-homed Hermes, reachable laptop/phone/school; keep local operator hybrid.
 §
 TTS: Edge en-US-ChristopherNeural (8/10).
 §
@@ -20,4 +20,4 @@ Comms to Kathleen: warm, conversational, in Mayumi's own voice — never an audi
 §
 HWOS: building Household Wealth Operating System + Kathleen; chose 4-week diagnostic (full later); no real budget/full income-expense pic yet. Sensitive.
 §
-Planning a local Hermes profile on laptop too ("soon, not yet") → enables hermes-peer direct bot-to-bot DMs with Alyosha; coexists with Hollow (OpenClaw), not a replacement.
+Laptop=hub now (not VPS2); installing local Hermes profile on it to own technical setup; it need not be remotely reachable; Telegram+AgentMail stay fallback coordination.

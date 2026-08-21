@@ -93,5 +93,12 @@ tailscale file cp <src> <node>:             # Taildrop push to <node> (colon = d
 - **Exit node** — route a device's traffic out through a VPS for untrusted wifi.
 - Agent-to-agent comms (the parked Buzz/ACP-direct lane) run most cleanly over
   the tailnet rather than public ports.
+- **Enabling/auditing the Hermes fleet for bot-mode, remote access, or
+  agent↔agent DMs** across VPS1/VPS2/laptop — see
+  `references/hermes-fleet-botmode.md`. It has the process-shape diagnostic
+  (`hermes gateway run` = real agent vs `hermes serve --ssh-owner-nonce` =
+  ephemeral desktop tunnel), the `api_server`/`bot_peers`/`hermes peer dm`
+  requirements, the verified 2026-08-21 state of every node, and the
+  per-node audit one-liners.
 
 See `references/tailnet-operations.md` for the current topology and exact recipes.

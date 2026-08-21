@@ -1,0 +1,26 @@
+{
+  "id": "20260821-050235-pre-update",
+  "timestamp": "20260821-050235",
+  "label": "pre-update",
+  "file_count": 15,
+  "total_size": 62384164,
+  "files": {
+    "state.db": 61517824,
+    "config.yaml": 5577,
+    ".env": 24740,
+    "auth.json": 10330,
+    "cron/jobs.json": 21329,
+    "cron/executions.db": 606208,
+    "gateway_state.json": 451,
+    "channel_directory.json": 355,
+    "processes.json": 596,
+    "projects.db": 45056,
+    "verification_evidence.db": 32768,
+    "kanban.db": 118784,
+    "platforms/pairing/_rate_limits.json": 47,
+    "platforms/pairing/telegram-pending.json": 2,
+    "platforms/pairing/telegram-approved.json": 97
+  },
+  "failed_dbs": [],
+  "oversized_skipped": []
+}

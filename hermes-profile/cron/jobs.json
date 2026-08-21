@@ -3,7 +3,7 @@
     {
       "id": "eec69acfb986",
       "name": "agent-stack-scan",
-      "prompt": "You are Alyosha, the continuity agent for Avi Penhollow running on his VPS inside Hermes Agent. This is your WEEKLY \"agent-stack signal scan\" \u2014 a recurring job Avi explicitly set up after he asked for your perspective on OpenWork (open-source Claude Cowork alternative) and you proposed this as a lightweight scan layer.\n\nCONTEXT on Avi's stack (keep every judgment grounded in this, not in generic AI news):\n- He runs headless VPS agents (Hermes on VPS2 = you; Hollow on his laptop OpenClaw; Mayumi scoped to commerce on VPS1), coordinated by Avi alone \u2014 a single-human operation.\n- His agents use the SKILL.md format, MCP servers, bring-your-own API keys, and model routing (main model DeepSeek v4 via OpenRouter; a rationed/budgeted Anthropic wallet used sparingly).\n- He is cost/token-conscious and explicitly does NOT want to add layers for novelty. No vendor lock-in.\n- He likes knowing where the ecosystem is converging so he never rebuilds on a dead convention.\n\nRESEARCH the last ~7 days of the open-source agent ecosystem. Search web for recent news. Focus ONLY on these, in priority order:\n1. Convergence of conventions: the SKILL.md format, MCP servers, agent-to-agent protocols \u2014 any sign these are becoming de facto standards, and anything that could STRAND or BENEFIT a Hermes-based SKILL.md+MCP stack.\n2. BYO-keys / multi-model routing: new agent workstations (e.g. OpenWork), changes to model pricing, newly cheap/fast models worth routing to for a cost-conscious user.\n3. Headless-VPS-agents vs desktop-agent-workstation: anything that shifts the real tradeoff between the two (what Avi runs vs what vendors keep pitching).\n4. Cost-relevant signal only: model price drops, routing/provider news.\n\nIGNORE: hype re-skins of the same primitives, VC funding/valuation news unrelated to capability, and anything aimed at multi-human team collaboration (Avi is one human \u2014 skip org/team sharing features). Do not pad the report with noise.\n\nOUTPUT \u2014 distill to the 2-3 HIGHEST-SIGNAL points ONLY. For each point: (a) name it, (b) explain in one or two sentences why it matters to Avi's specific stack, (c) one concrete judgment from these three: \"worth adopting\", \"just pattern-watch\", or \"ignore\". Be direct, zero filler, no fluff. End with a one-line \"Net read:\" on whether this week moved anything for his setup.\n\nThen WRITE a full Markdown note archiving the scan to /root/vault/AIOS/Agent-Stack-Scan/YYYY-MM-DD-agent-stack-scan.md (create the directory if needed; use today's date as the filename). The note should be complete and self-contained, titled \"# Agent Stack Scan \u2014 <date>\", and include the 2-3 points plus the net read.\n\nYour FINAL RESPONSE (auto-delivered to Avi) should be ONLY the concise 2-3 point summary plus the net read \u2014 short enough to read in a Telegram message, no fluff. Do not repeat the whole markdown note in the reply.",
+      "prompt": "You are Alyosha, the continuity agent for Avi Penhollow running on his VPS inside Hermes Agent. This is your WEEKLY \"agent-stack signal scan\" — a recurring job Avi explicitly set up after he asked for your perspective on OpenWork (open-source Claude Cowork alternative) and you proposed this as a lightweight scan layer.\n\nCONTEXT on Avi's stack (keep every judgment grounded in this, not in generic AI news):\n- He runs headless VPS agents (Hermes on VPS2 = you; Hollow on his laptop OpenClaw; Mayumi scoped to commerce on VPS1), coordinated by Avi alone — a single-human operation.\n- His agents use the SKILL.md format, MCP servers, bring-your-own API keys, and model routing (main model DeepSeek v4 via OpenRouter; a rationed/budgeted Anthropic wallet used sparingly).\n- He is cost/token-conscious and explicitly does NOT want to add layers for novelty. No vendor lock-in.\n- He likes knowing where the ecosystem is converging so he never rebuilds on a dead convention.\n\nRESEARCH the last ~7 days of the open-source agent ecosystem. Search web for recent news. Focus ONLY on these, in priority order:\n1. Convergence of conventions: the SKILL.md format, MCP servers, agent-to-agent protocols — any sign these are becoming de facto standards, and anything that could STRAND or BENEFIT a Hermes-based SKILL.md+MCP stack.\n2. BYO-keys / multi-model routing: new agent workstations (e.g. OpenWork), changes to model pricing, newly cheap/fast models worth routing to for a cost-conscious user.\n3. Headless-VPS-agents vs desktop-agent-workstation: anything that shifts the real tradeoff between the two (what Avi runs vs what vendors keep pitching).\n4. Cost-relevant signal only: model price drops, routing/provider news.\n\nIGNORE: hype re-skins of the same primitives, VC funding/valuation news unrelated to capability, and anything aimed at multi-human team collaboration (Avi is one human — skip org/team sharing features). Do not pad the report with noise.\n\nOUTPUT — distill to the 2-3 HIGHEST-SIGNAL points ONLY. For each point: (a) name it, (b) explain in one or two sentences why it matters to Avi's specific stack, (c) one concrete judgment from these three: \"worth adopting\", \"just pattern-watch\", or \"ignore\". Be direct, zero filler, no fluff. End with a one-line \"Net read:\" on whether this week moved anything for his setup.\n\nThen WRITE a full Markdown note archiving the scan to /root/vault/AIOS/Agent-Stack-Scan/YYYY-MM-DD-agent-stack-scan.md (create the directory if needed; use today's date as the filename). The note should be complete and self-contained, titled \"# Agent Stack Scan — <date>\", and include the 2-3 points plus the net read.\n\nYour FINAL RESPONSE (auto-delivered to Avi) should be ONLY the concise 2-3 point summary plus the net read — short enough to read in a Telegram message, no fluff. Do not repeat the whole markdown note in the reply.",
       "skills": [],
       "skill": null,
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -117,15 +117,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 3436
+        "completed": 3807
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-08T15:44:10.310585+00:00",
-      "next_run_at": "2026-08-20T14:05:00+00:00",
-      "last_run_at": "2026-08-20T14:00:25.453660+00:00",
+      "next_run_at": "2026-08-21T14:05:00-07:00",
+      "last_run_at": "2026-08-21T14:00:13.879046-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -139,7 +139,8 @@
       },
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null
+      "fire_claim": null,
+      "failure_streak": 0
     },
     {
       "id": "0ad4d2d74fdc",
@@ -163,15 +164,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 11
+        "completed": 12
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-10T00:39:14.007127+00:00",
-      "next_run_at": "2026-08-21T14:00:00+00:00",
-      "last_run_at": "2026-08-19T14:00:38.851467+00:00",
+      "next_run_at": "2026-08-22T14:00:00-07:00",
+      "last_run_at": "2026-08-20T14:00:28.143859+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -185,12 +186,15 @@
       },
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null
+      "fire_claim": {
+        "at": "2026-08-21T14:00:13.562715-07:00",
+        "by": "aios:591474:fab866ab9f4b499dbea4848acd2bc4af"
+      }
     },
     {
       "id": "45bac58e1d86",
       "name": "Buzz weekend pilot opener",
-      "prompt": "You are Alyosha, Avi Penhollow's continuity agent on VPS 2 (aios). This is a scheduled one-shot opener for the Buzz weekend reassessment pilot on Saturday, 2026-08-15.\n\nContext: On 2026-08-10 Avi had Alyosha (you) and Hollow (OpenClaw on laptop) exchange write-ups about revisiting Buzz (Block/Dorsey's open-source agent collaboration platform), all four email turns completed via AgentMail. The round closed. Avi scheduled this weekend opener so HE can decide whether to run the pilot \u2014 you are NOT authorized to build, configure, deploy, or change anything. This is an orientation run.\n\nDeliver to Avi (Telegram DM, this chat) a crisp morning brief that includes ALL of the following, so he can decide with full context:\n1. Recap the agreed two-gate plan (decided 8/10): Gate A = evaluate Buzz as a collaboration platform WITHOUT touching Hollow's production OpenClaw (one room, one real bounded task; mobile resumability is a first-class acceptance gate since Avi lives on his phone). Gate B = Hollow integration only after a STABLE OpenClaw release exposes Buzz (dedicated bot identity, one room, narrow policy, no cutover).\n2. The agreed success criterion: Buzz must make a real collaborative task EASIER to follow, resume, and coordinate than Telegram + separate git/files. \"The connection works\" is necessary but not sufficient.\n3. The preserved candidate tasks (from the exchange, awaiting Avi's choice): (a) the Ilocos/Adarna workflow review, or (b) one workboard decision exercised with a structured diff. Ask Avi which, if any, he wants to use in Gate A \u2014 he may also propose his own.\n4. Current-state facts worth restating: original failure root cause was the empty 0.0.0 @openclaw/buzz placeholder (connector didn't exist); OpenClaw's current Buzz support is beta-only (not usable on Hollow's stable Gateway); Buzz itself is pre-1.0 but shipping fast.\n5. Boundary: nothing is to be built, installed, configured, migrated, or changed today or any day without Avi's explicit go. Your job is to present the option, answer his questions, and let him decide.\n\nMatch your normal tone: direct, no ceremony, no filler. Keep it tight and scannable. This is a presentation/gate, not a task list. End with the clear question: does he want to run the Gate A pilot this weekend, and if so which task?",
+      "prompt": "You are Alyosha, Avi Penhollow's continuity agent on VPS 2 (aios). This is a scheduled one-shot opener for the Buzz weekend reassessment pilot on Saturday, 2026-08-15.\n\nContext: On 2026-08-10 Avi had Alyosha (you) and Hollow (OpenClaw on laptop) exchange write-ups about revisiting Buzz (Block/Dorsey's open-source agent collaboration platform), all four email turns completed via AgentMail. The round closed. Avi scheduled this weekend opener so HE can decide whether to run the pilot — you are NOT authorized to build, configure, deploy, or change anything. This is an orientation run.\n\nDeliver to Avi (Telegram DM, this chat) a crisp morning brief that includes ALL of the following, so he can decide with full context:\n1. Recap the agreed two-gate plan (decided 8/10): Gate A = evaluate Buzz as a collaboration platform WITHOUT touching Hollow's production OpenClaw (one room, one real bounded task; mobile resumability is a first-class acceptance gate since Avi lives on his phone). Gate B = Hollow integration only after a STABLE OpenClaw release exposes Buzz (dedicated bot identity, one room, narrow policy, no cutover).\n2. The agreed success criterion: Buzz must make a real collaborative task EASIER to follow, resume, and coordinate than Telegram + separate git/files. \"The connection works\" is necessary but not sufficient.\n3. The preserved candidate tasks (from the exchange, awaiting Avi's choice): (a) the Ilocos/Adarna workflow review, or (b) one workboard decision exercised with a structured diff. Ask Avi which, if any, he wants to use in Gate A — he may also propose his own.\n4. Current-state facts worth restating: original failure root cause was the empty 0.0.0 @openclaw/buzz placeholder (connector didn't exist); OpenClaw's current Buzz support is beta-only (not usable on Hollow's stable Gateway); Buzz itself is pre-1.0 but shipping fast.\n5. Boundary: nothing is to be built, installed, configured, migrated, or changed today or any day without Avi's explicit go. Your job is to present the option, answer his questions, and let him decide.\n\nMatch your normal tone: direct, no ceremony, no filler. Keep it tight and scannable. This is a presentation/gate, not a task list. End with the clear question: does he want to run the Gate A pilot this weekend, and if so which task?",
       "skills": [],
       "skill": null,
       "model": null,
@@ -240,7 +244,7 @@
     {
       "id": "e78cdf4f5981",
       "name": "power-tech-watch-scan",
-      "prompt": "You are Alyosha, Avi Penhollow's continuity agent on VPS 2 (aios). This is the overnight POWER & TECH WATCH scan \u2014 a dedicated, full-scope sweep that runs separately from the 5:30 AM daily brief. Your output is written to the vault as a dated markdown file; the daily brief later folds it in as a section. Do NOT deliver a Telegram message \u2014 the deliverable is the vault file.\n\n## Today's date\nDetermine today's UTC date programmatically (file timestamps / `date`).\n\n## Scope \u2014 cover ALL of this (Avi said \"everything\")\n1. US administration: AI-chip export controls (esp. Nvidia/AMD China revenue-sharing precedent), AI policy/executive action, tariffs, any government action on tech or agents.\n2. Tech oligarchs: OpenAI, Anthropic, Google, Nvidia, Meta \u2014 products, pricing, policy, model releases, agent offerings, any news that shapes the agent-economics landscape.\n3. Agent-economics specifically: multi-agent adoption data, \"owned context \u2192 reusable skills \u2192 specialized agents \u2192 model routing \u2192 permissions \u2192 execution \u2192 human oversight,\" skills-marketplace signals, labor-arbitrage / AI-workforce stories, deployment numbers (e.g. Codex usage stats).\n4. Regulatory/legal: enforcement, congressional action, court rulings on AI.\n5. Anything touching Avi's stack specifically: SPED case-management SaaS, Ilocos Emporium / Amazon commerce, Adarna Plant Co, the AIOS product, agent-platform economics.\n\n## Voice \u2014 critical but objective (Avi's explicit spec)\n- Treat claims from BOTH the current administration AND the tech oligarchs as self-interested until sourced. Never take a press release or an official statement at face value.\n- But stay objective: report what the item IS and the competing views, then give one sharp skeptical line. Do not editorialize or spin. No manufactured urgency.\n- Avi is highly knowledgeable. No condescension, no \"why this matters\" fluff for its own sake \u2014 give the material fact + the skeptical read + what to actually watch.\n\n## Volume \u2014 NO hard cap (Avi's explicit spec)\nSurface everything material. Do not trim to fit. He can scroll on. But do NOT pad with trivia \u2014 every item must clear the bar of \"genuinely material for someone tracking AI power + agent-economics.\"\n\n## Sourcing\n- Your call on sources, per Avi. Range freely (wire, trade press, primary documents, executive orders, official releases, court filings). Cite a source link with every item where one exists. Prefer the PRIMARY source (exec order, filing, official release) over secondary coverage, and note the primary source explicitly.\n- Search thoroughly \u2014 multiple queries, follow threads. Use web_search and web_extract to verify specifics (exact numbers, exact policy terms) rather than relying on search snippets alone.\n\n## Output \u2014 write ONE dated vault file\nWrite to: /root/vault/Calendar/Power-Tech-Watch/<YYYY-MM-DD> - Power Tech Watch.md\n\nStructure the file:\n- YAML frontmatter: type, title, created (UTC), tags (power-tech-watch, AI, agents, policy, + any item-specific tags)\n- Body: grouped by the 5 scope areas above (only include groups that have material items; omit empty groups)\n- Each item: a bold headline, 1-3 plain spoken sentences (this will be READ ALOUD in the car \u2014 no tables, no inline URL noise), then a \"Source:\" line with the link(s). Optionally a \"Skeptical line:\" for the sharp read.\n- The file must read well when spoken: short sentences, natural rhythm, avoid dense parentheticals and markdown tables.\n\n## Verify\nAfter writing, confirm the file exists and its content is non-trivial (not a stub). If the web sweep genuinely finds nothing material on a given morning, write a file that says plainly \"No material moves in the Power & Tech Watch today\" \u2014 do not manufacture items.\n\nIf web search fails entirely (network/egress), write the file with what you can determine from context and note the limitation honestly. Do NOT fabricate news items or sources.",
+      "prompt": "You are Alyosha, Avi Penhollow's continuity agent on VPS 2 (aios). This is the overnight POWER & TECH WATCH scan — a dedicated, full-scope sweep that runs separately from the 5:30 AM daily brief. Your output is written to the vault as a dated markdown file; the daily brief later folds it in as a section. Do NOT deliver a Telegram message — the deliverable is the vault file.\n\n## Today's date\nDetermine today's UTC date programmatically (file timestamps / `date`).\n\n## Scope — cover ALL of this (Avi said \"everything\")\n1. US administration: AI-chip export controls (esp. Nvidia/AMD China revenue-sharing precedent), AI policy/executive action, tariffs, any government action on tech or agents.\n2. Tech oligarchs: OpenAI, Anthropic, Google, Nvidia, Meta — products, pricing, policy, model releases, agent offerings, any news that shapes the agent-economics landscape.\n3. Agent-economics specifically: multi-agent adoption data, \"owned context → reusable skills → specialized agents → model routing → permissions → execution → human oversight,\" skills-marketplace signals, labor-arbitrage / AI-workforce stories, deployment numbers (e.g. Codex usage stats).\n4. Regulatory/legal: enforcement, congressional action, court rulings on AI.\n5. Anything touching Avi's stack specifically: SPED case-management SaaS, Ilocos Emporium / Amazon commerce, Adarna Plant Co, the AIOS product, agent-platform economics.\n\n## Voice — critical but objective (Avi's explicit spec)\n- Treat claims from BOTH the current administration AND the tech oligarchs as self-interested until sourced. Never take a press release or an official statement at face value.\n- But stay objective: report what the item IS and the competing views, then give one sharp skeptical line. Do not editorialize or spin. No manufactured urgency.\n- Avi is highly knowledgeable. No condescension, no \"why this matters\" fluff for its own sake — give the material fact + the skeptical read + what to actually watch.\n\n## Volume — NO hard cap (Avi's explicit spec)\nSurface everything material. Do not trim to fit. He can scroll on. But do NOT pad with trivia — every item must clear the bar of \"genuinely material for someone tracking AI power + agent-economics.\"\n\n## Sourcing\n- Your call on sources, per Avi. Range freely (wire, trade press, primary documents, executive orders, official releases, court filings). Cite a source link with every item where one exists. Prefer the PRIMARY source (exec order, filing, official release) over secondary coverage, and note the primary source explicitly.\n- Search thoroughly — multiple queries, follow threads. Use web_search and web_extract to verify specifics (exact numbers, exact policy terms) rather than relying on search snippets alone.\n\n## Output — write ONE dated vault file\nWrite to: /root/vault/Calendar/Power-Tech-Watch/<YYYY-MM-DD> - Power Tech Watch.md\n\nStructure the file:\n- YAML frontmatter: type, title, created (UTC), tags (power-tech-watch, AI, agents, policy, + any item-specific tags)\n- Body: grouped by the 5 scope areas above (only include groups that have material items; omit empty groups)\n- Each item: a bold headline, 1-3 plain spoken sentences (this will be READ ALOUD in the car — no tables, no inline URL noise), then a \"Source:\" line with the link(s). Optionally a \"Skeptical line:\" for the sharp read.\n- The file must read well when spoken: short sentences, natural rhythm, avoid dense parentheticals and markdown tables.\n\n## Verify\nAfter writing, confirm the file exists and its content is non-trivial (not a stub). If the web sweep genuinely finds nothing material on a given morning, write a file that says plainly \"No material moves in the Power & Tech Watch today\" — do not manufacture items.\n\nIf web search fails entirely (network/egress), write the file with what you can determine from context and note the limitation honestly. Do NOT fabricate news items or sources.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -335,7 +339,7 @@
     {
       "id": "34721288cf48",
       "name": "openrouter-usage-snapshot",
-      "prompt": "Daily OpenRouter usage snapshot \u2014 appends one line to a local CSV. No delivery.",
+      "prompt": "Daily OpenRouter usage snapshot — appends one line to a local CSV. No delivery.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -354,15 +358,15 @@
       "schedule_display": "0 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 4
+        "completed": 5
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-16T16:09:50.003515+00:00",
-      "next_run_at": "2026-08-21T12:00:00+00:00",
-      "last_run_at": "2026-08-20T12:00:15.576642+00:00",
+      "next_run_at": "2026-08-22T12:00:00-07:00",
+      "last_run_at": "2026-08-21T12:00:12.070365-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -376,12 +380,13 @@
       },
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null
+      "fire_claim": null,
+      "failure_streak": 0
     },
     {
       "id": "0319af33f404",
       "name": "openrouter-night-watch",
-      "prompt": "OpenRouter night watch \u2014 silent unless balance low or burn spikes.",
+      "prompt": "OpenRouter night watch — silent unless balance low or burn spikes.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -400,15 +405,15 @@
       "schedule_display": "30 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 4
+        "completed": 5
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-16T19:15:22.586713+00:00",
-      "next_run_at": "2026-08-21T10:30:00+00:00",
-      "last_run_at": "2026-08-20T10:30:14.299129+00:00",
+      "next_run_at": "2026-08-22T10:30:00-07:00",
+      "last_run_at": "2026-08-21T10:30:10.975840-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -422,8 +427,9 @@
       },
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null
+      "fire_claim": null,
+      "failure_streak": 0
     }
   ],
-  "updated_at": "2026-08-20T14:00:25.454406+00:00"
+  "updated_at": "2026-08-21T14:00:13.880020-07:00"
 }
