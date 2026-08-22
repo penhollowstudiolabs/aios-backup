@@ -24,12 +24,12 @@
         "times": null,
         "completed": 2
       },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-08-22T10:41:42.568028-07:00",
       "paused_reason": null,
       "created_at": "2026-08-06T07:25:41.727161+00:00",
-      "next_run_at": "2026-08-22T16:00:00+00:00",
+      "next_run_at": "2026-08-22T16:00:00-07:00",
       "last_run_at": "2026-08-15T16:04:45.005328+00:00",
       "last_status": "ok",
       "last_error": null,
@@ -73,9 +73,9 @@
         "times": null,
         "completed": 2
       },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-08-22T10:41:43.012519-07:00",
       "paused_reason": null,
       "created_at": "2026-08-07T22:13:12.884542+00:00",
       "next_run_at": "2026-08-23T00:00:00+00:00",
@@ -117,15 +117,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 3807
+        "completed": 4095
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-08T15:44:10.310585+00:00",
-      "next_run_at": "2026-08-21T14:05:00-07:00",
-      "last_run_at": "2026-08-21T14:00:13.879046-07:00",
+      "next_run_at": "2026-08-22T14:05:00-07:00",
+      "last_run_at": "2026-08-22T14:00:39.534455-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -164,15 +164,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 12
+        "completed": 13
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-10T00:39:14.007127+00:00",
-      "next_run_at": "2026-08-22T14:00:00-07:00",
-      "last_run_at": "2026-08-20T14:00:28.143859+00:00",
+      "next_run_at": "2026-08-23T14:00:00-07:00",
+      "last_run_at": "2026-08-21T14:00:17.677367-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -187,59 +187,10 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-08-21T14:00:13.562715-07:00",
-        "by": "aios:591474:fab866ab9f4b499dbea4848acd2bc4af"
-      }
-    },
-    {
-      "id": "45bac58e1d86",
-      "name": "Buzz weekend pilot opener",
-      "prompt": "You are Alyosha, Avi Penhollow's continuity agent on VPS 2 (aios). This is a scheduled one-shot opener for the Buzz weekend reassessment pilot on Saturday, 2026-08-15.\n\nContext: On 2026-08-10 Avi had Alyosha (you) and Hollow (OpenClaw on laptop) exchange write-ups about revisiting Buzz (Block/Dorsey's open-source agent collaboration platform), all four email turns completed via AgentMail. The round closed. Avi scheduled this weekend opener so HE can decide whether to run the pilot — you are NOT authorized to build, configure, deploy, or change anything. This is an orientation run.\n\nDeliver to Avi (Telegram DM, this chat) a crisp morning brief that includes ALL of the following, so he can decide with full context:\n1. Recap the agreed two-gate plan (decided 8/10): Gate A = evaluate Buzz as a collaboration platform WITHOUT touching Hollow's production OpenClaw (one room, one real bounded task; mobile resumability is a first-class acceptance gate since Avi lives on his phone). Gate B = Hollow integration only after a STABLE OpenClaw release exposes Buzz (dedicated bot identity, one room, narrow policy, no cutover).\n2. The agreed success criterion: Buzz must make a real collaborative task EASIER to follow, resume, and coordinate than Telegram + separate git/files. \"The connection works\" is necessary but not sufficient.\n3. The preserved candidate tasks (from the exchange, awaiting Avi's choice): (a) the Ilocos/Adarna workflow review, or (b) one workboard decision exercised with a structured diff. Ask Avi which, if any, he wants to use in Gate A — he may also propose his own.\n4. Current-state facts worth restating: original failure root cause was the empty 0.0.0 @openclaw/buzz placeholder (connector didn't exist); OpenClaw's current Buzz support is beta-only (not usable on Hollow's stable Gateway); Buzz itself is pre-1.0 but shipping fast.\n5. Boundary: nothing is to be built, installed, configured, migrated, or changed today or any day without Avi's explicit go. Your job is to present the option, answer his questions, and let him decide.\n\nMatch your normal tone: direct, no ceremony, no filler. Keep it tight and scannable. This is a presentation/gate, not a task list. End with the clear question: does he want to run the Gate A pilot this weekend, and if so which task?",
-      "skills": [],
-      "skill": null,
-      "model": null,
-      "provider": null,
-      "provider_snapshot": "nous",
-      "model_snapshot": "deepseek/deepseek-v4-flash-0731",
-      "base_url": null,
-      "script": null,
-      "no_agent": false,
-      "context_from": null,
-      "schedule": {
-        "kind": "once",
-        "run_at": "2026-08-15T15:00:00+00:00",
-        "display": "once at 2026-08-15 15:00"
+        "at": "2026-08-22T14:00:39.293176-07:00",
+        "by": "aios:686305:2c349df2cb6c45f0baaab7a2be18c68a"
       },
-      "schedule_display": "once at 2026-08-15 15:00",
-      "repeat": {
-        "times": 1,
-        "completed": 1
-      },
-      "enabled": false,
-      "state": "completed",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-08-10T16:35:31.715496+00:00",
-      "next_run_at": null,
-      "last_run_at": "2026-08-15T15:00:40.952687+00:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
-      "deliver": "origin",
-      "origin": {
-        "platform": "telegram",
-        "chat_id": "8743718071",
-        "chat_name": "Avi Penhollow",
-        "thread_id": null,
-        "user_id": "8743718071"
-      },
-      "enabled_toolsets": [
-        "file",
-        "terminal"
-      ],
-      "workdir": null,
-      "run_claim": null,
-      "fire_claim": null
+      "failure_streak": 0
     },
     {
       "id": "e78cdf4f5981",
@@ -358,15 +309,15 @@
       "schedule_display": "0 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 5
+        "completed": 6
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-16T16:09:50.003515+00:00",
-      "next_run_at": "2026-08-22T12:00:00-07:00",
-      "last_run_at": "2026-08-21T12:00:12.070365-07:00",
+      "next_run_at": "2026-08-23T12:00:00-07:00",
+      "last_run_at": "2026-08-22T12:00:37.839282-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -405,15 +356,15 @@
       "schedule_display": "30 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 5
+        "completed": 6
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-16T19:15:22.586713+00:00",
-      "next_run_at": "2026-08-22T10:30:00-07:00",
-      "last_run_at": "2026-08-21T10:30:10.975840-07:00",
+      "next_run_at": "2026-08-23T10:30:00-07:00",
+      "last_run_at": "2026-08-22T10:30:36.746421-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -431,5 +382,5 @@
       "failure_streak": 0
     }
   ],
-  "updated_at": "2026-08-21T14:00:13.880020-07:00"
+  "updated_at": "2026-08-22T14:00:39.535099-07:00"
 }

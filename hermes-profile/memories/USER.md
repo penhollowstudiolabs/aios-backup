@@ -1,4 +1,4 @@
-AIOS builder. Direct/honest, cost/token-conscious; hates long unfounded output w/o info — verify live, keep tight.
+Direct, exact, cost-conscious; verify actual UI before steps—do not infer controls from docs.
 §
 brief 5:30am PT — Avi in Pacific time (PST/PDT). ALWAYS show times in Pacific, never UTC.
 §
@@ -20,4 +20,4 @@ Comms to Kathleen: warm, conversational, in Mayumi's own voice — never an audi
 §
 HWOS: building Household Wealth Operating System + Kathleen; chose 4-week diagnostic (full later); no real budget/full income-expense pic yet. Sensitive.
 §
-Laptop=hub now (not VPS2); installing local Hermes profile on it to own technical setup; it need not be remotely reachable; Telegram+AgentMail stay fallback coordination.
+Laptop=hub. Desktop bundles managed local runtime (Gateways "This device"); local Bots run natively, no separate install. Create-on defaults to VPS2 — pick Local for laptop-native.
