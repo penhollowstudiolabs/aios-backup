@@ -1,0 +1,41 @@
+ui_meta:
+  hermes-bots:
+    chat: 20260821_185541_02e3b4
+  hermes-bots-groups:
+    version: 3
+    updatedAt: 1787408844917
+    rooms:
+      id:rmt41vnxo-counc:
+        name: Hermes Council
+        roomId: rmt41vnxo-counc
+        log:
+          - id: ee4420dc-d3a2-43a1-b448-03e932ecab4f
+            from:
+              kind: user
+              name: You
+            text: '@everyone Good morning'
+            at: 1787408807118
+            thread: tmt4h1ya4-3i70s
+        members:
+          - name: default
+            handle: default-this-device
+            connectionId: local
+            connectionKind: local
+            connectionLabel: This device
+            sourceScoped: true
+          - name: alyosha
+            handle: alyosha
+            connectionId: aios
+            connectionKind: ssh
+            connectionLabel: aios
+            sourceScoped: true
+          - name: ilocos
+            handle: ilocos
+            connectionId: ilocos
+            connectionKind: ssh
+            connectionLabel: ilocos
+            sourceScoped: true
+        revision: 3
+_ui_meta_revisions:
+  hermes-bots: 1
+  hermes-bots-groups: 3

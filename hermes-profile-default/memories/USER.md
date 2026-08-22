@@ -1,0 +1,19 @@
+Direct, exact, cost-conscious; verify actual UI before steps—do not infer controls from docs.
+§
+brief 5:30am PT — Avi in Pacific time (PST/PDT). ALWAYS show times in Pacific, never UTC.
+§
+she'll get own proprietary sub later. Her Hermes agent is named Perla.
+§
+AgentMail lane live (coordination@agentmail.to, Hollow→Alyosha); 5-min watchdog alerts Telegram; poll authorized.
+§
+Avi authorizes scoped autonomous actions; no gateway/workflow disruption.
+§
+Direction (8/8): brain = VPS-homed Hermes, reachable laptop/phone/school; keep local operator hybrid.
+§
+TTS: Edge en-US-ChristopherNeural (8/10).
+§
+Avi keeps GPT (ChatGPT/Codex) and Claude Pro subs; Google 2TB AI Plus main storage.
+§
+Comms to Kathleen: warm, conversational, in Mayumi's own voice — never an audit/checklist; open dialogue over interrogation.
+§
+Laptop=hub. Desktop bundles managed local runtime (Gateways "This device"); local Bots run natively, no separate install. Create-on defaults to VPS2 — pick Local for laptop-native.
