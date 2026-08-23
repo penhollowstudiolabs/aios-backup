@@ -3,7 +3,7 @@ ui_meta:
     chat: 20260821_185541_02e3b4
   hermes-bots-groups:
     version: 3
-    updatedAt: 1787408844917
+    updatedAt: 1787436676674
     rooms:
       id:rmt41vnxo-counc:
         name: Hermes Council
@@ -35,7 +35,7 @@ ui_meta:
             connectionKind: ssh
             connectionLabel: ilocos
             sourceScoped: true
-        revision: 3
+        revision: 6
 _ui_meta_revisions:
   hermes-bots: 1
-  hermes-bots-groups: 3
+  hermes-bots-groups: 4

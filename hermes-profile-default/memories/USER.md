@@ -17,3 +17,5 @@ Avi keeps GPT (ChatGPT/Codex) and Claude Pro subs; Google 2TB AI Plus main stora
 Comms to Kathleen: warm, conversational, in Mayumi's own voice — never an audit/checklist; open dialogue over interrogation.
 §
 Laptop=hub. Desktop bundles managed local runtime (Gateways "This device"); local Bots run natively, no separate install. Create-on defaults to VPS2 — pick Local for laptop-native.
+§
+Alyosha’s pronouns are he/him/his.
