@@ -241,6 +241,10 @@
       1785797382784507313,
       12676
     ],
+    "mlops/local-llm-deployment/SKILL.md": [
+      1787521449317601773,
+      3175
+    ],
     "mlops/inference/DESCRIPTION.md": [
       1785797382784507313,
       161
@@ -357,6 +361,10 @@
       1787201292469749596,
       4089
     ],
+    "infrastructure/agent-work-handoffs/SKILL.md": [
+      1787551864766865212,
+      3482
+    ],
     "email/DESCRIPTION.md": [
       1785797382778507344,
       101
@@ -412,6 +420,10 @@
     "autonomous-ai-agents/claude-code/SKILL.md": [
       1787288895455426965,
       34281
+    ],
+    "autonomous-ai-agents/agent-handoff-protocol/SKILL.md": [
+      1787549881889765198,
+      4314
     ],
     "autonomous-ai-agents/hermes-agent/SKILL.md": [
       1787288895457426947,
@@ -476,6 +488,19 @@
       "platforms": [
         "macos"
       ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": []
+      }
+    },
+    {
+      "skill_name": "agent-handoff-protocol",
+      "category": "autonomous-ai-agents",
+      "frontmatter_name": "agent-handoff-protocol",
+      "description": "Use when handing work between agents. Preserve evidence.",
+      "platforms": [],
       "conditions": {
         "fallback_for_toolsets": [],
         "requires_toolsets": [],
@@ -1046,6 +1071,19 @@
       }
     },
     {
+      "skill_name": "agent-work-handoffs",
+      "category": "infrastructure",
+      "frontmatter_name": "agent-work-handoffs",
+      "description": "Use when agents hand off bounded work across machines.",
+      "platforms": [],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": []
+      }
+    },
+    {
       "skill_name": "agentmail-integration",
       "category": "infrastructure",
       "frontmatter_name": "agentmail-integration",
@@ -1242,6 +1280,19 @@
       "category": "mlops",
       "frontmatter_name": "llm-model-routing",
       "description": "Inspect an agent's LLM model+provider & switch it.",
+      "platforms": [],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": []
+      }
+    },
+    {
+      "skill_name": "local-llm-deployment",
+      "category": "mlops",
+      "frontmatter_name": "local-llm-deployment",
+      "description": "Use when planning local LLMs for mixed hardware.",
       "platforms": [],
       "conditions": {
         "fallback_for_toolsets": [],

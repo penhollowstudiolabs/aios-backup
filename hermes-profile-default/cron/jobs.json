@@ -25,15 +25,15 @@
       "schedule_display": "*/5 * * * *",
       "repeat": {
         "times": null,
-        "completed": 278
+        "completed": 566
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-08-23T14:05:00-07:00",
-      "last_run_at": "2026-08-23T14:00:25.926793-07:00",
+      "next_run_at": "2026-08-24T14:05:00-07:00",
+      "last_run_at": "2026-08-24T14:00:10.727731-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,16 +69,16 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 0
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-08-24T14:00:00-07:00",
-      "last_run_at": null,
-      "last_status": null,
+      "next_run_at": "2026-08-25T14:00:00-07:00",
+      "last_run_at": "2026-08-23T14:00:27.780882-07:00",
+      "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
       "failure_streak": 0,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-08-23T14:00:25.605799-07:00",
-        "by": "aios:709301:04f715f510fb4f988b47d3b94b033ab2"
+        "at": "2026-08-24T14:00:10.370072-07:00",
+        "by": "aios:709301:4d36687368b246a99ad186925aa5dbee"
       }
     },
     {
@@ -160,15 +160,15 @@
       "schedule_display": "0 12 * * *",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:51.420449-07:00",
-      "next_run_at": "2026-08-24T12:00:00-07:00",
-      "last_run_at": "2026-08-23T12:00:04.090267-07:00",
+      "next_run_at": "2026-08-25T12:00:00-07:00",
+      "last_run_at": "2026-08-24T12:00:04.468303-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -204,15 +204,15 @@
       "schedule_display": "30 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:59.540792-07:00",
-      "next_run_at": "2026-08-24T10:30:00-07:00",
-      "last_run_at": "2026-08-23T10:30:46.113017-07:00",
+      "next_run_at": "2026-08-25T10:30:00-07:00",
+      "last_run_at": "2026-08-24T10:30:14.111195-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -222,7 +222,62 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": null
+    },
+    {
+      "id": "60b1bbf7d471",
+      "name": "Vault curation — first protected session",
+      "prompt": "Send Avi a concise reminder that this is the protected 60-minute vault curation session. Session scope: (1) process the newest Aug. 23–24 operational reports and the Dewey importer static review; (2) reconcile what belongs in durable operating references versus what stays in Atlas/_Inbox; (3) establish a repeatable handoff-card/return-artifact protocol based on the successful Dewey pilot; (4) add the missed Education Revenue Lanes exploration as an explicit reschedule-or-close decision: TPT, institutional buyers, and reusable SPED IP; note Avi is seeing more education and business-adjacent lanes; (5) record a future Hostinger capability review once Avi regains login access—inventory the advertised tools/agentic features, compare them to the existing VPS/Hermes stack, and identify only clear incremental value; do not enable trials, spend, create services, grant access, or change hosting without Avi’s separate approval; (6) update only Avi-approved files, preserving source artifacts and no bulk moves. Start by listing candidate files and proposed destinations; do not move, delete, or rewrite material unless Avi explicitly approves during the session. Include the outstanding weekend carryovers: Hollow's scoped Prime-local-Qwen calibration response; add/verify the populate-from-sales supply-row exclusion before any live run; importer remains Delivered-only (Option A) and awaits Kathleen’s three sticker numbers; decide weekly Palmstreet earnings source; Amazon Ads API authorization/COGS inputs; Vine enrollment after FBA available count turns positive. Also assess whether Buzz should remain parked rather than be reassessed, given Hermes bot-mode developments; do not configure Buzz, Hermes bot mode, API servers, peers, or networking in this session.",
+      "skills": [
+        "obsidian",
+        "weekly-review-planning"
+      ],
+      "skill": "obsidian",
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "openrouter",
+      "model_snapshot": "openai/gpt-5.6-terra",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-08-26T18:30:00-07:00",
+        "display": "once at 2026-08-26 18:30"
+      },
+      "schedule_display": "once at 2026-08-26 18:30",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-23T23:10:45.833212-07:00",
+      "next_run_at": "2026-08-26T18:30:00-07:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8743718071",
+        "chat_name": "Avi Penhollow",
+        "thread_id": null,
+        "user_id": "8743718071",
+        "scope_id": null
+      },
+      "enabled_toolsets": [
+        "file"
+      ],
+      "workdir": "/root/vault"
     }
   ],
-  "updated_at": "2026-08-23T14:00:25.927481-07:00"
+  "updated_at": "2026-08-24T14:00:10.730587-07:00"
 }

@@ -1,4 +1,4 @@
-Vault is durable truth but thin; no cross-profile sync without scope.
+Vault durable truth; cross-agent work needs explicit dispatch + verified artifact.
 §
 Telegram is front door; no hunting; transcripts preserved to vault. Voice reply ONLY when Avi speaks by voice (driving/commute); typed msg→text reply.
 §
@@ -24,8 +24,8 @@ Avi: agents may process personal PII unredacted; ONLY student PII is restricted.
 §
 SPED SaaS: Avi hand-built v1; wants an agent harness (Prime); he owns boundary/verification; de-ID=core IP, prove in sandbox first.
 §
-Avi wants terse, exact, concrete answers; rejects hand-waving/invented strategies. Answer direct questions at their exact scope; distinguish relevant categories (e.g., registered vs running vs sticky Hermes profiles). Verify live when needed; avoid over-engineering recall/status questions. One concrete next action, then stop; sessions stay out of vault unless asked.
+Avi wants terse, exact, concrete answers; rejects hand-waving/invention. Answer at exact scope; distinguish similar workflows and verified vs. documented state. Verify live when needed; avoid over-engineering. One next action, then stop; sessions stay out of vault unless asked.
 §
-PRIMARY=OpenRouter (deepseek-v4-flash); Nous dropped 8/16 (drained). Cost-sensitive; one agent per paid-heavy task (don't double a paid lane).
+OpenRouter primary; cost-sensitive. Favor verified bounded local/subagent handoffs; no duplicate paid-heavy lanes.
 §
-Laptop=Windows; Hermes Desktop SSH to VPS2 uses `root` (not default `owner`). Verify platform/UI before steps.
+Laptop: HP Spectre x360 15-df1xxx, i7-10510U, 16GB, MX250, Win11; small local LLMs only. Desktop SSH→VPS2 uses root.
