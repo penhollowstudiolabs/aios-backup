@@ -18,22 +18,22 @@
       "monitor_state": null,
       "context_from": null,
       "schedule": {
-        "kind": "cron",
-        "expr": "*/5 * * * *",
-        "display": "*/5 * * * *"
+        "kind": "interval",
+        "minutes": 720,
+        "display": "every 720m"
       },
-      "schedule_display": "*/5 * * * *",
+      "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 566
+        "completed": 624
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-08-24T14:05:00-07:00",
-      "last_run_at": "2026-08-24T14:00:10.727731-07:00",
+      "next_run_at": "2026-08-25T18:46:40.909088-07:00",
+      "last_run_at": "2026-08-25T06:46:40.909088-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-08-25T14:00:00-07:00",
-      "last_run_at": "2026-08-23T14:00:27.780882-07:00",
+      "next_run_at": "2026-08-26T14:00:00-07:00",
+      "last_run_at": "2026-08-24T14:00:12.936979-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-08-24T14:00:10.370072-07:00",
-        "by": "aios:709301:4d36687368b246a99ad186925aa5dbee"
+        "at": "2026-08-25T14:00:50.173034-07:00",
+        "by": "aios:799569:7b2ac9b417bd4e239c5516f66dfa3ba3"
       }
     },
     {
@@ -116,7 +116,7 @@
       "schedule_display": "0 13 * * 0",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
@@ -124,95 +124,7 @@
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:44.669150-07:00",
       "next_run_at": "2026-08-30T13:00:00-07:00",
-      "last_run_at": "2026-08-23T13:00:15.060978-07:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
-      "failure_streak": 0,
-      "deliver": "origin",
-      "origin": null,
-      "enabled_toolsets": null,
-      "workdir": null,
-      "fire_claim": null
-    },
-    {
-      "id": "778ef84f77f0",
-      "name": "openrouter-usage-snapshot",
-      "prompt": "",
-      "skills": [],
-      "skill": null,
-      "model": null,
-      "provider": null,
-      "provider_snapshot": null,
-      "model_snapshot": null,
-      "base_url": null,
-      "script": "openrouter_usage_snapshot.sh",
-      "no_agent": true,
-      "monitor_script": null,
-      "monitor_url": null,
-      "monitor_state": null,
-      "context_from": null,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 12 * * *",
-        "display": "0 12 * * *"
-      },
-      "schedule_display": "0 12 * * *",
-      "repeat": {
-        "times": null,
-        "completed": 2
-      },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-08-22T14:47:51.420449-07:00",
-      "next_run_at": "2026-08-25T12:00:00-07:00",
-      "last_run_at": "2026-08-24T12:00:04.468303-07:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
-      "failure_streak": 0,
-      "deliver": "local",
-      "origin": null,
-      "enabled_toolsets": null,
-      "workdir": null,
-      "fire_claim": null
-    },
-    {
-      "id": "a6fe63e61744",
-      "name": "openrouter-night-watch",
-      "prompt": "",
-      "skills": [],
-      "skill": null,
-      "model": null,
-      "provider": null,
-      "provider_snapshot": null,
-      "model_snapshot": null,
-      "base_url": null,
-      "script": "openrouter_night_watch.sh",
-      "no_agent": true,
-      "monitor_script": null,
-      "monitor_url": null,
-      "monitor_state": null,
-      "context_from": null,
-      "schedule": {
-        "kind": "cron",
-        "expr": "30 10 * * *",
-        "display": "30 10 * * *"
-      },
-      "schedule_display": "30 10 * * *",
-      "repeat": {
-        "times": null,
-        "completed": 2
-      },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-08-22T14:47:59.540792-07:00",
-      "next_run_at": "2026-08-25T10:30:00-07:00",
-      "last_run_at": "2026-08-24T10:30:14.111195-07:00",
+      "last_run_at": "2026-08-24T18:47:58.339597-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -279,5 +191,5 @@
       "workdir": "/root/vault"
     }
   ],
-  "updated_at": "2026-08-24T14:00:10.730587-07:00"
+  "updated_at": "2026-08-25T14:00:50.173422-07:00"
 }
