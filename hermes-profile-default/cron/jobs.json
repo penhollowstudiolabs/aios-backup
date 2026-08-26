@@ -25,15 +25,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 624
+        "completed": 626
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-08-25T18:46:40.909088-07:00",
-      "last_run_at": "2026-08-25T06:46:40.909088-07:00",
+      "next_run_at": "2026-08-26T18:47:05.428838-07:00",
+      "last_run_at": "2026-08-26T06:47:05.428838-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 2
+        "completed": 3
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-08-26T14:00:00-07:00",
-      "last_run_at": "2026-08-24T14:00:12.936979-07:00",
+      "next_run_at": "2026-08-27T14:00:00-07:00",
+      "last_run_at": "2026-08-25T14:00:53.503856-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-08-25T14:00:50.173034-07:00",
-        "by": "aios:799569:7b2ac9b417bd4e239c5516f66dfa3ba3"
+        "at": "2026-08-26T14:00:12.722679-07:00",
+        "by": "aios:799569:2f19fb43c9a4455585b6c4b9c60d121f"
       }
     },
     {
@@ -191,5 +191,5 @@
       "workdir": "/root/vault"
     }
   ],
-  "updated_at": "2026-08-25T14:00:50.173422-07:00"
+  "updated_at": "2026-08-26T14:00:12.723215-07:00"
 }
