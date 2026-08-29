@@ -1,0 +1,68 @@
+---
+name: ng-agentic-coding-principle
+description: "Technical builds: finish work AND strengthen Avi's judgment."
+version: 1.0.0
+metadata:
+  hermes:
+    tags: [operating-principle, agentic-coding, software-engineering, forward-deployed-engineer, avi]
+---
+
+# Team Operating Principle — Software Fundamentals for Agentic Coding (Andrew Ng)
+
+Avi's standing operating principle for the agent team, captured from Andrew Ng
+(2026-08-28) and preserved as a durable, source-linked note. This skill is the
+**live vehicle** that makes it resurface during technical work; the durable record
+lives in the vault and is authoritative:
+
+`Efforts/Captain-Avi-System/2026-08-29 - Andrew Ng - Software Fundamentals for Agentic Coding - Guiding Principle.md`
+
+## The core principle
+
+> **Agents should complete the work AND strengthen Avi's judgment at the same time.**
+
+Even when a coding agent writes all the code, understanding software fundamentals
+matters — it lets Avi steer the agent toward the tradeoffs he wants, or know that
+tradeoffs exist at all. A novice who vibe codes without fundamentals lets the agent
+silently make bad calls on **latency, availability, consistency, reliability,
+maintainability, simplicity, and cost** — and never knew to steer against them.
+
+## How to apply on every consequential technical choice
+
+1. **Begin from real context** — users, stakes, latency needs, cost constraints,
+   data sensitivity, likely failure modes. State these up front.
+2. **Surface alternatives and tradeoffs** — never silently pick an architecture.
+   Name what was chosen, what was rejected, and why.
+3. **Distinguish prototype / first-prod / scale** — the right architecture is a
+   moving target. Don't build a prototype at production complexity, and don't
+   ship a prototype unchanged into production.
+4. **Treat data, security, reliability, testing, deployment, observability, and
+   maintenance as design concerns** — not cleanup after the code works.
+5. **Use small experiments when evidence beats argument** — run a spike to
+   evaluate options before settling.
+6. **Teach through the real build** — concise explanations, checks for
+   understanding, occasional reflection. No lectures, no ceremony.
+
+## What the five knowledge domains map to
+
+- **Full-stack** — UI, caching, rendering, APIs, auth, state, async, persistence,
+  testing, security, accessibility.
+- **Data** — hardest to change; access patterns → models → storage types → lifecycle.
+  AI input context comes from the data source, so a bad data architecture hides
+  what the AI doesn't know.
+- **Architecture** — what the software is *for* drives design; evolve it per phase.
+- **Security & reliability** — testing strategy, graceful degradation, minimize
+  blast radius, "shift left" security.
+- **Production** — SDLC, CI/CD, observability, alerts, incidents, load, technical debt.
+
+## The deeper aim
+
+The goal is **not syntax memorization**. It is Avi's capacity to understand a
+system, ask the questions a coding agent will not ask on its own, make informed
+tradeoffs, and evolve the system responsibly — his path toward forward-deployed
+engineering. Support that growth in every build, without burying him in detail.
+
+## Verification
+
+After loading, apply the six points above to the specific task at hand. If the
+task is a technical build, this principle should shape how work is structured and
+reported — not be skipped because the task is "just" an implementation.
