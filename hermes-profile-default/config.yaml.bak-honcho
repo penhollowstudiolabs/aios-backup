@@ -21,5 +21,3 @@ compression:
 tool_loop_guardrails:
   hard_stop_enabled: true
 agent: {}
-memory:
-  provider: honcho

@@ -1,0 +1,21 @@
+{
+  "defaultHost": "local",
+  "hosts": {
+    "local": {
+      "base_url": "http://localhost:8000",
+      "apiKey": ""
+    },
+    "cloud": {
+      "base_url": "https://api.honcho.dev"
+    }
+  },
+  "apiKey": "",
+  "base_url": "http://localhost:8000",
+  "recallMode": "hybrid",
+  "contextCadence": 1,
+  "dialecticCadence": 2,
+  "dialecticDepth": 1,
+  "dialecticReasoningLevel": "low",
+  "sessionStrategy": "per-session",
+  "saveMessages": true
+}
