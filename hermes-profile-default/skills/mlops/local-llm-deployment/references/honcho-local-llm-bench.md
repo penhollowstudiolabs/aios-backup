@@ -6,10 +6,12 @@ memory library that builds a running model of a user by reasoning over conversat
 post-hoc (user modeling / dialectic), vs. Hermes's flat MEMORY.md/USER.md.
 Hermes has first-class support: `hermes memory setup` → select `honcho`.
 
-> **Status note:** this is a *bench setup*, not a verified-validated deployment. The
-> `docker compose up -d --build` was running when this was written; server health and
-> downstream quality were NOT yet confirmed. Treat the config below as a working
-> starting point, not proven end-to-end.
+> **Status (updated 8/31):** the bench was brought up, verified end-to-end (server
+> health `{"status":"ok"}`, local qwen2.5:3b derived a real user representation from
+> test messages), and then **stopped by Avi as a conscious decision** — a 3B model on
+> a 4-core VPS proved too resource-heavy for single-session modeling value. The bring-up
+> config below is verified-working; the *conclusion* was "not worth a 5-day cook on this
+> box," not "it didn't work." Data/volumes were preserved on stop.
 
 ## Why this class matters (the problem it solves)
 Flat memory (MEMORY.md / Holographic token-bound regex) fails on **paraphrase
@@ -27,16 +29,15 @@ Holographic isn't. Relevant to any "things captured never resurface" failure.
   the bench shows it's too thin (bounded cost, mirrors cost-conscious default).
 - Embeddings can stay fully local and cheap (`nomic-embed-text`, 768-dim).
 
-## Serving stack (CPU VPS)
+## Serving stack (CPU VPS) — RESOLVED routing
 - Honcho server itself: `git clone --depth 1 https://github.com/plastic-labs/honcho`
   → `cp docker-compose.yml.example docker-compose.yml` → `docker compose up -d --build`.
   Needs Docker; image builds from source (several minutes). Containers: api, deriver,
   database (pgvector/pgvector:pg15), redis. All ports bind to 127.0.0.1.
-- Reasoning + embeddings route to a **local OpenAI-compatible** endpoint. Ollama's
-  `/v1` is OpenAI-compatible.
-- **`host.docker.internal`** is the bridge: Honcho containers reach the host's Ollama
-  via `http://host.docker.internal:11434/v1` (not `localhost` — that resolves inside
-  the container).
+- **`host.docker.internal` does NOT resolve inside Docker Compose on Linux — do not
+  route Ollama through it.** The verified fix is to run Ollama as a **5th compose
+  container** on the same network, reached as `http://ollama:11434` (see
+  `references/honcho-routing-resolved.md` and `references/honcho-self-host-local.md`).
 - Ollama needs a non-empty `api_key` even for local; any placeholder works.
 
 ## .env routing (all text-gen + embedding workers → local Ollama)
@@ -45,7 +46,7 @@ Key vars (from `honcho/.env.template`). The template defaults everything to
 and `__API_KEY_ENV`:
 - `LLM_OPENAI_API_KEY=ollama` (placeholder, required)
 - Embeddings: `EMBEDDING_MODEL_CONFIG__MODEL=nomic-embed-text`,
-  `EMBEDDING_VECTOR_DIMENSIONS=768`, `__BASE_URL=http://host.docker.internal:11434/v1`
+  `EMBEDDING_VECTOR_DIMENSIONS=768`, `__BASE_URL=http://ollama:11434/v1`
 - Deriver: `DERIVER_MODEL_CONFIG__MODEL=qwen2.5:3b` + BASE_URL override
 - Dialectic: `DIALECTIC_LEVELS__<level>__MODEL_CONFIG__MODEL=qwen2.5:3b` + BASE_URL
   (set for minimal/low/medium/high/max levels)
@@ -56,6 +57,8 @@ and `__API_KEY_ENV`:
   for a bench.
 - **Models must support tool calling (function calling)** — a real constraint; verify
   the chosen local model supports it before assuming it works.
+- After editing `.env`, **recreate** the deriver/api containers with `--force-recreate`
+  (a plain `restart` does NOT re-read `.env`). See `honcho-deriver-pitfalls.md`.
 
 ## Boundaries that kept the bench safe
 - Contained to the bench profile only — no other agent's profile/memory touched.

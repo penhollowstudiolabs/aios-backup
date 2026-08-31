@@ -14,6 +14,8 @@ Laptop=hub. Desktop bundles managed local runtime (Gateways "This device"); loca
 §
 Alyosha’s pronouns are he/him/his.
 §
-Avi building tech fluency → forward-deployed engineering. Adopted Ng's agentic-coding principle: complete work AND strengthen his judgment (surface tradeoffs, teach through build). Prefers direct-write + lane ownership (each agent writes own status; workboard=index). Wants captured 'wanted to start' items to resurface; better Obsidian backlinks.
+Avi building tech fluency; wants plain-language explanations of technical options. Ng agentic-coding (complete work+teach). Direct-write + lane; 'wanted to start' items resurface.
 §
 Avi runs async cross-agent councils; no implementation without separate approval. Only Avi/Alyosha/Hollow respond in main group; Dewey via Avi relay (no AgentMail inbox).
+§
+Active 'Household Wealth Operating System' (HWOS, w/ Kathleen) at Atlas/Domain-Knowledge/Finance/. Uses 'co-dreamer' persona; on 'slow down' give plain brief explanations.

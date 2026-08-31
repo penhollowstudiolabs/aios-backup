@@ -20,8 +20,8 @@ Laptop: HP Spectre x360 15-df1xxx, i7-10510U, 16GB, MX250, Win11; small local LL
 §
 VPS2 runs headless Obsidian sync (ob/./ob-sync,./root/vault): device drops land in Atlas/_Inbox ~30s. Vault lanes: Atlas/Ideas/=idea captures; Atlas/Ideaverse/=reflective journals. SPED-Command-Center.md NOT AUTHORIZED (audit pending).
 §
-Agents: Alyosha=me/VPS2 (also Yoshi/Yosh); Hollow=LittleHollowBot; Mayumi=Yumi=VPS1, exec Ilocos/Adarna, AgentMail mayumi-ilocos@agentmail.to (scoped; Avi/Kathleen/agents); Kathleen→Adarna. Canonical agent per machine=default profile; named=temp. Vault space=AIOS/Alyosha. VPS1 has Claude Code+Codex; Avi drives via relays. Single-human: only Avi on VPSes.
+Agents: Alyosha=me/VPS2 (Yoshi); Hollow=LittleHollowBot; Mayumi=Yumi=VPS1 exec Ilocos/Adarna (mayumi-ilocos@agentmail.to); Kathleen→Adarna. Canonical agent/machine=default profile. Vault=AIOS/Alyosha. VPS1 has Claude Code+Codex (Avi drives via relays).
 §
 Routing: ask before changes; fallback NEVER lite-tier (same model via OpenRouter). OpenRouter primary, cost-sensitive; prefer verified bounded local/subagent handoffs; no duplicate paid-heavy lanes.
 §
-Fleet decisions settled via quick council across all agents (Avi runs parallel convos; reconcile together). Honcho chosen as cross-agent Avi-model (self-host aios, local-first reasoning).
+Fleet decisions via quick council (parallel convos reconciled). Honcho=Track B cross-agent Avi-model (self-host aios, qwen3b). aios=4-core: NEVER run local-LLM jobs concurrently; serial + `docker update --cpus N` (8/30 alert: cook+rebuild). Single-human: only Avi on VPSes.

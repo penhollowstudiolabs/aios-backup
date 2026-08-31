@@ -37,14 +37,41 @@ preference.
   `docker compose exec api /app/.venv/bin/python scripts/configure_embeddings.py --yes`
   then `docker compose restart api deriver`.
 - **Ollama socket activation overrides `OLLAMA_HOST`.** Setting
-  `Environment="OLLAMA_HOST=0.0.0.0:11434"` via a systemd drop-in does NOT take
+  `Environment=\"OLLAMA_HOST=0.0.0.0:11434\"` via a systemd drop-in does NOT take
   effect if Ollama is socket-activated (bound via `172.17.0.1`/`127.0.0.1`). To
   truly rebind you must address the `.socket` unit, not just the `.service`.
 - Honcho v3 API root is `/v3/` (workspaces, peers, sessions), NOT `/v1/`.
+- **A plain `docker compose restart` may not pick up `.env` model routing.**
+  If the deriver was started before the `.env` pointed at a reachable Ollama, a
+  restart keeps the old config; use `--force-recreate` so the container rebuilds
+  with current env. (Signature: reconciler `sync_vectors` runs fine — it needs no
+  LLM — but `representation` work never gets claimed.)
+- **Representation derivation is batched.** The deriver won't claim a
+  representation work unit until either accumulated tokens reach the target
+  (default 512) OR the oldest pending item passes `REPRESENTATION_BATCH_MAX_AGE_SECONDS`
+  (default 1800s). Small test messages (tens of tokens) sit "pending" until the
+  age-flush fires — that's by design, not a stuck queue. Check
+  `docker logs deriver` for an `age-flushing work unit` INFO line.
 
-## Open / unresolved
-Container→host Ollama routing was NOT fully resolved at end of session. Options:
-bind Ollama to the compose gateway only (tightest, keep off public interfaces) vs
-0.0.0.0 (exposes beyond localhost) vs run Ollama as a 5th compose container.
-User must choose; confirm what Ollama was originally earmarked for (possibly
-Prime/PII lane) before rebinding a working service.
+## RESOLVED 8/30: container→host Ollama routing
+The working fix is **run Ollama as a 5th compose container on the same network**,
+reached as `http://ollama:11434` — containers then talk to it directly, no
+container→host hairpin routing at all. This is the user's chosen Option 1. Steps:
+- Add to docker-compose.yml:
+  ```yaml
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - ollama-data:/root/.ollama
+  ```
+  (no host ports; internal to the compose network) + declare `ollama-data:` under
+  `volumes:`.
+- Pull models inside the container: `docker compose exec ollama ollama pull qwen2.5:3b`
+  and `... pull nomic-embed-text`.
+- Point `.env` endpoints at `http://ollama:11434` (all 10 LLM+embedding configs).
+- Recreate the other containers with `--force-recreate` so they pick up the new env.
+- Verify reachability from the api container:
+  `docker compose exec api python -c "import urllib.request; print(urllib.request.urlopen('http://ollama:11434/api/version', timeout=8).read())"`
+- This leaves the host Ollama (Prime/PII lane, 127.0.0.1:11434) completely
+  untouched — do NOT collapse it with the in-container one (Ollama hard rule).

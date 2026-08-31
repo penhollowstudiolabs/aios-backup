@@ -25,15 +25,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 634
+        "completed": 636
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-08-30T18:49:10.229817-07:00",
-      "last_run_at": "2026-08-30T06:49:10.229817-07:00",
+      "next_run_at": "2026-08-31T18:49:44.917483-07:00",
+      "last_run_at": "2026-08-31T06:49:44.917483-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 7
+        "completed": 8
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-08-31T14:00:00-07:00",
-      "last_run_at": "2026-08-29T14:00:42.691367-07:00",
+      "next_run_at": "2026-09-01T14:00:00-07:00",
+      "last_run_at": "2026-08-30T14:00:17.592672-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-08-30T14:00:15.666918-07:00",
-        "by": "aios:864729:9e3900b4ccc34502a2c431be9aa6fdbc"
+        "at": "2026-08-31T14:00:00.850235-07:00",
+        "by": "aios:709301:6e01d37b9e034e91a92a0ac06352cb4b"
       }
     },
     {
@@ -192,63 +192,7 @@
       "run_claim": null,
       "fire_claim": null,
       "drift_alerted": true
-    },
-    {
-      "id": "16290811cf88",
-      "name": "Honcho local bench — 5-day review",
-      "prompt": "Time to review the Honcho local bench on aios (backend = local qwen2.5:3b via Ollama). Avi approved a 5-day cook starting 2026-08-30. Bench plan: /root/vault/Efforts/Captain-Avi-System/2026-08-30 - Honcho Local Bench Plan - aios qwen3b.md.\n\nDeliver a concise review prompt to Avi covering:\n1. Is the Honcho server healthy and has it been ingesting conversations?\n2. What derived Avi-model did Honcho build (query the local Honcho server)?\n3. How does that compare against ground-truth (Avi's actual preferences/style/goals)?\n4. Verdict: does the local 3B reasoning quality suffice, or should we (a) accept it, (b) upgrade backend to a small hosted/OpenRouter model (bounded cost), or (c) abandon the bench?\n5. Next decision needed from Avi.\n\nBe evidence-based: verify the Honcho server state (docker compose ps, /health) and query actual derived content before reporting. Report status honestly even if the bench shows weak quality.",
-      "skills": [
-        "local-llm-deployment"
-      ],
-      "skill": "local-llm-deployment",
-      "model": null,
-      "provider": null,
-      "provider_snapshot": "nous",
-      "model_snapshot": "deepseek/deepseek-v4-flash-0731",
-      "base_url": null,
-      "script": null,
-      "no_agent": false,
-      "monitor_script": null,
-      "monitor_url": null,
-      "monitor_state": null,
-      "context_from": null,
-      "schedule": {
-        "kind": "once",
-        "run_at": "2026-09-04T09:00:00-07:00",
-        "display": "once at 2026-09-04 09:00"
-      },
-      "schedule_display": "once at 2026-09-04 09:00",
-      "repeat": {
-        "times": 1,
-        "completed": 0
-      },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-08-30T12:19:19.839621-07:00",
-      "next_run_at": "2026-09-04T09:00:00-07:00",
-      "last_run_at": null,
-      "last_status": null,
-      "last_error": null,
-      "last_delivery_error": null,
-      "failure_streak": 0,
-      "deliver": "origin",
-      "origin": {
-        "platform": "telegram",
-        "chat_id": "8743718071",
-        "chat_name": "Avi Penhollow",
-        "thread_id": null,
-        "user_id": "8743718071",
-        "scope_id": null
-      },
-      "enabled_toolsets": [
-        "terminal",
-        "file",
-        "web"
-      ],
-      "workdir": null
     }
   ],
-  "updated_at": "2026-08-30T14:00:15.667219-07:00"
+  "updated_at": "2026-08-31T14:00:00.850574-07:00"
 }
