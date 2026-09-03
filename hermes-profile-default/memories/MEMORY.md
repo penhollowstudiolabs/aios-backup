@@ -22,6 +22,6 @@ VPS2 runs headless Obsidian sync (ob/./ob-sync,./root/vault): device drops land 
 §
 Agents: Alyosha=me/VPS2 (Yoshi); Hollow=LittleHollowBot; Mayumi=Yumi=VPS1 exec Ilocos/Adarna (mayumi-ilocos@agentmail.to); Kathleen→Adarna. Canonical agent/machine=default profile. Vault=AIOS/Alyosha. VPS1 has Claude Code+Codex (Avi drives via relays).
 §
-Routing: ask before changes; fallback NEVER lite-tier (same model via OpenRouter). OpenRouter primary, cost-sensitive; prefer verified bounded local/subagent handoffs; no duplicate paid-heavy lanes.
+Routing: ask before changes; fallback NEVER lite-tier (same model via OpenRouter); CANONICAL per-agent routing source=Efforts/Captain-Avi-System/Model-Token-Usage-Tracking.md.
 §
 Fleet decisions via quick council (parallel convos reconciled). Honcho=Track B cross-agent Avi-model (self-host aios, qwen3b). aios=4-core: NEVER run local-LLM jobs concurrently; serial + `docker update --cpus N` (8/30 alert: cook+rebuild). Single-human: only Avi on VPSes.

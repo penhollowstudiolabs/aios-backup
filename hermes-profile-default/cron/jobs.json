@@ -25,15 +25,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 640
+        "completed": 642
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-09-02T18:50:41.601834-07:00",
-      "last_run_at": "2026-09-02T06:50:41.601834-07:00",
+      "next_run_at": "2026-09-03T18:51:37.814847-07:00",
+      "last_run_at": "2026-09-03T06:51:37.814847-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 10
+        "completed": 11
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-09-03T14:00:00-07:00",
-      "last_run_at": "2026-09-01T14:00:10.033800-07:00",
+      "next_run_at": "2026-09-04T14:00:00-07:00",
+      "last_run_at": "2026-09-02T14:00:10.782460-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-09-02T14:00:07.629777-07:00",
-        "by": "aios:709301:d9bf69b89d0c4f1284cecc348f69638d"
+        "at": "2026-09-03T14:00:42.825271-07:00",
+        "by": "aios:709301:9da7206175f540b38dba0a5703ff518f"
       }
     },
     {
@@ -134,65 +134,7 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": null
-    },
-    {
-      "id": "60b1bbf7d471",
-      "name": "Vault curation — first protected session",
-      "prompt": "Send Avi a concise reminder that this is the protected 60-minute vault curation session. Session scope: (1) process the newest Aug. 23–24 operational reports and the Dewey importer static review; (2) reconcile what belongs in durable operating references versus what stays in Atlas/_Inbox; (3) establish a repeatable handoff-card/return-artifact protocol based on the successful Dewey pilot; (4) add the missed Education Revenue Lanes exploration as an explicit reschedule-or-close decision: TPT, institutional buyers, and reusable SPED IP; note Avi is seeing more education and business-adjacent lanes; (5) record a future Hostinger capability review once Avi regains login access—inventory the advertised tools/agentic features, compare them to the existing VPS/Hermes stack, and identify only clear incremental value; do not enable trials, spend, create services, grant access, or change hosting without Avi’s separate approval; (6) update only Avi-approved files, preserving source artifacts and no bulk moves. Start by listing candidate files and proposed destinations; do not move, delete, or rewrite material unless Avi explicitly approves during the session. Include the outstanding weekend carryovers: Hollow's scoped Prime-local-Qwen calibration response; add/verify the populate-from-sales supply-row exclusion before any live run; importer remains Delivered-only (Option A) and awaits Kathleen’s three sticker numbers; decide weekly Palmstreet earnings source; Amazon Ads API authorization/COGS inputs; Vine enrollment after FBA available count turns positive. Also assess whether Buzz should remain parked rather than be reassessed, given Hermes bot-mode developments; do not configure Buzz, Hermes bot mode, API servers, peers, or networking in this session.",
-      "skills": [
-        "obsidian",
-        "weekly-review-planning"
-      ],
-      "skill": "obsidian",
-      "model": null,
-      "provider": null,
-      "provider_snapshot": "openrouter",
-      "model_snapshot": "openai/gpt-5.6-terra",
-      "base_url": null,
-      "script": null,
-      "no_agent": false,
-      "monitor_script": null,
-      "monitor_url": null,
-      "monitor_state": null,
-      "context_from": null,
-      "schedule": {
-        "kind": "once",
-        "run_at": "2026-08-26T18:30:00-07:00",
-        "display": "once at 2026-08-26 18:30"
-      },
-      "schedule_display": "once at 2026-08-26 18:30",
-      "repeat": {
-        "times": 1,
-        "completed": 1
-      },
-      "enabled": false,
-      "state": "completed",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-08-23T23:10:45.833212-07:00",
-      "next_run_at": null,
-      "last_run_at": "2026-08-26T18:30:21.046542-07:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: [drift_skip] Skipped to prevent unintended spend: global inference config drifted since this job was created (provider 'openrouter' -> 'nous'; model 'openai/gpt-5.6-terra' -> 'deepseek/deepseek-v4-flash-0731'), and this job is unpinned. No inference call was made. This finite one-shot job is consumed by this attempted run; create a new one-shot job at a future time with an explicit provider and model. This alert is sent once; the job stays skipped until the config is pinned or restored. See #44585.",
-      "last_delivery_error": null,
-      "failure_streak": 1,
-      "deliver": "origin",
-      "origin": {
-        "platform": "telegram",
-        "chat_id": "8743718071",
-        "chat_name": "Avi Penhollow",
-        "thread_id": null,
-        "user_id": "8743718071",
-        "scope_id": null
-      },
-      "enabled_toolsets": [
-        "file"
-      ],
-      "workdir": "/root/vault",
-      "run_claim": null,
-      "fire_claim": null,
-      "drift_alerted": true
     }
   ],
-  "updated_at": "2026-09-02T14:00:07.630140-07:00"
+  "updated_at": "2026-09-03T14:00:42.825562-07:00"
 }
