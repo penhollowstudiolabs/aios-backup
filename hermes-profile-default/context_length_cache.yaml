@@ -1,3 +1,5 @@
 context_lengths:
   openai/gpt-5.6-terra@https://inference-api.nousresearch.com/v1: 1050000
   deepseek/deepseek-v4-flash-0731@https://inference-api.nousresearch.com/v1: 1310720
+  openai/gpt-5.6-sol-pro@https://inference-api.nousresearch.com/v1: 1050000
+  anthropic/claude-opus-4.8@https://inference-api.nousresearch.com/v1: 1000000

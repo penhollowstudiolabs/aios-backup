@@ -3,8 +3,6 @@ model:
   provider: openai-codex
   base_url: https://chatgpt.com/backend-api/codex
 fallback_providers:
-  - provider: nous
-    model: deepseek/deepseek-v4-flash-0731
   - provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
 terminal:
