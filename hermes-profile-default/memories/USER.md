@@ -14,7 +14,7 @@ Laptop=hub. Desktop bundles managed local runtime (Gateways "This device"); loca
 §
 Alyosha’s pronouns are he/him/his.
 §
-Avi building tech fluency; wants plain-language explanations of technical options. Ng agentic-coding (complete work+teach). Direct-write + lane; 'wanted to start' items resurface.
+Avi wants plain language. Operational notes state current reality, uncertainty, action, evidence; dated reconciliations are historical, not re-entry.
 §
 Avi runs async cross-agent councils; no implementation without separate approval. Only Avi/Alyosha/Hollow respond in main group; Dewey via Avi relay (no AgentMail inbox).
 §

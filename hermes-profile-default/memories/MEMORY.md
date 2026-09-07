@@ -16,7 +16,7 @@ Laptop: HP Spectre x360 15-df1xxx, i7-10510U, 16GB, MX250, Win11; small local LL
 §
 VPS2 runs headless Obsidian sync (ob/./ob-sync,./root/vault): device drops land in Atlas/_Inbox ~30s. Vault lanes: Atlas/Ideas/=idea captures; Atlas/Ideaverse/=reflective journals. SPED-Command-Center.md NOT AUTHORIZED (audit pending).
 §
-Agents: Alyosha=VPS2/Yoshi; Hollow=LittleHollowBot; Mayumi=VPS1 Ilocos/Adarna (mayumi-ilocos@agentmail.to). Canonical machine=default; vault=AIOS/Alyosha. VPS1 coding agents run via relays.
+Fleet: Alyosha=Hermes/VPS2 AIOS curator+systems; Dewey=Hermes/laptop Daily Brief production owner; Hollow=OpenClaw/laptop personal+local; Mayumi=Hermes/VPS1 Ilocos/Adarna/inventory. Shared vault=AIOS knowledge layer.
 §
 Routing changes need Avi approval; never lite-tier fallback. OpenRouter is fallback-only, not a reason to move a Nous primary. Canonical: Efforts/Captain-Avi-System/Model-Token-Usage-Tracking.md.
 §
