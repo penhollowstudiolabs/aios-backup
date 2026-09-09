@@ -25,15 +25,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 652
+        "completed": 654
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-09-08T18:54:01.330448-07:00",
-      "last_run_at": "2026-09-08T06:54:01.330448-07:00",
+      "next_run_at": "2026-09-09T18:54:18.452801-07:00",
+      "last_run_at": "2026-09-09T06:54:18.452801-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 16
+        "completed": 17
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-09-09T14:00:00-07:00",
-      "last_run_at": "2026-09-07T14:00:16.311323-07:00",
+      "next_run_at": "2026-09-10T14:00:00-07:00",
+      "last_run_at": "2026-09-08T14:00:15.995267-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-09-08T14:00:13.936753-07:00",
-        "by": "aios:1713204:42b6913be19d49dd97e7ce7996e4756b"
+        "at": "2026-09-09T14:00:32.139728-07:00",
+        "by": "aios:709301:fc03cdbba7714129bb580db105d5ac10"
       }
     },
     {
@@ -136,5 +136,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-08T14:00:13.937248-07:00"
+  "updated_at": "2026-09-09T14:00:32.140240-07:00"
 }
