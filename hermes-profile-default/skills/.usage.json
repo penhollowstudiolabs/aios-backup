@@ -869,14 +869,14 @@
     "created_by": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-09-08T07:39:22.523166+00:00",
-    "last_viewed_at": "2026-09-08T07:39:22.514464+00:00",
+    "last_used_at": "2026-09-10T14:44:46.589280+00:00",
+    "last_viewed_at": "2026-09-10T14:44:46.581492+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 22,
-    "view_count": 21
+    "use_count": 23,
+    "view_count": 22
   },
   "ocr-and-documents": {
     "archived_at": null,
