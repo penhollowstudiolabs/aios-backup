@@ -12,7 +12,7 @@ SPED SaaS: Avi hand-built v1; wants agent harness (Prime); he owns boundary/veri
 §
 Avi wants terse, exact, concrete answers; no hand-waving/invention; answer at exact scope; verify live; one next action then stop.
 §
-Laptop: HP Spectre x360 15-df1xxx, i7-10510U, 16GB, MX250, Win11; small local LLMs only.
+Laptop: HP Spectre x360 15-df1xxx (i7-10510U,16GB,MX250,Win11); small local LLMs only.
 §
 VPS2 runs headless Obsidian sync (ob/./ob-sync,./root/vault): device drops land in Atlas/_Inbox ~30s. Vault lanes: Atlas/Ideas/=idea captures; Atlas/Ideaverse/=reflective journals. SPED-Command-Center.md NOT AUTHORIZED (audit pending).
 §
@@ -20,6 +20,8 @@ Fleet: Alyosha=Hermes/VPS2 AIOS curator+systems; Dewey=Hermes/laptop Daily Brief
 §
 Routing changes need Avi approval; never lite-tier fallback. OpenRouter is fallback-only, not a reason to move a Nous primary. Canonical: Efforts/Captain-Avi-System/Model-Token-Usage-Tracking.md.
 §
-Fleet decisions via quick council (parallel convos reconciled). Honcho=Track B cross-agent Avi-model (self-host aios, qwen3b). aios=4-core: NEVER run local-LLM jobs concurrently; serial + `docker update --cpus N` (8/30 alert: cook+rebuild). Single-human: only Avi on VPSes.
+serial + `docker update --cpus N`. Single-human: only Avi on VPSes.
 §
 Council: if Alyosha facilitates and participates, email his assessment into the shared round before Avi reviews/advances. Verify retrieval, not only API delivery; give exact inbox/sender/subject.
+§
+Cost rule (9/12): doc/web fetches=paid tokens on Avi's bill; set hard caps, stop once answered. 'Stop'=ZERO tool calls. Reason in dollars, not correctness.

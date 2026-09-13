@@ -1,22 +1,12 @@
 [
   {
-    "pid": 719930,
-    "create_time": 1787455289.48,
+    "pid": 1927227,
+    "create_time": 1789280596.15,
     "purpose": "serve",
     "install": "76f6e7e5145b",
     "spawner_pid": null,
     "spawner_create": null,
-    "registered_at": 1787455293.254791,
-    "argv": "/root/.local/bin/hermes serve --isolated --host 127.0.0.1 --port"
-  },
-  {
-    "pid": 1713204,
-    "create_time": 1788627723.99,
-    "purpose": "serve",
-    "install": "76f6e7e5145b",
-    "spawner_pid": null,
-    "spawner_create": null,
-    "registered_at": 1788627728.4554152,
+    "registered_at": 1789280597.8089974,
     "argv": "/root/.local/bin/hermes serve --isolated --host 127.0.0.1 --port"
   }
 ]
