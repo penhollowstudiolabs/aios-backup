@@ -25,15 +25,15 @@
       "schedule_display": "every 720m",
       "repeat": {
         "times": null,
-        "completed": 674
+        "completed": 676
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:30.004577-07:00",
-      "next_run_at": "2026-09-19T19:01:02.245253-07:00",
-      "last_run_at": "2026-09-19T07:01:02.245253-07:00",
+      "next_run_at": "2026-09-20T19:01:06.817482-07:00",
+      "last_run_at": "2026-09-20T07:01:06.817482-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 27
+        "completed": 28
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:37.706999-07:00",
-      "next_run_at": "2026-09-20T14:00:00-07:00",
-      "last_run_at": "2026-09-18T14:00:30.902291-07:00",
+      "next_run_at": "2026-09-21T14:00:00-07:00",
+      "last_run_at": "2026-09-19T14:00:24.676687-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -87,8 +87,8 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-09-19T14:00:22.219508-07:00",
-        "by": "aios:1927227:44fccf7844784373b85c66270724442b"
+        "at": "2026-09-20T14:00:21.999819-07:00",
+        "by": "aios:709301:b2c51ecb81894981967d8a76f37bbc09"
       }
     },
     {
@@ -116,15 +116,15 @@
       "schedule_display": "0 13 * * 0",
       "repeat": {
         "times": null,
-        "completed": 5
+        "completed": 6
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-22T14:47:44.669150-07:00",
-      "next_run_at": "2026-09-20T13:00:00-07:00",
-      "last_run_at": "2026-09-13T13:00:26.366213-07:00",
+      "next_run_at": "2026-09-27T13:00:00-07:00",
+      "last_run_at": "2026-09-20T13:00:07.930009-07:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -136,5 +136,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-19T14:00:22.219853-07:00"
+  "updated_at": "2026-09-20T14:00:22.000108-07:00"
 }
