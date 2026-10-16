@@ -1,9 +1,9 @@
 {
-  "last_report_path": "/root/.hermes/logs/curator/20261009-082832",
-  "last_run_at": "2026-10-09T08:28:32.562821+00:00",
-  "last_run_duration_seconds": 1.309312,
-  "last_run_summary": "auto: 11 marked stale; llm: skipped (consolidation off)",
+  "last_report_path": "/root/.hermes/logs/curator/20261016-091923",
+  "last_run_at": "2026-10-16T09:19:23.583333+00:00",
+  "last_run_duration_seconds": 1.376332,
+  "last_run_summary": "auto: 3 marked stale; llm: skipped (consolidation off)",
   "last_run_summary_shown_at": "2026-08-04T00:04:43.178076+00:00",
   "paused": false,
-  "run_count": 8
+  "run_count": 9
 }
