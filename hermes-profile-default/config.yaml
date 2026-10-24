@@ -4,9 +4,9 @@ model:
   base_url: https://chatgpt.com/backend-api/codex
 fallback_providers:
   - provider: nous
-    model: deepseek/deepseek-v4-flash-0731
+    model: openai/gpt-5.6-terra
   - provider: openrouter
-    model: deepseek/deepseek-v4-flash-0731
+    model: openai/gpt-5.6-terra
 terminal:
   cwd: /root/vault
 tool_loop_guardrails:

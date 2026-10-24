@@ -587,14 +587,14 @@
     "created_by": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-09-13T04:49:40.899677+00:00",
-    "last_viewed_at": "2026-09-13T04:49:40.895389+00:00",
+    "last_used_at": "2026-10-24T04:39:29.612894+00:00",
+    "last_viewed_at": "2026-10-24T04:39:29.609437+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 32,
-    "view_count": 32
+    "use_count": 34,
+    "view_count": 34
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -714,14 +714,14 @@
     "created_by": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-09-05T01:57:14.824370+00:00",
-    "last_viewed_at": "2026-09-05T01:57:14.817104+00:00",
+    "last_used_at": "2026-10-24T04:43:33.767689+00:00",
+    "last_viewed_at": "2026-10-24T04:43:33.763722+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 7,
-    "view_count": 7
+    "use_count": 10,
+    "view_count": 10
   },
   "llm-wiki": {
     "archived_at": null,
